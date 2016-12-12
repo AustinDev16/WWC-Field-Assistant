@@ -10,6 +10,7 @@
 		FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB31DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld */; };
 		FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */; };
 		FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */; };
+		FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */; };
 		FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */; };
 		FAA79F041DFCD59200EDC5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F021DFCD59200EDC5BC /* Main.storyboard */; };
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		FA28EEB41DFF2D1D004A8167 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryController.swift; sourceTree = "<group>"; };
 		FAA79EFB1DFCD59200EDC5BC /* WWCFieldAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWCFieldAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA79F031DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */,
+				FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
+				FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */,
 				FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */,
 				FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */,
 			);
