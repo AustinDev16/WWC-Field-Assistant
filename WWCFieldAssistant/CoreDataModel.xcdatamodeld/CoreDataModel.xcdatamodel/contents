@@ -9,11 +9,25 @@
         <attribute name="multiplier" attributeType="String" syncable="YES"/>
         <attribute name="serialNumber" attributeType="String" syncable="YES"/>
         <attribute name="unitTypeString" attributeType="String" syncable="YES"/>
+        <relationship name="fieldPhotos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FieldPhoto" inverseName="dataEntry" inverseEntity="FieldPhoto" syncable="YES"/>
+        <relationship name="well" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Well" inverseName="dataEntries" inverseEntity="Well" syncable="YES"/>
+    </entity>
+    <entity name="District" representedClassName="District" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="wells" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="Well" inverseName="district" inverseEntity="Well" syncable="YES"/>
     </entity>
     <entity name="FieldPhoto" representedClassName="FieldPhoto" syncable="YES" codeGenerationType="class">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dataEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DataEntry" inverseName="fieldPhotos" inverseEntity="DataEntry" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Well" representedClassName="Well" syncable="YES" codeGenerationType="class">
         <attribute name="diversionName" attributeType="String" syncable="YES"/>
@@ -30,10 +44,14 @@
         <attribute name="wmisComments" attributeType="String" syncable="YES"/>
         <attribute name="wmisContact" attributeType="String" syncable="YES"/>
         <attribute name="wmisNumber" attributeType="String" syncable="YES"/>
+        <relationship name="dataEntries" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="DataEntry" inverseName="well" inverseEntity="DataEntry" syncable="YES"/>
+        <relationship name="district" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="District" inverseName="wells" inverseEntity="District" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Well" positionX="-63" positionY="-18" width="128" height="255"/>
-        <element name="DataEntry" positionX="-54" positionY="-9" width="128" height="165"/>
-        <element name="FieldPhoto" positionX="-36" positionY="108" width="128" height="90"/>
+        <element name="Well" positionX="441" positionY="63" width="128" height="283"/>
+        <element name="DataEntry" positionX="675" positionY="90" width="128" height="193"/>
+        <element name="FieldPhoto" positionX="682" positionY="360" width="128" height="103"/>
+        <element name="District" positionX="234" positionY="36" width="128" height="73"/>
+        <element name="User" positionX="225" positionY="144" width="128" height="120"/>
     </elements>
 </model>
