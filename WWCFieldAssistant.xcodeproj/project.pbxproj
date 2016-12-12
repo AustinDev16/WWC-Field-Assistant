@@ -11,6 +11,16 @@
 		FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */; };
 		FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */; };
 		FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */; };
+		FA28EEC81DFF4D49004A8167 /* District+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEBE1DFF4D49004A8167 /* District+CoreDataClass.swift */; };
+		FA28EEC91DFF4D49004A8167 /* District+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEBF1DFF4D49004A8167 /* District+CoreDataProperties.swift */; };
+		FA28EECA1DFF4D49004A8167 /* DataEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC01DFF4D49004A8167 /* DataEntry+CoreDataClass.swift */; };
+		FA28EECB1DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC11DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift */; };
+		FA28EECC1DFF4D49004A8167 /* FieldPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC21DFF4D49004A8167 /* FieldPhoto+CoreDataClass.swift */; };
+		FA28EECD1DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC31DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift */; };
+		FA28EECE1DFF4D49004A8167 /* Well+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC41DFF4D49004A8167 /* Well+CoreDataClass.swift */; };
+		FA28EECF1DFF4D49004A8167 /* Well+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC51DFF4D49004A8167 /* Well+CoreDataProperties.swift */; };
+		FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC61DFF4D49004A8167 /* User+CoreDataClass.swift */; };
+		FA28EED11DFF4D49004A8167 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC71DFF4D49004A8167 /* User+CoreDataProperties.swift */; };
 		FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */; };
 		FAA79F041DFCD59200EDC5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F021DFCD59200EDC5BC /* Main.storyboard */; };
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
@@ -22,6 +32,16 @@
 		FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryController.swift; sourceTree = "<group>"; };
+		FA28EEBE1DFF4D49004A8167 /* District+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "District+CoreDataClass.swift"; path = "WWCFieldAssistant/District+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA28EEBF1DFF4D49004A8167 /* District+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "District+CoreDataProperties.swift"; path = "WWCFieldAssistant/District+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA28EEC01DFF4D49004A8167 /* DataEntry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataEntry+CoreDataClass.swift"; path = "WWCFieldAssistant/DataEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA28EEC11DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataEntry+CoreDataProperties.swift"; path = "WWCFieldAssistant/DataEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA28EEC21DFF4D49004A8167 /* FieldPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FieldPhoto+CoreDataClass.swift"; path = "WWCFieldAssistant/FieldPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA28EEC31DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FieldPhoto+CoreDataProperties.swift"; path = "WWCFieldAssistant/FieldPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA28EEC41DFF4D49004A8167 /* Well+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Well+CoreDataClass.swift"; path = "WWCFieldAssistant/Well+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA28EEC51DFF4D49004A8167 /* Well+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Well+CoreDataProperties.swift"; path = "WWCFieldAssistant/Well+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA28EEC61DFF4D49004A8167 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "WWCFieldAssistant/User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA28EEC71DFF4D49004A8167 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "WWCFieldAssistant/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FAA79EFB1DFCD59200EDC5BC /* WWCFieldAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWCFieldAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA79F031DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,9 +79,27 @@
 			name = ModelControllers;
 			sourceTree = "<group>";
 		};
+		FA28EED21DFF4D4F004A8167 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA28EEBE1DFF4D49004A8167 /* District+CoreDataClass.swift */,
+				FA28EEBF1DFF4D49004A8167 /* District+CoreDataProperties.swift */,
+				FA28EEC01DFF4D49004A8167 /* DataEntry+CoreDataClass.swift */,
+				FA28EEC11DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift */,
+				FA28EEC21DFF4D49004A8167 /* FieldPhoto+CoreDataClass.swift */,
+				FA28EEC31DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift */,
+				FA28EEC41DFF4D49004A8167 /* Well+CoreDataClass.swift */,
+				FA28EEC51DFF4D49004A8167 /* Well+CoreDataProperties.swift */,
+				FA28EEC61DFF4D49004A8167 /* User+CoreDataClass.swift */,
+				FA28EEC71DFF4D49004A8167 /* User+CoreDataProperties.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		FAA79EF21DFCD59200EDC5BC = {
 			isa = PBXGroup;
 			children = (
+				FA28EED21DFF4D4F004A8167 /* Model */,
 				FAA79EFD1DFCD59200EDC5BC /* WWCFieldAssistant */,
 				FAA79EFC1DFCD59200EDC5BC /* Products */,
 			);
@@ -162,11 +200,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA28EECA1DFF4D49004A8167 /* DataEntry+CoreDataClass.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
+				FA28EEC91DFF4D49004A8167 /* District+CoreDataProperties.swift in Sources */,
 				FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */,
 				FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */,
+				FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */,
 				FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */,
+				FA28EED11DFF4D49004A8167 /* User+CoreDataProperties.swift in Sources */,
+				FA28EECE1DFF4D49004A8167 /* Well+CoreDataClass.swift in Sources */,
+				FA28EECD1DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift in Sources */,
+				FA28EEC81DFF4D49004A8167 /* District+CoreDataClass.swift in Sources */,
+				FA28EECB1DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift in Sources */,
+				FA28EECF1DFF4D49004A8167 /* Well+CoreDataProperties.swift in Sources */,
+				FA28EECC1DFF4D49004A8167 /* FieldPhoto+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
