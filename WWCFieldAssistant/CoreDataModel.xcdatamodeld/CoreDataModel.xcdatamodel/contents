@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="DataEntry" representedClassName="DataEntry" syncable="YES" codeGenerationType="class">
+    <entity name="DataEntry" representedClassName="DataEntry" syncable="YES">
         <attribute name="dateCollected" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fieldNotes" attributeType="String" syncable="YES"/>
         <attribute name="make" attributeType="String" syncable="YES"/>
@@ -12,24 +12,24 @@
         <relationship name="fieldPhotos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FieldPhoto" inverseName="dataEntry" inverseEntity="FieldPhoto" syncable="YES"/>
         <relationship name="well" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Well" inverseName="dataEntries" inverseEntity="Well" syncable="YES"/>
     </entity>
-    <entity name="District" representedClassName="District" syncable="YES" codeGenerationType="class">
+    <entity name="District" representedClassName="District" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="wells" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="Well" inverseName="district" inverseEntity="Well" syncable="YES"/>
     </entity>
-    <entity name="FieldPhoto" representedClassName="FieldPhoto" syncable="YES" codeGenerationType="class">
+    <entity name="FieldPhoto" representedClassName="FieldPhoto" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="dataEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DataEntry" inverseName="fieldPhotos" inverseEntity="DataEntry" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Well" representedClassName="Well" syncable="YES" codeGenerationType="class">
+    <entity name="Well" representedClassName="Well" syncable="YES">
         <attribute name="diversionName" attributeType="String" syncable="YES"/>
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
@@ -48,10 +48,10 @@
         <relationship name="district" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="District" inverseName="wells" inverseEntity="District" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Well" positionX="441" positionY="63" width="128" height="283"/>
-        <element name="DataEntry" positionX="675" positionY="90" width="128" height="193"/>
-        <element name="FieldPhoto" positionX="682" positionY="360" width="128" height="103"/>
-        <element name="District" positionX="234" positionY="36" width="128" height="73"/>
+        <element name="DataEntry" positionX="675" positionY="90" width="128" height="195"/>
+        <element name="District" positionX="234" positionY="36" width="128" height="75"/>
+        <element name="FieldPhoto" positionX="682" positionY="360" width="128" height="105"/>
         <element name="User" positionX="225" positionY="144" width="128" height="120"/>
+        <element name="Well" positionX="441" positionY="63" width="128" height="285"/>
     </elements>
 </model>
