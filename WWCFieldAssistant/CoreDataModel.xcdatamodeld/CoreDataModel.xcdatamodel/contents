@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="DataEntry" representedClassName="DataEntry" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCollected" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fieldNotes" attributeType="String" syncable="YES"/>
+        <attribute name="make" attributeType="String" syncable="YES"/>
+        <attribute name="meterReading" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="model" attributeType="String" syncable="YES"/>
+        <attribute name="multiplier" attributeType="String" syncable="YES"/>
+        <attribute name="serialNumber" attributeType="String" syncable="YES"/>
+        <attribute name="unitTypeString" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FieldPhoto" representedClassName="FieldPhoto" syncable="YES" codeGenerationType="class">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Well" representedClassName="Well" syncable="YES" codeGenerationType="class">
+        <attribute name="diversionName" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="make" attributeType="String" syncable="YES"/>
+        <attribute name="measurementOption" attributeType="String" syncable="YES"/>
+        <attribute name="metalTag" attributeType="String" syncable="YES"/>
+        <attribute name="model" attributeType="String" syncable="YES"/>
+        <attribute name="multiplier" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" attributeType="String" syncable="YES"/>
+        <attribute name="serialNumber" attributeType="String" syncable="YES"/>
+        <attribute name="unitTypeString" attributeType="String" syncable="YES"/>
+        <attribute name="wmisComments" attributeType="String" syncable="YES"/>
+        <attribute name="wmisContact" attributeType="String" syncable="YES"/>
+        <attribute name="wmisNumber" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Well" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="DataEntry" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="FieldPhoto" positionX="-36" positionY="108" width="128" height="90"/>
+    </elements>
 </model>
