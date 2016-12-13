@@ -22,6 +22,7 @@
 		FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC61DFF4D49004A8167 /* User+CoreDataClass.swift */; };
 		FA28EED11DFF4D49004A8167 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEC71DFF4D49004A8167 /* User+CoreDataProperties.swift */; };
 		FA426B881DFF51CD0036B28E /* MeasurementEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */; };
+		FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B891DFF7FAD0036B28E /* DistrictController.swift */; };
 		FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */; };
 		FAA79F041DFCD59200EDC5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F021DFCD59200EDC5BC /* Main.storyboard */; };
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		FA28EEC61DFF4D49004A8167 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "WWCFieldAssistant/User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FA28EEC71DFF4D49004A8167 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "WWCFieldAssistant/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementEnums.swift; sourceTree = "<group>"; };
+		FA426B891DFF7FAD0036B28E /* DistrictController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictController.swift; sourceTree = "<group>"; };
 		FAA79EFB1DFCD59200EDC5BC /* WWCFieldAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWCFieldAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA79F031DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */,
 				FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */,
+				FA426B891DFF7FAD0036B28E /* DistrictController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA28EECA1DFF4D49004A8167 /* DataEntry+CoreDataClass.swift in Sources */,
+				FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
 				FA28EEC91DFF4D49004A8167 /* District+CoreDataProperties.swift in Sources */,
