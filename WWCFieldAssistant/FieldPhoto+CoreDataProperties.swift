@@ -20,5 +20,5 @@ extension FieldPhoto {
     @NSManaged public var imageData: NSData
     @NSManaged public var name: String
     @NSManaged public var dataEntry: DataEntry
-
+    @NSManaged public var dateTaken: NSDate
 }

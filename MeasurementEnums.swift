@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UnitName: String {
+enum MeterUnitType: String {
     case acreFeet = "AF"
     case gallons = "Gallons"
 }

@@ -18,6 +18,7 @@
     </entity>
     <entity name="FieldPhoto" representedClassName="FieldPhoto" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateTaken" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="dataEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DataEntry" inverseName="fieldPhotos" inverseEntity="DataEntry" syncable="YES"/>
@@ -50,7 +51,7 @@
     <elements>
         <element name="DataEntry" positionX="675" positionY="90" width="128" height="195"/>
         <element name="District" positionX="234" positionY="36" width="128" height="75"/>
-        <element name="FieldPhoto" positionX="682" positionY="360" width="128" height="105"/>
+        <element name="FieldPhoto" positionX="682" positionY="360" width="128" height="120"/>
         <element name="User" positionX="225" positionY="144" width="128" height="120"/>
         <element name="Well" positionX="441" positionY="63" width="128" height="285"/>
     </elements>
