@@ -28,6 +28,7 @@
 		FAA79F041DFCD59200EDC5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F021DFCD59200EDC5BC /* Main.storyboard */; };
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
 		FAA79F091DFCD59200EDC5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F071DFCD59200EDC5BC /* LaunchScreen.storyboard */; };
+		FAB053501E01EFF6007A7BFB /* WellListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */; };
 		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		FAA79F051DFCD59200EDC5BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA79F081DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAA79F0A1DFCD59200EDC5BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellListTableViewController.swift; sourceTree = "<group>"; };
 		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
+				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA28EECA1DFF4D49004A8167 /* DataEntry+CoreDataClass.swift in Sources */,
+				FAB053501E01EFF6007A7BFB /* WellListTableViewController.swift in Sources */,
 				FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,

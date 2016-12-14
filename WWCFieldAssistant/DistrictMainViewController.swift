@@ -16,6 +16,7 @@ class DistrictMainViewController: UIViewController {
         super.viewDidLoad()
         
         setUpChildViews()
+        loadViewControllers()
         
     }
 
@@ -39,8 +40,15 @@ class DistrictMainViewController: UIViewController {
     let wellInfoHeightProportion: CGFloat = 0.66
     let newEntryButtonViewHeight: CGFloat = 80
     
+    // View Controllers
+    lazy var wellListTVC: WellListTableViewController = {
+       let viewController = WellListTableViewController()
+        return viewController
+    }()
+    /// Adds subviews and corresponding constraints.
     func setUpChildViews(){
         addViewsAsSubviews()
+        
         addContraintsToWellListView()
         wellListView.backgroundColor = UIColor.blue
         
@@ -58,6 +66,15 @@ class DistrictMainViewController: UIViewController {
         
         addConstraintsToNewEntryButton()
         newEntryButtonView.backgroundColor = UIColor.green
+    }
+    
+    /// Instantiates view controllers and assigns their view to the child views.
+    func loadViewControllers(){
+        // WellListTVC
+        self.addChildViewController(wellListTVC)
+        wellListView.addSubview(wellListTVC.view)
+        wellListTVC.view.frame = wellListView.bounds
+        wellListTVC.didMove(toParentViewController: self)
     }
     
     func addViewsAsSubviews(){
