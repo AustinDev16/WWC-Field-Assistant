@@ -28,6 +28,7 @@
 		FAA79F041DFCD59200EDC5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F021DFCD59200EDC5BC /* Main.storyboard */; };
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
 		FAA79F091DFCD59200EDC5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F071DFCD59200EDC5BC /* LaunchScreen.storyboard */; };
+		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		FAA79F051DFCD59200EDC5BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA79F081DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAA79F0A1DFCD59200EDC5BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				FA28EED21DFF4D4F004A8167 /* Model */,
 				FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */,
 				FAA79F021DFCD59200EDC5BC /* Main.storyboard */,
+				FAD681C01E01C6390079E9D9 /* View Controllers */,
 				FA28EEBB1DFF4B29004A8167 /* ModelControllers */,
 				FA28EEB61DFF45AE004A8167 /* CoreData */,
 				FAA79F051DFCD59200EDC5BC /* Assets.xcassets */,
@@ -135,6 +138,14 @@
 				FAA79F0A1DFCD59200EDC5BC /* Info.plist */,
 			);
 			path = WWCFieldAssistant;
+			sourceTree = "<group>";
+		};
+		FAD681C01E01C6390079E9D9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 				FA28EECE1DFF4D49004A8167 /* Well+CoreDataClass.swift in Sources */,
 				FA28EECD1DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift in Sources */,
 				FA28EEC81DFF4D49004A8167 /* District+CoreDataClass.swift in Sources */,
+				FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */,
 				FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */,
 				FA28EECB1DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift in Sources */,
 				FA28EECF1DFF4D49004A8167 /* Well+CoreDataProperties.swift in Sources */,
