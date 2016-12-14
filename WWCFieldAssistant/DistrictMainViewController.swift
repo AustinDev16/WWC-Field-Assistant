@@ -33,6 +33,12 @@ class DistrictMainViewController: UIViewController {
     let dataEntryDetailView: UIView = UIView()
     let newEntryButtonView: UIView = UIView()
     
+    // Proportions
+    let wellListWidthProportion: CGFloat = 0.25
+    let mapViewWidthProportion: CGFloat = 0.33
+    let wellInfoHeightProportion: CGFloat = 0.66
+    let newEntryButtonViewHeight: CGFloat = 80
+    
     func setUpChildViews(){
         addViewsAsSubviews()
         addContraintsToWellListView()
@@ -68,7 +74,7 @@ class DistrictMainViewController: UIViewController {
         let leading = NSLayoutConstraint(item: self.wellListView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
         let top = NSLayoutConstraint(item: self.wellListView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: self.wellListView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let width = NSLayoutConstraint(item: self.wellListView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.25, constant: 0)
+        let width = NSLayoutConstraint(item: self.wellListView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: wellListWidthProportion, constant: 0)
         self.view.addConstraints([leading, top, bottom, width])
     }
     
@@ -76,7 +82,7 @@ class DistrictMainViewController: UIViewController {
         self.mapView.translatesAutoresizingMaskIntoConstraints = false
         let leading = NSLayoutConstraint(item: self.mapView, attribute: .leading, relatedBy: .equal, toItem: self.wellListView, attribute: .trailing, multiplier: 1.0, constant: 8)
         let top = NSLayoutConstraint(item: self.mapView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let width = NSLayoutConstraint(item: self.mapView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.33, constant: 0)
+        let width = NSLayoutConstraint(item: self.mapView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: mapViewWidthProportion, constant: 0)
         let height = NSLayoutConstraint(item: self.mapView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
         self.view.addConstraints([leading, top, width, height])
     }
@@ -95,7 +101,7 @@ class DistrictMainViewController: UIViewController {
         let leading = NSLayoutConstraint(item: self.wellInfoView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
         let top = NSLayoutConstraint(item: self.wellInfoView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: self.wellInfoView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let height = NSLayoutConstraint(item: self.wellInfoView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .height, multiplier: 0.66, constant: 0)
+        let height = NSLayoutConstraint(item: self.wellInfoView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .height, multiplier: wellInfoHeightProportion, constant: 0)
         self.view.addConstraints([leading, top, trailing, height])
         
     }
@@ -115,7 +121,7 @@ class DistrictMainViewController: UIViewController {
         let leading = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .leading, relatedBy: .equal, toItem: self.dataEntryListView, attribute: .trailing, multiplier: 1.0, constant: 8)
         let bottom = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let height = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: 30)
+        let height = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: newEntryButtonViewHeight)
         self.view.addConstraints([leading, bottom, trailing, height])
     }
     /*
