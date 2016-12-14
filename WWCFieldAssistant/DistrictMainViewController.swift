@@ -45,6 +45,12 @@ class DistrictMainViewController: UIViewController {
        let viewController = WellListTableViewController()
         return viewController
     }()
+    
+    lazy var dataEntryListTVC: DataEntryListTableViewController = {
+        let viewController = DataEntryListTableViewController()
+        return viewController
+    }()
+    
     /// Adds subviews and corresponding constraints.
     func setUpChildViews(){
         addViewsAsSubviews()
@@ -75,6 +81,12 @@ class DistrictMainViewController: UIViewController {
         wellListView.addSubview(wellListTVC.view)
         wellListTVC.view.frame = wellListView.bounds
         wellListTVC.didMove(toParentViewController: self)
+        
+        //DataEntryListTVC
+        self.addChildViewController(dataEntryListTVC)
+        dataEntryListView.addSubview(dataEntryListTVC.view)
+        dataEntryListTVC.view.frame = dataEntryListView.bounds
+        dataEntryListTVC.didMove(toParentViewController: self)
     }
     
     func addViewsAsSubviews(){

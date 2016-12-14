@@ -29,6 +29,7 @@
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
 		FAA79F091DFCD59200EDC5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F071DFCD59200EDC5BC /* LaunchScreen.storyboard */; };
 		FAB053501E01EFF6007A7BFB /* WellListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */; };
+		FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */; };
 		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		FAA79F081DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAA79F0A1DFCD59200EDC5BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellListTableViewController.swift; sourceTree = "<group>"; };
+		FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryListTableViewController.swift; sourceTree = "<group>"; };
 		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,7 @@
 			children = (
 				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
 				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
+				FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
 				FA28EEC91DFF4D49004A8167 /* District+CoreDataProperties.swift in Sources */,
+				FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */,
 				FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */,
 				FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */,
 				FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */,
