@@ -26,6 +26,12 @@ class WellListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Segues
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let wellInfoDetailTVC = WellInfoTableViewController(style: .grouped)
+        self.navigationController?.pushViewController(wellInfoDetailTVC, animated: true)
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +52,7 @@ class WellListTableViewController: UITableViewController {
         }
         
         cell?.textLabel?.text = "Test well entry"
-        
+        cell?.accessoryType = .disclosureIndicator
         // Configure the cell...
 
         return cell ?? UITableViewCell()

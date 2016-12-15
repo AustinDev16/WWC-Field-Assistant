@@ -57,7 +57,7 @@ class DistrictMainViewController: UIViewController {
     }()
     
     lazy var wellInfoNavigationController: UINavigationController = {
-        let nc = UINavigationController(rootViewController: self.wellInfoTVC)
+        let nc = UINavigationController(rootViewController: self.wellListTVC)
         return nc
     }()
     
