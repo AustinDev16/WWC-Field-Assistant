@@ -60,17 +60,17 @@ class DistrictMainViewController: UIViewController {
     func setUpChildViews(){
         addViewsAsSubviews()
         
-        addContraintsToWellListView()
-        wellListView.backgroundColor = UIColor.blue
+//        addContraintsToWellListView()
+//        wellListView.backgroundColor = UIColor.blue
         
         addConstraintsToMapView()
         mapView.backgroundColor = UIColor.cyan
         
-        addContraintsToDataEntryListView()
-        dataEntryListView.backgroundColor = UIColor.brown
-        
         addConstraintsToWellInfoView()
         wellInfoView.backgroundColor = UIColor.purple
+
+        addContraintsToDataEntryListView()
+        dataEntryListView.backgroundColor = UIColor.brown
         
         addContraintsToDataEntryDetailView()
         dataEntryDetailView.backgroundColor = UIColor.darkGray
@@ -81,11 +81,11 @@ class DistrictMainViewController: UIViewController {
     
     /// Instantiates view controllers and assigns their view to the child views.
     func loadViewControllers(){
-        // WellListTVC
-        self.addChildViewController(wellListTVC)
-        wellListView.addSubview(wellListTVC.view)
-        wellListTVC.view.frame = wellListView.bounds
-        wellListTVC.didMove(toParentViewController: self)
+//        // WellListTVC
+//        self.addChildViewController(wellListTVC)
+//        wellListView.addSubview(wellListTVC.view)
+//        wellListTVC.view.frame = wellListView.bounds
+//        wellListTVC.didMove(toParentViewController: self)
         
         //DataEntryListTVC
         self.addChildViewController(dataEntryListTVC)
@@ -101,7 +101,7 @@ class DistrictMainViewController: UIViewController {
     }
     
     func addViewsAsSubviews(){
-        self.view.addSubview(wellListView)
+        //self.view.addSubview(wellListView)
         self.view.addSubview(mapView)
         self.view.addSubview(dataEntryListView)
         self.view.addSubview(wellInfoView)
@@ -120,36 +120,37 @@ class DistrictMainViewController: UIViewController {
     
     func addConstraintsToMapView(){
         self.mapView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.mapView, attribute: .leading, relatedBy: .equal, toItem: self.wellListView, attribute: .trailing, multiplier: 1.0, constant: 8)
+        let leading = NSLayoutConstraint(item: self.mapView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
         let top = NSLayoutConstraint(item: self.mapView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         let width = NSLayoutConstraint(item: self.mapView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: mapViewWidthProportion, constant: 0)
         let height = NSLayoutConstraint(item: self.mapView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
         self.view.addConstraints([leading, top, width, height])
     }
     
-    func addContraintsToDataEntryListView(){
-        self.dataEntryListView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.dataEntryListView, attribute: .leading, relatedBy: .equal, toItem: self.wellListView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.dataEntryListView, attribute: .top, relatedBy: .equal, toItem: self.mapView, attribute: .bottom, multiplier: 1.0, constant: 8)
-        let bottom = NSLayoutConstraint(item: self.dataEntryListView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let width = NSLayoutConstraint(item: self.dataEntryListView, attribute: .width, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
-        self.view.addConstraints([leading, top, bottom, width])
-    }
-    
     func addConstraintsToWellInfoView(){
         self.wellInfoView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.wellInfoView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.wellInfoView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let trailing = NSLayoutConstraint(item: self.wellInfoView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let height = NSLayoutConstraint(item: self.wellInfoView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .height, multiplier: wellInfoHeightProportion, constant: 0)
-        self.view.addConstraints([leading, top, trailing, height])
+        let leading = NSLayoutConstraint(item: self.wellInfoView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: self.wellInfoView, attribute: .top, relatedBy: .equal, toItem: self.mapView, attribute: .bottom, multiplier: 1.0, constant: 8)
+        let width = NSLayoutConstraint(item: self.wellInfoView, attribute: .width, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
+        let bottom = NSLayoutConstraint(item: self.wellInfoView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        self.view.addConstraints([leading, top, width, bottom])
         
     }
+    
+    func addContraintsToDataEntryListView(){
+        self.dataEntryListView.translatesAutoresizingMaskIntoConstraints = false
+        let leading = NSLayoutConstraint(item: self.dataEntryListView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
+        let top = NSLayoutConstraint(item: self.dataEntryListView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let trailing = NSLayoutConstraint(item: self.dataEntryListView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: self.dataEntryListView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .height, multiplier: wellInfoHeightProportion, constant: 0)
+        self.view.addConstraints([leading, top, trailing, height])
+    }
+    
     
     func addContraintsToDataEntryDetailView(){
         self.dataEntryDetailView.translatesAutoresizingMaskIntoConstraints = false
         let leading = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .top, relatedBy: .equal, toItem: self.wellInfoView, attribute: .bottom, multiplier: 1.0, constant: 8)
+        let top = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .top, relatedBy: .equal, toItem: self.dataEntryListView, attribute: .bottom, multiplier: 1.0, constant: 8)
         let trailing = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .bottom, relatedBy: .equal, toItem: self.newEntryButtonView, attribute: .top, multiplier: 1.0, constant: -8)
         self.view.addConstraints([leading, top, trailing, bottom])
@@ -158,7 +159,7 @@ class DistrictMainViewController: UIViewController {
 
     func addConstraintsToNewEntryButton(){
         self.newEntryButtonView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .leading, relatedBy: .equal, toItem: self.dataEntryListView, attribute: .trailing, multiplier: 1.0, constant: 8)
+        let leading = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .leading, relatedBy: .equal, toItem: self.wellInfoView, attribute: .trailing, multiplier: 1.0, constant: 8)
         let bottom = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
         let height = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: newEntryButtonViewHeight)
