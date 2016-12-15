@@ -30,6 +30,7 @@
 		FAA79F091DFCD59200EDC5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F071DFCD59200EDC5BC /* LaunchScreen.storyboard */; };
 		FAB053501E01EFF6007A7BFB /* WellListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */; };
 		FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */; };
+		FAB053541E0200CC007A7BFB /* WellInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */; };
 		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		FAA79F0A1DFCD59200EDC5BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellListTableViewController.swift; sourceTree = "<group>"; };
 		FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryListTableViewController.swift; sourceTree = "<group>"; };
+		FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellInfoTableViewController.swift; sourceTree = "<group>"; };
 		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
+				FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */,
 				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
 				FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */,
 			);
@@ -244,6 +247,7 @@
 				FA28EEC81DFF4D49004A8167 /* District+CoreDataClass.swift in Sources */,
 				FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */,
 				FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */,
+				FAB053541E0200CC007A7BFB /* WellInfoTableViewController.swift in Sources */,
 				FA28EECB1DFF4D49004A8167 /* DataEntry+CoreDataProperties.swift in Sources */,
 				FA28EECF1DFF4D49004A8167 /* Well+CoreDataProperties.swift in Sources */,
 				FA28EECC1DFF4D49004A8167 /* FieldPhoto+CoreDataClass.swift in Sources */,

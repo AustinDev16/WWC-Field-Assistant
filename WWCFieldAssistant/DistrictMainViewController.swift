@@ -37,7 +37,7 @@ class DistrictMainViewController: UIViewController {
     // Proportions
     let wellListWidthProportion: CGFloat = 0.25
     let mapViewWidthProportion: CGFloat = 0.33
-    let wellInfoHeightProportion: CGFloat = 0.66
+    let wellInfoHeightProportion: CGFloat = 1.0
     let newEntryButtonViewHeight: CGFloat = 80
     
     // View Controllers
@@ -48,6 +48,11 @@ class DistrictMainViewController: UIViewController {
     
     lazy var dataEntryListTVC: DataEntryListTableViewController = {
         let viewController = DataEntryListTableViewController()
+        return viewController
+    }()
+    
+    lazy var wellInfoTVC: WellInfoTableViewController = {
+       let viewController = WellInfoTableViewController(style: .grouped)
         return viewController
     }()
     
@@ -87,6 +92,12 @@ class DistrictMainViewController: UIViewController {
         dataEntryListView.addSubview(dataEntryListTVC.view)
         dataEntryListTVC.view.frame = dataEntryListView.bounds
         dataEntryListTVC.didMove(toParentViewController: self)
+        
+        //WellInfoTVC
+        self.addChildViewController(wellInfoTVC)
+        wellInfoView.addSubview(wellInfoTVC.view)
+        wellInfoTVC.view.frame = wellInfoView.bounds
+        wellInfoTVC.didMove(toParentViewController: self)
     }
     
     func addViewsAsSubviews(){
