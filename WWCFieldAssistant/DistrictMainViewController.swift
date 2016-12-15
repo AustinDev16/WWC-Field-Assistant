@@ -56,6 +56,11 @@ class DistrictMainViewController: UIViewController {
         return viewController
     }()
     
+    lazy var wellInfoNavigationController: UINavigationController = {
+        let nc = UINavigationController(rootViewController: self.wellInfoTVC)
+        return nc
+    }()
+    
     /// Adds subviews and corresponding constraints.
     func setUpChildViews(){
         addViewsAsSubviews()
@@ -93,11 +98,17 @@ class DistrictMainViewController: UIViewController {
         dataEntryListTVC.view.frame = dataEntryListView.bounds
         dataEntryListTVC.didMove(toParentViewController: self)
         
-        //WellInfoTVC
-        self.addChildViewController(wellInfoTVC)
-        wellInfoView.addSubview(wellInfoTVC.view)
-        wellInfoTVC.view.frame = wellInfoView.bounds
-        wellInfoTVC.didMove(toParentViewController: self)
+//        //WellInfoTVC
+//        self.addChildViewController(wellInfoTVC)
+//        wellInfoView.addSubview(wellInfoTVC.view)
+//        wellInfoTVC.view.frame = wellInfoView.bounds
+//        wellInfoTVC.didMove(toParentViewController: self)
+        
+        //WellInfoNavigationController
+        self.addChildViewController(wellInfoNavigationController)
+        wellInfoView.addSubview(wellInfoNavigationController.view)
+        wellInfoNavigationController.view.frame = wellInfoView.bounds
+        wellInfoNavigationController.didMove(toParentViewController: self)
     }
     
     func addViewsAsSubviews(){
