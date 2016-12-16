@@ -36,7 +36,8 @@ class DistrictMainViewController: UIViewController {
     
     // Proportions
     let wellListWidthProportion: CGFloat = 0.25
-    let mapViewWidthProportion: CGFloat = 0.33
+    let mapViewWidthProportion: CGFloat = 0.5
+    let mapViewHeightProportion: CGFloat = 0.66
     let wellInfoHeightProportion: CGFloat = 1.0
     let newEntryButtonViewHeight: CGFloat = 80
     
@@ -61,6 +62,11 @@ class DistrictMainViewController: UIViewController {
         return nc
     }()
     
+    lazy var dataEntryNavigationController: UINavigationController = {
+       let nc = UINavigationController(rootViewController: self.dataEntryListTVC)
+        return nc 
+    }()
+    
     /// Adds subviews and corresponding constraints.
     func setUpChildViews(){
         addViewsAsSubviews()
@@ -74,8 +80,8 @@ class DistrictMainViewController: UIViewController {
         addConstraintsToWellInfoView()
         wellInfoView.backgroundColor = UIColor.purple
 
-        addContraintsToDataEntryListView()
-        dataEntryListView.backgroundColor = UIColor.brown
+        //addContraintsToDataEntryListView()
+        //dataEntryListView.backgroundColor = UIColor.brown
         
         addContraintsToDataEntryDetailView()
         dataEntryDetailView.backgroundColor = UIColor.darkGray
@@ -104,11 +110,20 @@ class DistrictMainViewController: UIViewController {
 //        wellInfoTVC.view.frame = wellInfoView.bounds
 //        wellInfoTVC.didMove(toParentViewController: self)
         
+        
         //WellInfoNavigationController
         self.addChildViewController(wellInfoNavigationController)
         wellInfoView.addSubview(wellInfoNavigationController.view)
         wellInfoNavigationController.view.frame = wellInfoView.bounds
         wellInfoNavigationController.didMove(toParentViewController: self)
+        wellInfoNavigationController.pushViewController(WellInfoTableViewController(style: .grouped), animated: false)
+        
+        // DataEntryNavigationController
+        self.addChildViewController(dataEntryNavigationController)
+        dataEntryDetailView.addSubview(dataEntryNavigationController.view)
+        dataEntryNavigationController.view.frame = dataEntryDetailView.bounds
+        dataEntryNavigationController.didMove(toParentViewController: self)
+        dataEntryNavigationController.pushViewController(DataEntryDetailViewController(), animated: false)
     }
     
     func addViewsAsSubviews(){
@@ -134,7 +149,7 @@ class DistrictMainViewController: UIViewController {
         let leading = NSLayoutConstraint(item: self.mapView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
         let top = NSLayoutConstraint(item: self.mapView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         let width = NSLayoutConstraint(item: self.mapView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: mapViewWidthProportion, constant: 0)
-        let height = NSLayoutConstraint(item: self.mapView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: self.mapView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: mapViewHeightProportion, constant: 0)
         self.view.addConstraints([leading, top, width, height])
     }
     
@@ -161,7 +176,7 @@ class DistrictMainViewController: UIViewController {
     func addContraintsToDataEntryDetailView(){
         self.dataEntryDetailView.translatesAutoresizingMaskIntoConstraints = false
         let leading = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .top, relatedBy: .equal, toItem: self.dataEntryListView, attribute: .bottom, multiplier: 1.0, constant: 8)
+        let top = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .bottom, relatedBy: .equal, toItem: self.newEntryButtonView, attribute: .top, multiplier: 1.0, constant: -8)
         self.view.addConstraints([leading, top, trailing, bottom])

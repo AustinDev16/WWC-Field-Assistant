@@ -13,6 +13,10 @@ class DataEntryListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Data Entries"
+
+        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -20,6 +24,7 @@ class DataEntryListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,13 +48,17 @@ class DataEntryListTableViewController: UITableViewController {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
         }
         
-        cell?.textLabel?.text = "Test well entry"
-        
+        cell?.textLabel?.text = "Past Entries"
+        cell?.accessoryType = .disclosureIndicator
         // Configure the cell...
         
         return cell ?? UITableViewCell()
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DataEntryDetailViewController()
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
