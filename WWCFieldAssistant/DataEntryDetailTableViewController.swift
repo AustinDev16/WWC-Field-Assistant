@@ -1,21 +1,17 @@
 //
-//  DataEntryListTableViewController.swift
+//  DataEntryDetailTableViewController.swift
 //  WWCFieldAssistant
 //
-//  Created by Austin Blaser on 12/14/16.
+//  Created by Austin Blaser on 12/16/16.
 //  Copyright © 2016 Austin Blaser. All rights reserved.
 //
 
 import UIKit
 
-class DataEntryListTableViewController: UITableViewController {
-    private let reuseIdentifier = "dataEntryCell"
+class DataEntryDetailTableViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "Data Entries"
-
-        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,7 +20,6 @@ class DataEntryListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,31 +29,24 @@ class DataEntryListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return 0
     }
 
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)
-        if (cell == nil) {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        }
-        
-        cell?.textLabel?.text = "Past Entries"
-        cell?.accessoryType = .disclosureIndicator
-        // Configure the cell...
-        
-        return cell ?? UITableViewCell()
-    }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DataEntryDetailTableViewController(style: .grouped)
-        self.navigationController?.pushViewController(detailVC, animated: true)
+        // Configure the cell...
+
+        return cell
     }
+    */
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

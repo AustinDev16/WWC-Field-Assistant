@@ -13,34 +13,44 @@ class WellInfoTableViewController: UITableViewController {
     // MARK: - Static Cells
     let wellNameCell: UITableViewCell = UITableViewCell()
     let locationCell: UITableViewCell = UITableViewCell()
-    let metalNameTagCell: UITableViewCell = UITableViewCell()
-    let serialNumberCell: UITableViewCell = UITableViewCell()
-    let measurementOptionCell: UITableViewCell = UITableViewCell()
+    let metalNameTagCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    let serialNumberCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    let measurementOptionCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     
-    let contactNameCell: UITableViewCell = UITableViewCell()
-    let phoneNumberCell: UITableViewCell = UITableViewCell()
-    let wmisCommentCell: UITableViewCell = UITableViewCell()
+    let contactNameCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    let phoneNumberCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    let wmisCommentCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     
     
     override func loadView() {
         super.loadView()
-        
+        self.title = "WMIS # 100045 - Camel Well"
         // Construct cells
-        wellNameCell.textLabel?.text = "WMIS # 100045 - Camel Well"
+        //wellNameCell.textLabel?.text = "WMIS # 100045 - Camel Well"
         locationCell.textLabel?.text = "Location: PLS"
-        metalNameTagCell.textLabel?.text = "Metal Tag# A00004523D"
-        serialNumberCell.textLabel?.text = "Serial# M195632453"
-        measurementOptionCell.textLabel?.text = "Measurement Option: Flow Meter(1)"
+        metalNameTagCell.textLabel?.text = "Metal Tag #: "
+        metalNameTagCell.detailTextLabel?.text = "A00004523D"
         
-        contactNameCell.textLabel?.text = "4H Ranch, Michael Telford"
-        phoneNumberCell.textLabel?.text = "Phone: 2083564769"
-        wmisCommentCell.textLabel?.text = "Well needs straps"
+        serialNumberCell.textLabel?.text = "Serial #:"
+        serialNumberCell.detailTextLabel?.text = "M195632453"
         
-        // Add header
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.blue
-        self.tableView.tableHeaderView = headerView
-        self.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30)
+        measurementOptionCell.textLabel?.text = "Measurement Option:"
+        measurementOptionCell.detailTextLabel?.text = "Flow Meter(1)"
+        
+        contactNameCell.textLabel?.text = "Name:"
+        contactNameCell.detailTextLabel?.text = "4H Ranch, Michael Telford"
+        
+        phoneNumberCell.textLabel?.text = "Phone:"
+        phoneNumberCell.detailTextLabel?.text = "(208)3564769"
+        wmisCommentCell.textLabel?.text = "Comment:"
+        wmisCommentCell.detailTextLabel?.text = "Well needs straps"
+        wmisCommentCell.detailTextLabel?.numberOfLines = 0
+        
+//        // Add header
+//        let headerView = UIView()
+//        headerView.backgroundColor = UIColor.blue
+//        self.tableView.tableHeaderView = headerView
+//        self.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30)
     }
     
     override func viewDidLoad() {
@@ -62,16 +72,16 @@ class WellInfoTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
-            return 8
+            return 4
         case 1:
-            return 3
+            return 2
         default:
             return 0
         }
@@ -83,20 +93,12 @@ class WellInfoTableViewController: UITableViewController {
         case 0:  // First section
             switch indexPath.row {
             case 0:
-                return wellNameCell
-            case 1:
-                return locationCell
-            case 2:
                 return metalNameTagCell
-            case 3:
+            case 1:
                 return serialNumberCell
-            case 4:
+            case 2:
                 return measurementOptionCell
-            case 5:
-                return contactNameCell
-            case 6:
-                return phoneNumberCell
-            case 7:
+            case 3:
                 return wmisCommentCell
             default:
                 return UITableViewCell()
@@ -107,8 +109,6 @@ class WellInfoTableViewController: UITableViewController {
                 return contactNameCell
             case 1:
                 return phoneNumberCell
-            case 2:
-                return wmisCommentCell
             default:
                 return UITableViewCell()
             }
@@ -117,16 +117,16 @@ class WellInfoTableViewController: UITableViewController {
         }
     }
  
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        switch section {
-//        case 0:
-//            return "Well info"
-//        case 1:
-//            return "Contact info"
-//        default:
-//            return nil
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Well Info"
+        case 1:
+            return "Contact"
+        default:
+            return nil
+        }
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32

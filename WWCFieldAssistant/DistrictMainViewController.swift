@@ -123,7 +123,7 @@ class DistrictMainViewController: UIViewController {
         dataEntryDetailView.addSubview(dataEntryNavigationController.view)
         dataEntryNavigationController.view.frame = dataEntryDetailView.bounds
         dataEntryNavigationController.didMove(toParentViewController: self)
-        dataEntryNavigationController.pushViewController(DataEntryDetailViewController(), animated: false)
+        dataEntryNavigationController.pushViewController(DataEntryDetailTableViewController(style: .grouped), animated: false)
     }
     
     func addViewsAsSubviews(){
