@@ -39,7 +39,7 @@ class DistrictMainViewController: UIViewController {
     let mapViewWidthProportion: CGFloat = 0.5
     let mapViewHeightProportion: CGFloat = 0.66
     let wellInfoHeightProportion: CGFloat = 1.0
-    let newEntryButtonViewHeight: CGFloat = 80
+    let newEntryButtonViewHeight: CGFloat = 50
     
     // View Controllers
     lazy var wellListTVC: WellListTableViewController = {
@@ -75,7 +75,7 @@ class DistrictMainViewController: UIViewController {
 //        wellListView.backgroundColor = UIColor.blue
         
         addConstraintsToMapView()
-        mapView.backgroundColor = UIColor.cyan
+        mapView.backgroundColor = UIColor.lightGray
         
         addConstraintsToWellInfoView()
         wellInfoView.backgroundColor = UIColor.purple
@@ -84,10 +84,11 @@ class DistrictMainViewController: UIViewController {
         //dataEntryListView.backgroundColor = UIColor.brown
         
         addContraintsToDataEntryDetailView()
-        dataEntryDetailView.backgroundColor = UIColor.darkGray
+        //dataEntryDetailView.backgroundColor = UIColor.darkGray
         
         addConstraintsToNewEntryButton()
         newEntryButtonView.backgroundColor = UIColor.green
+        setUpEntryButton()
     }
     
     /// Instantiates view controllers and assigns their view to the child views.
@@ -190,6 +191,26 @@ class DistrictMainViewController: UIViewController {
         let trailing = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -8)
         let height = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: newEntryButtonViewHeight)
         self.view.addConstraints([leading, bottom, trailing, height])
+    }
+    
+    // MARK: - New Entry button
+    func setUpEntryButton(){
+        let newEntryButton = UIButton(type: .custom)
+        newEntryButton.setTitle("Tap to add a new entry", for: .normal)
+        newEntryButton.setTitleColor(UIColor.darkGray, for: .normal)
+        newEntryButton.addTarget(self, action: #selector(newEntryButtonTapped), for: .touchUpInside)
+        newEntryButtonView.addSubview(newEntryButton)
+        
+        newEntryButton.translatesAutoresizingMaskIntoConstraints = false
+        let top = NSLayoutConstraint(item: newEntryButton, attribute: .top, relatedBy: .equal, toItem: newEntryButtonView, attribute: .top, multiplier: 1.0, constant: 0)
+        let bottom = NSLayoutConstraint(item: newEntryButton, attribute: .bottom, relatedBy: .equal, toItem: newEntryButtonView, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: newEntryButton, attribute: .leading, relatedBy: .equal, toItem: newEntryButtonView, attribute: .leading, multiplier: 1.0, constant: 0)
+        let trailing = NSLayoutConstraint(item: newEntryButton, attribute: .trailing, relatedBy: .equal, toItem: newEntryButtonView, attribute: .trailing, multiplier: 1.0, constant: 0)
+        newEntryButtonView.addConstraints([top, bottom, leading, trailing])
+    }
+    
+    func newEntryButtonTapped(){
+        print("New entry button tapped")
     }
     /*
     // MARK: - Navigation
