@@ -210,6 +210,9 @@ class DistrictMainViewController: UIViewController {
         print("New entry button tapped")
         let addNewTVC = AddNewEntryTableViewController(style: .grouped)
         let nc = UINavigationController(rootViewController: addNewTVC)
+        nc.modalTransitionStyle = .coverVertical
+        nc.modalPresentationStyle = .pageSheet
+        //nc.preferredContentSize = CGSize(width: 100, height: 200)
         self.present(nc, animated: true, completion: nil)
     }
     /*

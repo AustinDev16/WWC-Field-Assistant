@@ -47,7 +47,8 @@ class AddNewEntryTableViewController: UITableViewController {
             switch indexPath.row {
             case 0: // Date
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-                cell.textLabel?.text = "Record date: \(dateFormatter.string(from: Date()))"
+                cell.textLabel?.text = "\(dateFormatter.string(from: Date()))"
+                cell.detailTextLabel?.text = "Collected by: Jason D."
                 return cell
             case 1:
                 let cell = AddNewReadingTableViewCell()
