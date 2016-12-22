@@ -25,6 +25,8 @@
 		FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B891DFF7FAD0036B28E /* DistrictController.swift */; };
 		FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B8B1DFF820D0036B28E /* MockDataController.swift */; };
 		FA7452461E04C91D001B983C /* DataEntryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */; };
+		FAA777191E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */; };
+		FAA7771C1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */; };
 		FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */; };
 		FAA79F041DFCD59200EDC5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F021DFCD59200EDC5BC /* Main.storyboard */; };
 		FAA79F061DFCD59200EDC5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA79F051DFCD59200EDC5BC /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		FA426B891DFF7FAD0036B28E /* DistrictController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictController.swift; sourceTree = "<group>"; };
 		FA426B8B1DFF820D0036B28E /* MockDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataController.swift; sourceTree = "<group>"; };
 		FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryDetailTableViewController.swift; sourceTree = "<group>"; };
+		FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewEntryTableViewController.swift; sourceTree = "<group>"; };
+		FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewReadingTableViewCell.swift; sourceTree = "<group>"; };
 		FAA79EFB1DFCD59200EDC5BC /* WWCFieldAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWCFieldAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA79EFE1DFCD59200EDC5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA79F031DFCD59200EDC5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +120,18 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FAA7771A1E0B57AE00FD6FD1 /* District Main */ = {
+			isa = PBXGroup;
+			children = (
+				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
+				FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */,
+				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
+				FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */,
+				FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */,
+			);
+			name = "District Main";
+			sourceTree = "<group>";
+		};
 		FAA79EF21DFCD59200EDC5BC = {
 			isa = PBXGroup;
 			children = (
@@ -151,11 +167,9 @@
 		FAD681C01E01C6390079E9D9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
-				FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */,
-				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
-				FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */,
-				FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */,
+				FAA7771A1E0B57AE00FD6FD1 /* District Main */,
+				FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */,
+				FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -236,6 +250,8 @@
 				FA28EECA1DFF4D49004A8167 /* DataEntry+CoreDataClass.swift in Sources */,
 				FAB053501E01EFF6007A7BFB /* WellListTableViewController.swift in Sources */,
 				FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */,
+				FAA7771C1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift in Sources */,
+				FAA777191E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
 				FA28EEC91DFF4D49004A8167 /* District+CoreDataProperties.swift in Sources */,

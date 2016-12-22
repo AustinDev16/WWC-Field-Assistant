@@ -18,11 +18,8 @@ class DistrictMainViewController: UIViewController {
         setUpChildViews()
         loadViewControllers()
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // for testing
+        newEntryButtonTapped()
     }
     
     // MARK: - Child Views
@@ -211,6 +208,9 @@ class DistrictMainViewController: UIViewController {
     
     func newEntryButtonTapped(){
         print("New entry button tapped")
+        let addNewTVC = AddNewEntryTableViewController(style: .grouped)
+        let nc = UINavigationController(rootViewController: addNewTVC)
+        self.present(nc, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
