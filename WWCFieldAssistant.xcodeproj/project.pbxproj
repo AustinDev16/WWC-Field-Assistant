@@ -24,6 +24,7 @@
 		FA426B881DFF51CD0036B28E /* MeasurementEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */; };
 		FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B891DFF7FAD0036B28E /* DistrictController.swift */; };
 		FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B8B1DFF820D0036B28E /* MockDataController.swift */; };
+		FA6B51391E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */; };
 		FA7452461E04C91D001B983C /* DataEntryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */; };
 		FAA777191E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */; };
 		FAA7771C1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */; };
@@ -55,6 +56,7 @@
 		FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementEnums.swift; sourceTree = "<group>"; };
 		FA426B891DFF7FAD0036B28E /* DistrictController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictController.swift; sourceTree = "<group>"; };
 		FA426B8B1DFF820D0036B28E /* MockDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataController.swift; sourceTree = "<group>"; };
+		FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellSerialAndMetalTagTableViewCell.swift; sourceTree = "<group>"; };
 		FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryDetailTableViewController.swift; sourceTree = "<group>"; };
 		FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewEntryTableViewController.swift; sourceTree = "<group>"; };
 		FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewReadingTableViewCell.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				FAA7771A1E0B57AE00FD6FD1 /* District Main */,
 				FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */,
 				FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */,
+				FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */,
 				FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */,
 				FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */,
+				FA6B51391E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift in Sources */,
 				FA28EED11DFF4D49004A8167 /* User+CoreDataProperties.swift in Sources */,
 				FA28EECE1DFF4D49004A8167 /* Well+CoreDataClass.swift in Sources */,
 				FA28EECD1DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift in Sources */,

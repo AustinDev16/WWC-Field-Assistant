@@ -51,7 +51,11 @@ class AddNewEntryTableViewController: UITableViewController {
                 cell.detailTextLabel?.text = "Collected by: Jason D."
                 return cell
             case 1:
-                let cell = AddNewReadingTableViewCell()
+                let cell = AddNewReadingTableViewCell()//(style: .value1, reuseIdentifier: nil)
+                cell.configureCell()
+                return cell
+            case 2:
+                let cell = WellSerialAndMetalTagTableViewCell()
                 cell.configureCell()
                 return cell
             default: return UITableViewCell()
