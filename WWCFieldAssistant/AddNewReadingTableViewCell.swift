@@ -56,11 +56,11 @@ class AddNewReadingTableViewCell: UITableViewCell {
         clearButton.setTitleColor(UIColor.red, for: .normal)
         clearButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         
-        let leading = NSLayoutConstraint(item: clearButton, attribute: .leading, relatedBy: .equal, toItem: multiplierUnitPicker, attribute: .trailing, multiplier: 1.0, constant: 8)
+        let trailing = NSLayoutConstraint(item: clearButton, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1.0, constant: 8)
         let height = NSLayoutConstraint(item: clearButton, attribute: .height, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 40)
         let width = NSLayoutConstraint(item: clearButton, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 80)
         let centerY = NSLayoutConstraint(item: clearButton, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1.0, constant: 0)
-        self.contentView.addConstraints([leading, height, width, centerY])
+        self.contentView.addConstraints([trailing, height, width, centerY])
     }
 
     func setUpMultiplierUnitPicker(){
