@@ -58,6 +58,10 @@ class AddNewEntryTableViewController: UITableViewController {
                 let cell = WellSerialAndMetalTagTableViewCell()
                 cell.configureCell()
                 return cell
+            case 3:
+                let cell = FieldNotesTableViewCell()
+                cell.configureCell()
+                return cell
             default: return UITableViewCell()
             }
         default: return UITableViewCell()
@@ -86,11 +90,14 @@ class AddNewEntryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 1 {
+        if indexPath.row == 1 { // Picker view
             return 80
+        } else if indexPath.row == 3 { // Textview
+            return 120
         } else {
             return 60
         }
+       
     }
 
     /*
