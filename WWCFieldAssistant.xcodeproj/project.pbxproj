@@ -124,6 +124,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FA51ECCB1E0DC98A0064C507 /* New Entry */ = {
+			isa = PBXGroup;
+			children = (
+				FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */,
+				FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */,
+				FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */,
+				FA6B513A1E0CEF2400763631 /* FieldNotesTableViewCell.swift */,
+			);
+			name = "New Entry";
+			sourceTree = "<group>";
+		};
 		FAA7771A1E0B57AE00FD6FD1 /* District Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA7771A1E0B57AE00FD6FD1 /* District Main */,
-				FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */,
-				FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */,
-				FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */,
-				FA6B513A1E0CEF2400763631 /* FieldNotesTableViewCell.swift */,
+				FA51ECCB1E0DC98A0064C507 /* New Entry */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
