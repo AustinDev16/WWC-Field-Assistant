@@ -69,7 +69,7 @@ class AddNewEntryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 4
     }
 
     
@@ -81,6 +81,13 @@ class AddNewEntryTableViewController: UITableViewController {
         return returnCellAt(indexPath: indexPath)
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 1 {
+            return 80
+        } else {
+            return 60
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

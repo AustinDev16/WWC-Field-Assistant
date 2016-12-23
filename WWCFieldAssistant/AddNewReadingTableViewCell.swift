@@ -40,7 +40,7 @@ class AddNewReadingTableViewCell: UITableViewCell {
     
     func setUpReadingTextField(){
         readingTextField.placeholder = "Tap to enter flow reading"
-        readingTextField.borderStyle = .roundedRect
+        readingTextField.borderStyle = .none
         // ReadingTextField
         readingTextField.translatesAutoresizingMaskIntoConstraints = false
         let leading = NSLayoutConstraint(item: readingTextField, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
@@ -84,12 +84,35 @@ extension AddNewReadingTableViewCell: UIPickerViewDelegate, UIPickerViewDataSour
         return 2
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 20
+        switch component {
+        case 0: return 4
+        case 1: return 2
+        default: return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "The view"
+        switch component {
+        case 0:
+            // first one
+            switch row {
+            case 0: return Multiplier.one.rawValue.stringRepresentation()
+            case 1: return Multiplier.tenth.rawValue.stringRepresentation()
+            case 2: return Multiplier.hundreth.rawValue.stringRepresentation()
+            case 3: return Multiplier.thousandeth.rawValue.stringRepresentation()
+            default: return "Error with multiplier enum"
+            }
+        case 1:
+            // second one
+            switch row {
+            case 0: return MeterUnitType.acreFeet.rawValue
+            case 1: return MeterUnitType.gallons.rawValue
+            default: return "Error with unit type"
+            }
+        default: return nil
+        }
     }
+    
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 110
     }
