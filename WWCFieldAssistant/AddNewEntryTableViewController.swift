@@ -27,7 +27,19 @@ class AddNewEntryTableViewController: UITableViewController {
     
     func cancelButtonTapped(){
         self.isEditing = false
-        self.dismiss(animated: true, completion: nil)
+        
+        let cancelAlertController = UIAlertController(title: "Are you sure?", message: "Canceling will lead to any unsaved data to be lost permanently.", preferredStyle: .alert)
+        let discardChanges = UIAlertAction(title: "Discard changes", style: .destructive) { (_) in
+            self.setEditing(false, animated: false)
+            self.dismiss(animated: true, completion: nil)
+        }
+        let stayOnPage = UIAlertAction(title: "Stay on this page", style: .default, handler: nil)
+        
+        cancelAlertController.addAction(discardChanges)
+        cancelAlertController.addAction(stayOnPage)
+        self.present(cancelAlertController, animated: true, completion: nil)
+        
+      
     }
     
     func saveButtonTapped(){
