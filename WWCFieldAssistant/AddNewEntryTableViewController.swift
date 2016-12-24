@@ -63,11 +63,11 @@ class AddNewEntryTableViewController: UITableViewController {
                 cell.textLabel?.text = "\(dateFormatter.string(from: Date()))"
                 cell.detailTextLabel?.text = "Collected by: Jason D."
                 return cell
-            case 1:
+            case 2:
                 let cell = AddNewReadingTableViewCell()//(style: .value1, reuseIdentifier: nil)
                 cell.configureCell()
                 return cell
-            case 2:
+            case 1:
                 let cell = WellSerialAndMetalTagTableViewCell()
                 cell.configureCell()
                 return cell
@@ -124,17 +124,17 @@ class AddNewEntryTableViewController: UITableViewController {
 //        }
         
         if indexPath.section == 0 {
-            if indexPath.row == 1 {
+            if indexPath.row == 2{//1 {
                 return 80
             } else {
-                return 60
+                return 40
             }
         } else if indexPath.section == 1 {
             return 120
         } else if indexPath.section == 2 {
             return 160
         } else {
-            return 60
+            return 40
         }
        
     }

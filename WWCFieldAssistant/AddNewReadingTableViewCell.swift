@@ -42,7 +42,8 @@ class AddNewReadingTableViewCell: UITableViewCell {
         readingTextField.placeholder = "Tap to enter flow reading"
         readingTextField.borderStyle = .none
         readingTextField.keyboardType = .numbersAndPunctuation
-        readingTextField.textAlignment = .center
+        readingTextField.textAlignment = .right
+        readingTextField.minimumFontSize = 16
         
         // ReadingTextField
         readingTextField.translatesAutoresizingMaskIntoConstraints = false
