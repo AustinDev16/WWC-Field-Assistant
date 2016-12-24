@@ -148,6 +148,10 @@ class AddNewEntryTableViewController: UITableViewController {
         default: return nil
         }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 { return 40} else { return 24}
+    }
 
     /*
     // Override to support conditional editing of the table view.
