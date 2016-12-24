@@ -106,7 +106,7 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     func setUpEditButton(){
         editButton.setTitle("Edit", for: .normal)
         editButton.setTitleColor(UIColor.blue, for: .normal)
-        editButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        //editButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         
         editButton.translatesAutoresizingMaskIntoConstraints = false
         

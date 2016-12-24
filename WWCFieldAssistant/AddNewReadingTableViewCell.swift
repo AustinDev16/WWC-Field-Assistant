@@ -13,7 +13,7 @@ class AddNewReadingTableViewCell: UITableViewCell {
     // MARK: - Elements
     let multiplierUnitPicker = UIPickerView()
     let readingTextField = UITextField()
-    let clearButton = UIButton()
+    let clearButton = UIButton()//(type: .roundedRect)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,6 +41,9 @@ class AddNewReadingTableViewCell: UITableViewCell {
     func setUpReadingTextField(){
         readingTextField.placeholder = "Tap to enter flow reading"
         readingTextField.borderStyle = .none
+        readingTextField.keyboardType = .numbersAndPunctuation
+        readingTextField.textAlignment = .center
+        
         // ReadingTextField
         readingTextField.translatesAutoresizingMaskIntoConstraints = false
         let leading = NSLayoutConstraint(item: readingTextField, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
@@ -54,7 +57,8 @@ class AddNewReadingTableViewCell: UITableViewCell {
         clearButton.translatesAutoresizingMaskIntoConstraints = false
         clearButton.setTitle("Clear", for: .normal)
         clearButton.setTitleColor(UIColor.red, for: .normal)
-        clearButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        //clearButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         
         let trailing = NSLayoutConstraint(item: clearButton, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         let height = NSLayoutConstraint(item: clearButton, attribute: .height, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 40)
@@ -76,6 +80,10 @@ class AddNewReadingTableViewCell: UITableViewCell {
         self.contentView.addConstraints([leading, top, bottom, width])
     }
     
+    // MARK: Internal methods
+    @objc private func clearButtonTapped(){
+        readingTextField.text = nil
+    }
 
 }
 
