@@ -34,7 +34,7 @@ class FieldPhotoTableViewCell: UITableViewCell {
     
     func setUpCollectionView(){
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.green
+        collectionView.backgroundColor = UIColor.brown.withAlphaComponent(0.3)
         
         let leading = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
         let top = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)

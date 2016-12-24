@@ -19,7 +19,7 @@ class DistrictMainViewController: UIViewController {
         loadViewControllers()
         
         // for testing
-        newEntryButtonTapped()
+       // newEntryButtonTapped()
     }
     
     // MARK: - Child Views
@@ -84,7 +84,7 @@ class DistrictMainViewController: UIViewController {
         //dataEntryDetailView.backgroundColor = UIColor.darkGray
         
         addConstraintsToNewEntryButton()
-        newEntryButtonView.backgroundColor = UIColor.green
+        newEntryButtonView.backgroundColor = UIColor(red: 38/255.0, green: 145/255.0, blue: 15/255.0, alpha: 1.0)
         setUpEntryButton()
     }
     
@@ -194,7 +194,7 @@ class DistrictMainViewController: UIViewController {
     func setUpEntryButton(){
         let newEntryButton = UIButton(type: .custom)
         newEntryButton.setTitle("Tap to add a new entry", for: .normal)
-        newEntryButton.setTitleColor(UIColor.darkGray, for: .normal)
+        newEntryButton.setTitleColor(UIColor.white, for: .normal)
         newEntryButton.addTarget(self, action: #selector(newEntryButtonTapped), for: .touchUpInside)
         newEntryButtonView.addSubview(newEntryButton)
         
