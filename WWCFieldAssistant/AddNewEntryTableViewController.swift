@@ -15,6 +15,7 @@ class AddNewEntryTableViewController: UITableViewController {
         super.viewDidLoad()
 
         setUpNavigationBar()
+        tableView.allowsSelection = false
     }
 
     func setUpNavigationBar(){
