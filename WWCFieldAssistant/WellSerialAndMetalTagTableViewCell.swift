@@ -15,7 +15,8 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     let metalTagNumberLabel = UILabel()
     let serialNumberTextField = UITextField()
     let metalTagTextField = UITextField()
-    let editButton = UIButton()
+    let resetButton = UIButton()
+    
     
     
     override func awakeFromNib() {
@@ -35,7 +36,7 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
         self.contentView.addSubview(metalTagNumberLabel)
         self.contentView.addSubview(serialNumberTextField)
         self.contentView.addSubview(metalTagTextField)
-        self.contentView.addSubview(editButton)
+        self.contentView.addSubview(resetButton)
         
         // Configure
         setUpSerialNumberLabel()
@@ -44,7 +45,8 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
         setUpMetalTagLabel()
         setUpMetalTagTextField()
         
-        setUpEditButton()
+        setUpResetButton()
+
     }
     
     func setUpSerialNumberLabel(){
@@ -57,20 +59,21 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
         let leading = NSLayoutConstraint(item: serialNumberLabel, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
         let top = NSLayoutConstraint(item: serialNumberLabel, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: serialNumberLabel, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let width = NSLayoutConstraint(item: serialNumberLabel, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 100)
+        let width = NSLayoutConstraint(item: serialNumberLabel, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 70)
         self.contentView.addConstraints([leading, top, bottom, width])
         
     }
     
     func setUpSerialNumberTextField(){
         serialNumberTextField.text = "M1896425"
-        serialNumberTextField.textAlignment = .center
+        serialNumberTextField.textAlignment = .left
+        serialNumberTextField.clearButtonMode = .always
         
         serialNumberTextField.translatesAutoresizingMaskIntoConstraints = false
         
         
         let leading = NSLayoutConstraint(item: serialNumberTextField, attribute: .leading, relatedBy: .equal, toItem: serialNumberLabel, attribute: .trailing, multiplier: 1.0, constant: 4.0)
-        let trailing = NSLayoutConstraint(item: serialNumberTextField, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .centerXWithinMargins, multiplier: 1.0, constant: -84.0)
+        let trailing = NSLayoutConstraint(item: serialNumberTextField, attribute: .trailing, relatedBy: .equal, toItem: metalTagNumberLabel, attribute: .leading, multiplier: 1.0, constant: -12.0)
         let top = NSLayoutConstraint(item: serialNumberTextField, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: serialNumberTextField, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.contentView.addConstraints([leading, trailing, top, bottom])
@@ -83,7 +86,7 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
         
         metalTagNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let leading = NSLayoutConstraint(item: metalTagNumberLabel, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .centerXWithinMargins, multiplier: 1.0, constant: -76.0)
+        let leading = NSLayoutConstraint(item: metalTagNumberLabel, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .centerXWithinMargins, multiplier: 1.0, constant: -56.0)
         let top = NSLayoutConstraint(item: metalTagNumberLabel, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: metalTagNumberLabel, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0)
         let width = NSLayoutConstraint(item: metalTagNumberLabel, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 100)
@@ -92,29 +95,39 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     
     func setUpMetalTagTextField(){
         metalTagTextField.text = "D45t67280"
-        metalTagTextField.textAlignment = .center
+        metalTagTextField.textAlignment = .left
+        metalTagTextField.clearButtonMode = .always
         
         metalTagTextField.translatesAutoresizingMaskIntoConstraints = false
         
         let leading = NSLayoutConstraint(item: metalTagTextField, attribute: .leading, relatedBy: .equal, toItem: metalTagNumberLabel, attribute: .trailing, multiplier: 1.0, constant: 4.0)
-        let trailing = NSLayoutConstraint(item: metalTagTextField, attribute: .trailing, relatedBy: .equal, toItem: self.editButton, attribute: .leading, multiplier: 1.0, constant: -4.0)
+        let trailing = NSLayoutConstraint(item: metalTagTextField, attribute: .trailing, relatedBy: .equal, toItem: self.resetButton, attribute: .leading, multiplier: 1.0, constant: -4.0)
         let top = NSLayoutConstraint(item: metalTagTextField, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: metalTagTextField, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.contentView.addConstraints([leading, trailing, top, bottom])
     }
     
-    func setUpEditButton(){
-        editButton.setTitle("Edit", for: .normal)
-        editButton.setTitleColor(UIColor.blue, for: .normal)
+    func setUpResetButton(){
+        resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitleColor(UIColor.blue, for: .normal)
         //editButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         
-        editButton.translatesAutoresizingMaskIntoConstraints = false
+        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         
-        let width = NSLayoutConstraint(item: editButton, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 80)
-        let height = NSLayoutConstraint(item: editButton, attribute: .height, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 40)
-        let centerY = NSLayoutConstraint(item: editButton, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1.0, constant: 0)
-        let trailing = NSLayoutConstraint(item: editButton, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let width = NSLayoutConstraint(item: resetButton, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 80)
+        let height = NSLayoutConstraint(item: resetButton, attribute: .height, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.0, constant: 40)
+        let centerY = NSLayoutConstraint(item: resetButton, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1.0, constant: 0)
+        let trailing = NSLayoutConstraint(item: resetButton, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         self.contentView.addConstraints([width, height, centerY, trailing])
     }
+    
+    @objc func resetButtonTapped(){
+        serialNumberTextField.text = "M1896425"
+        metalTagTextField.text = "D45t67280"
+    }
+    
+
 
 }
