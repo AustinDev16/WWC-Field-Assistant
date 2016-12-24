@@ -24,6 +24,8 @@
 		FA426B881DFF51CD0036B28E /* MeasurementEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */; };
 		FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B891DFF7FAD0036B28E /* DistrictController.swift */; };
 		FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B8B1DFF820D0036B28E /* MockDataController.swift */; };
+		FA51ECCD1E0DCB640064C507 /* FieldPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51ECCC1E0DCB640064C507 /* FieldPhotoTableViewCell.swift */; };
+		FA51ECCF1E0DDA0F0064C507 /* FieldPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51ECCE1E0DDA0F0064C507 /* FieldPhotoCollectionViewController.swift */; };
 		FA6B51391E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */; };
 		FA6B513B1E0CEF2400763631 /* FieldNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B513A1E0CEF2400763631 /* FieldNotesTableViewCell.swift */; };
 		FA7452461E04C91D001B983C /* DataEntryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */; };
@@ -57,6 +59,8 @@
 		FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementEnums.swift; sourceTree = "<group>"; };
 		FA426B891DFF7FAD0036B28E /* DistrictController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictController.swift; sourceTree = "<group>"; };
 		FA426B8B1DFF820D0036B28E /* MockDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataController.swift; sourceTree = "<group>"; };
+		FA51ECCC1E0DCB640064C507 /* FieldPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		FA51ECCE1E0DDA0F0064C507 /* FieldPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellSerialAndMetalTagTableViewCell.swift; sourceTree = "<group>"; };
 		FA6B513A1E0CEF2400763631 /* FieldNotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldNotesTableViewCell.swift; sourceTree = "<group>"; };
 		FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				FAA777181E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift */,
+				FA51ECCC1E0DCB640064C507 /* FieldPhotoTableViewCell.swift */,
+				FA51ECCE1E0DDA0F0064C507 /* FieldPhotoCollectionViewController.swift */,
 				FAA7771B1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift */,
 				FA6B51381E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift */,
 				FA6B513A1E0CEF2400763631 /* FieldNotesTableViewCell.swift */,
@@ -262,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA28EECA1DFF4D49004A8167 /* DataEntry+CoreDataClass.swift in Sources */,
+				FA51ECCD1E0DCB640064C507 /* FieldPhotoTableViewCell.swift in Sources */,
 				FA6B513B1E0CEF2400763631 /* FieldNotesTableViewCell.swift in Sources */,
 				FAB053501E01EFF6007A7BFB /* WellListTableViewController.swift in Sources */,
 				FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */,
@@ -273,6 +280,7 @@
 				FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */,
 				FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */,
 				FA7452461E04C91D001B983C /* DataEntryDetailTableViewController.swift in Sources */,
+				FA51ECCF1E0DDA0F0064C507 /* FieldPhotoCollectionViewController.swift in Sources */,
 				FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */,
 				FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */,
 				FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */,

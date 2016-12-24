@@ -26,6 +26,7 @@ class AddNewEntryTableViewController: UITableViewController {
     }
     
     func cancelButtonTapped(){
+        self.isEditing = false
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -43,7 +44,7 @@ class AddNewEntryTableViewController: UITableViewController {
     
     func returnCellAt(indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case 0: // Section 1
             switch indexPath.row {
             case 0: // Date
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -58,12 +59,16 @@ class AddNewEntryTableViewController: UITableViewController {
                 let cell = WellSerialAndMetalTagTableViewCell()
                 cell.configureCell()
                 return cell
-            case 3:
-                let cell = FieldNotesTableViewCell()
-                cell.configureCell()
-                return cell
             default: return UITableViewCell()
             }
+        case 1: // Section 2
+            let cell = FieldNotesTableViewCell()
+            cell.configureCell()
+            return cell
+        case 2: // Section 3
+            let cell = FieldPhotoTableViewCell()
+            cell.configureCell()
+            return cell
         default: return UITableViewCell()
         }
     }
@@ -72,12 +77,18 @@ class AddNewEntryTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        switch section {
+        case 0: return 3 // Reading/well info
+        case 1: return 1 // Field Notes
+        case 2: return 1 // Field photos
+        default: return 0
+        }
+
     }
 
     
@@ -90,14 +101,39 @@ class AddNewEntryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 1 { // Picker view
-            return 80
-        } else if indexPath.row == 3 { // Textview
+//        if indexPath.row == 1 { // Picker view
+//            return 80
+//        } else if indexPath.row == 3 { // Textview
+//            return 120
+//        } else if indexPath.row == 4 {
+//            return 160
+//        } else {
+//            return 60
+//        }
+        
+        if indexPath.section == 0 {
+            if indexPath.row == 1 {
+                return 80
+            } else {
+                return 60
+            }
+        } else if indexPath.section == 1 {
             return 120
+        } else if indexPath.section == 2 {
+            return 160
         } else {
             return 60
         }
        
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "Entry detail"
+        case 1: return "Field notes"
+        case 2: return "Field photos"
+        default: return nil
+        }
     }
 
     /*
