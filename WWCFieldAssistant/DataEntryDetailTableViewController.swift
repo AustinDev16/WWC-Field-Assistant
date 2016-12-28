@@ -13,6 +13,7 @@ class DataEntryDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureStaticCells()
+        configureTitle()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,8 +36,8 @@ class DataEntryDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0: return 2 // Meter info
-        case 1: return 3 // Reading
+        case 0: return 4 // Meter info
+        case 1: return 2 // Reading
         case 2: return 1 // Field Notes
         case 3: return 1 // Photos
         default: return 0
@@ -62,19 +63,44 @@ class DataEntryDetailTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0: // Meter info
+            return 34
+        case 1: // Reading
+            return 34
+        case 2: // Field Notes
+            return 120
+        case 3: // Photos
+            return 100
+        default: return 40
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 35
+        default:
+            return 20
+        }
+    }
+    
     func staticCellFor(indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0://Meter Info
             switch indexPath.row {
             case 0: return serialNumberCell
             case 1: return metalNameTagCell
+            case 2: return makeCell
+            case 3: return modelCell
             default: return UITableViewCell()
             }
         case 1:// Reading
             switch indexPath.row {
-            case 0: return dateCell
-            case 1: return readingCell
-            case 2: return technichianCell
+            //case 0: return dateCell
+            case 0: return readingCell
+            case 1: return technichianCell
             default: return UITableViewCell()
             }
         case 2:// Field Notes
@@ -95,11 +121,14 @@ class DataEntryDetailTableViewController: UITableViewController {
     let locationCell: UITableViewCell = UITableViewCell()
     let metalNameTagCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     let serialNumberCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    let makeCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    let modelCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     let measurementOptionCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-    let dateCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+//    let dateCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     let readingCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     let technichianCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
 
+    
     
     func configureStaticCells(){
         // Construct cells
@@ -111,17 +140,27 @@ class DataEntryDetailTableViewController: UITableViewController {
         serialNumberCell.textLabel?.text = "Serial #:"
         serialNumberCell.detailTextLabel?.text = "M195632453"
         
+        makeCell.textLabel?.text = "Make:"
+        makeCell.detailTextLabel?.text = "M3idjf45"
+        
+        modelCell.textLabel?.text = "Model:"
+        modelCell.detailTextLabel?.text = "HJH5634-5"
+        
         measurementOptionCell.textLabel?.text = "Measurement Option:"
         measurementOptionCell.detailTextLabel?.text = "Flow Meter(1)"
         
-        dateCell.textLabel?.text = "Date:"
-        dateCell.detailTextLabel?.text = "Sept 23, 2016"
+//        dateCell.textLabel?.text = "Date:"
+//        dateCell.detailTextLabel?.text = "Sept 23, 2016"
         
         readingCell.textLabel?.text = "Measurement"
         readingCell.detailTextLabel?.text = "345689 0.001 AF"
         
         technichianCell.textLabel?.text = "Collected by:"
         technichianCell.detailTextLabel?.text = "Jason D."
+    }
+    
+    func configureTitle(){
+        self.title = "Sept. 23, 2016"
     }
     /*
     // Override to support conditional editing of the table view.
