@@ -64,12 +64,16 @@ class AddNewEntryTableViewController: UITableViewController {
                 cell.textLabel?.text = "\(dateFormatter.string(from: Date()))"
                 cell.detailTextLabel?.text = "Collected by: Jason D."
                 return cell
-            case 2:
+            case 3:
                 let cell = AddNewReadingTableViewCell()//(style: .value1, reuseIdentifier: nil)
                 cell.configureCell()
                 return cell
             case 1:
                 let cell = WellSerialAndMetalTagTableViewCell()
+                cell.configureCell()
+                return cell
+            case 2:
+                let cell = MakeAndModelTableViewCell()
                 cell.configureCell()
                 return cell
             default: return UITableViewCell()
@@ -96,7 +100,7 @@ class AddNewEntryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0: return 3 // Reading/well info
+        case 0: return 4 // Reading/well info
         case 1: return 1 // Field Notes
         case 2: return 1 // Field photos
         default: return 0
@@ -125,7 +129,7 @@ class AddNewEntryTableViewController: UITableViewController {
 //        }
         
         if indexPath.section == 0 {
-            if indexPath.row == 2{//1 {
+            if indexPath.row == 3{//1 {
                 return 80
             } else {
                 return 40
