@@ -39,6 +39,7 @@ class DistrictMainViewController: UIViewController {
     
     func returnTitleView() -> UIButton {
         let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(titleButtonTapped), for: .touchUpInside)
         button.setTitle("Bonneville District", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setTitleColor(UIColor.gray, for: .selected)
@@ -53,6 +54,20 @@ class DistrictMainViewController: UIViewController {
     
     func syncButtonTapped(){
         print("syncButtonTapped")
+    }
+    
+    func titleButtonTapped(){
+        let districtsPopoverController = AddNewEntryTableViewController(style: .grouped)
+        districtsPopoverController.modalPresentationStyle = .popover
+        districtsPopoverController.preferredContentSize = CGSize(width: 500, height: 600)
+        present(districtsPopoverController, animated: true, completion: nil)
+        
+        let presentationController = districtsPopoverController.popoverPresentationController
+        //presentationController?.delegate = self
+        presentationController?.permittedArrowDirections = [.up]
+        presentationController?.sourceView = self.navigationItem.titleView
+        let width = self.navigationItem.titleView?.frame.width ?? 0
+        presentationController?.sourceRect = CGRect(x: width/2.0, y: 15, width: 1, height: 1)
     }
     
     // MARK: - Child Views
