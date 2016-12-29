@@ -14,7 +14,7 @@ class DistrictMainViewController: UIViewController {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.darkGray
+        self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 1)// UIColor.darkGray
         setUpChildViews()
         loadViewControllers()
         setUpNavigationBar()
@@ -217,7 +217,7 @@ class DistrictMainViewController: UIViewController {
     func addConstraintsToWellInfoView(){
         self.wellInfoView.translatesAutoresizingMaskIntoConstraints = false
         let leading = NSLayoutConstraint(item: self.wellInfoView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.wellInfoView, attribute: .top, relatedBy: .equal, toItem: self.mapView, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: self.wellInfoView, attribute: .top, relatedBy: .equal, toItem: self.mapView, attribute: .bottom, multiplier: 1.0, constant: 8)
         let width = NSLayoutConstraint(item: self.wellInfoView, attribute: .width, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
         let bottom = NSLayoutConstraint(item: self.wellInfoView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -8)
         self.view.addConstraints([leading, top, width, bottom])
