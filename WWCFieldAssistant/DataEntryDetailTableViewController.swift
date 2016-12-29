@@ -154,6 +154,7 @@ class DataEntryDetailTableViewController: UITableViewController {
         
         readingCell.textLabel?.text = "Measurement"
         readingCell.detailTextLabel?.text = "345689 0.001 AF"
+        readingCell.detailTextLabel?.textColor = UIColor.black
         
         technichianCell.textLabel?.text = "Collected by:"
         technichianCell.detailTextLabel?.text = "Jason D."
