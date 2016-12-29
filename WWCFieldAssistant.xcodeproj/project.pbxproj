@@ -39,6 +39,7 @@
 		FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */; };
 		FAB053541E0200CC007A7BFB /* WellInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */; };
 		FAB14DAF1E146F65002BEE21 /* MakeAndModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB14DAE1E146F65002BEE21 /* MakeAndModelTableViewCell.swift */; };
+		FAB14DB11E1495E2002BEE21 /* FieldPhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB14DB01E1495E2002BEE21 /* FieldPhotoPageViewController.swift */; };
 		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryListTableViewController.swift; sourceTree = "<group>"; };
 		FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellInfoTableViewController.swift; sourceTree = "<group>"; };
 		FAB14DAE1E146F65002BEE21 /* MakeAndModelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeAndModelTableViewCell.swift; sourceTree = "<group>"; };
+		FAB14DB01E1495E2002BEE21 /* FieldPhotoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoPageViewController.swift; sourceTree = "<group>"; };
 		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
 				FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */,
 				FA7452451E04C91D001B983C /* DataEntryDetailTableViewController.swift */,
+				FAB14DB01E1495E2002BEE21 /* FieldPhotoPageViewController.swift */,
 			);
 			name = "District Main";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */,
 				FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */,
 				FA7452461E04C91D001B983C /* DataEntryDetailTableViewController.swift in Sources */,
+				FAB14DB11E1495E2002BEE21 /* FieldPhotoPageViewController.swift in Sources */,
 				FA51ECCF1E0DDA0F0064C507 /* FieldPhotoCollectionViewController.swift in Sources */,
 				FAA79EFF1DFCD59200EDC5BC /* AppDelegate.swift in Sources */,
 				FA28EED01DFF4D49004A8167 /* User+CoreDataClass.swift in Sources */,
