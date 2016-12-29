@@ -24,6 +24,7 @@ class WellInfoTableViewController: UITableViewController {
     
     override func loadView() {
         super.loadView()
+        self.tableView.allowsSelection = false
         self.title = "WMIS # 100045 - Camel Well"
         // Construct cells
         //wellNameCell.textLabel?.text = "WMIS # 100045 - Camel Well"
