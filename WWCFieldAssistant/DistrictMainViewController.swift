@@ -25,6 +25,8 @@ class DistrictMainViewController: UIViewController {
     
     func setUpNavigationBar(){
         self.navigationItem.titleView = returnTitleView()
+        self.navigationController?.navigationBar.isTranslucent = false
+
         
         // Bar buttons
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
@@ -163,6 +165,7 @@ class DistrictMainViewController: UIViewController {
         wellInfoNavigationController.view.frame = wellInfoView.bounds
         wellInfoNavigationController.didMove(toParentViewController: self)
         wellInfoNavigationController.pushViewController(WellInfoTableViewController(style: .grouped), animated: false)
+        wellInfoNavigationController.navigationBar.isTranslucent = false
         
         // DataEntryNavigationController
         self.addChildViewController(dataEntryNavigationController)
@@ -170,6 +173,7 @@ class DistrictMainViewController: UIViewController {
         dataEntryNavigationController.view.frame = dataEntryDetailView.bounds
         dataEntryNavigationController.didMove(toParentViewController: self)
         dataEntryNavigationController.pushViewController(DataEntryDetailTableViewController(style: .grouped), animated: false)
+        dataEntryNavigationController.navigationBar.isTranslucent = false
     }
     
     func addViewsAsSubviews(){
