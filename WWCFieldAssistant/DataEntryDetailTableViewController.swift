@@ -15,6 +15,7 @@ class DataEntryDetailTableViewController: UITableViewController {
         configureStaticCells()
         configureTitle()
         self.tableView.allowsSelection = false
+        self.tableView.isScrollEnabled = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
