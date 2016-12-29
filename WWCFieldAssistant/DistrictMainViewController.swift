@@ -17,9 +17,34 @@ class DistrictMainViewController: UIViewController {
         self.view.backgroundColor = UIColor.darkGray
         setUpChildViews()
         loadViewControllers()
+        setUpNavigationBar()
         
         // for testing
        // newEntryButtonTapped()
+    }
+    
+    func setUpNavigationBar(){
+        self.title = "Bonneville District"
+
+        // Bar buttons
+        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
+        let sync = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(syncButtonTapped))
+        let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
+        
+        self.navigationItem.leftBarButtonItems = [logout, settings]
+        self.navigationItem.rightBarButtonItems = [sync, folders]
+        
+    }
+    
+    // MARK: - Navigation bar actions
+    
+    func logoutButtonTapped(){
+        print("logout button tapped")
+    }
+    
+    func syncButtonTapped(){
+        print("syncButtonTapped")
     }
     
     // MARK: - Child Views
