@@ -57,9 +57,9 @@ class DistrictMainViewController: UIViewController {
     }
     
     func titleButtonTapped(){
-        let districtsPopoverController = AddNewEntryTableViewController(style: .grouped)
+        let districtsPopoverController = DistrictsTableViewController()
         districtsPopoverController.modalPresentationStyle = .popover
-        districtsPopoverController.preferredContentSize = CGSize(width: 500, height: 600)
+        districtsPopoverController.preferredContentSize = CGSize(width: 350, height: 300)
         present(districtsPopoverController, animated: true, completion: nil)
         
         let presentationController = districtsPopoverController.popoverPresentationController
