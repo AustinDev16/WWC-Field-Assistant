@@ -42,6 +42,7 @@
 		FAB14DB11E1495E2002BEE21 /* FieldPhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB14DB01E1495E2002BEE21 /* FieldPhotoPageViewController.swift */; };
 		FAB14DB31E14B9F0002BEE21 /* DistrictsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */; };
 		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
+		FADB6CDA1E15C63F0033D974 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6CD91E15C63F0033D974 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		FAB14DB01E1495E2002BEE21 /* FieldPhotoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoPageViewController.swift; sourceTree = "<group>"; };
 		FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictsTableViewController.swift; sourceTree = "<group>"; };
 		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
+		FADB6CD91E15C63F0033D974 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
+				FADB6CD91E15C63F0033D974 /* MapViewController.swift */,
 				FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */,
 				FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */,
 				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
@@ -298,6 +301,7 @@
 				FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */,
 				FA6B51391E0CE23700763631 /* WellSerialAndMetalTagTableViewCell.swift in Sources */,
 				FA28EED11DFF4D49004A8167 /* User+CoreDataProperties.swift in Sources */,
+				FADB6CDA1E15C63F0033D974 /* MapViewController.swift in Sources */,
 				FA28EECE1DFF4D49004A8167 /* Well+CoreDataClass.swift in Sources */,
 				FA28EECD1DFF4D49004A8167 /* FieldPhoto+CoreDataProperties.swift in Sources */,
 				FA28EEC81DFF4D49004A8167 /* District+CoreDataClass.swift in Sources */,

@@ -89,6 +89,12 @@ class DistrictMainViewController: UIViewController {
     let newEntryButtonViewHeight: CGFloat = 50
     
     // View Controllers
+    
+    lazy var mapViewController: MapViewController = {
+        let viewController = MapViewController()
+        return viewController
+    }()
+    
     lazy var wellListTVC: WellListTableViewController = {
        let viewController = WellListTableViewController()
         return viewController
@@ -122,7 +128,7 @@ class DistrictMainViewController: UIViewController {
 //        wellListView.backgroundColor = UIColor.blue
         
         addConstraintsToMapView()
-        mapView.backgroundColor = UIColor.lightGray
+       // mapView.backgroundColor = UIColor.lightGray
         
         addConstraintsToWellInfoView()
         wellInfoView.backgroundColor = UIColor.purple
@@ -145,6 +151,11 @@ class DistrictMainViewController: UIViewController {
 //        wellListView.addSubview(wellListTVC.view)
 //        wellListTVC.view.frame = wellListView.bounds
 //        wellListTVC.didMove(toParentViewController: self)
+        // MapView
+        self.addChildViewController(mapViewController)
+        mapView.addSubview(mapViewController.view)
+        mapViewController.view.frame = mapView.bounds
+        mapViewController.didMove(toParentViewController: self)
         
         //DataEntryListTVC
         self.addChildViewController(dataEntryListTVC)
