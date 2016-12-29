@@ -14,6 +14,7 @@ class DataEntryDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         configureStaticCells()
         configureTitle()
+        self.tableView.allowsSelection = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -105,7 +106,12 @@ class DataEntryDetailTableViewController: UITableViewController {
             }
         case 2:// Field Notes
             switch indexPath.row {
-            default: return UITableViewCell()
+            default:
+                let cell = FieldNotesTableViewCell()
+                cell.configureCell()
+                cell.fieldNotesTextView.isEditable = false
+                cell.fieldNotesTextView.backgroundColor = UIColor.brown.withAlphaComponent(0.3)
+                return cell
             }
         case 3:// Field Photos
             switch indexPath.row {
