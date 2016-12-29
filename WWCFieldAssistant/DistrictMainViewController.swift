@@ -24,8 +24,8 @@ class DistrictMainViewController: UIViewController {
     }
     
     func setUpNavigationBar(){
-        self.title = "Bonneville District"
-
+        self.navigationItem.titleView = returnTitleView()
+        
         // Bar buttons
         let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
         let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
@@ -35,6 +35,14 @@ class DistrictMainViewController: UIViewController {
         self.navigationItem.leftBarButtonItems = [logout, settings]
         self.navigationItem.rightBarButtonItems = [sync, folders]
         
+    }
+    
+    func returnTitleView() -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle("Bonneville District", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .selected)
+        return button
     }
     
     // MARK: - Navigation bar actions
