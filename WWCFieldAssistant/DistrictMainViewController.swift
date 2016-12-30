@@ -24,6 +24,8 @@ class DistrictMainViewController: UIViewController {
         
         // for testing
        // newEntryButtonTapped()
+        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,6 +82,8 @@ class DistrictMainViewController: UIViewController {
     
     func titleButtonTapped(){
         let districtsPopoverController = DistrictsTableViewController()
+        districtsPopoverController.selectedDistrict = self.district
+        districtsPopoverController.updateSelectedDistrictDelegate = self
         districtsPopoverController.modalPresentationStyle = .popover
         districtsPopoverController.preferredContentSize = CGSize(width: 350, height: 300)
         present(districtsPopoverController, animated: true, completion: nil)
@@ -308,4 +312,10 @@ class DistrictMainViewController: UIViewController {
     }
     */
 
+}
+
+extension DistrictMainViewController: DistrictUpdateDelegate {
+    func updateSelectedDistrict(district: District) {
+        updateViewControllerWith(district: district)
+    }
 }

@@ -7,9 +7,20 @@
 //
 
 import UIKit
+protocol DistrictUpdateDelegate: class {
+    func updateSelectedDistrict(district: District)
+}
 
 class DistrictsTableViewController: UITableViewController {
     private let reuseIdentifier = "DistrictCell"
+    
+    var districts: [District] {
+            return AppDataController.shared.districts
+    }
+    
+    var selectedDistrict: District?
+    var updateSelectedDistrictDelegate: DistrictUpdateDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +45,7 @@ class DistrictsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return districts.count
     }
 
     
@@ -44,20 +55,39 @@ class DistrictsTableViewController: UITableViewController {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
         }
         
-        cell?.accessoryType = .checkmark
-        cell?.textLabel?.text = "District name"
+        let district = districts[indexPath.row]
+        if selectedDistrict?.name.lowercased() == district.name.lowercased() {
+            cell?.accessoryType = .checkmark
+        } else {
+            cell?.accessoryType = .none
+        }
+
+
+        cell?.textLabel?.text = district.name
         return cell ?? UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row != 1 {
-            cell.accessoryType = .none
-        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.accessoryType = .checkmark
+        
+        selectedDistrict = districts[indexPath.row]
+        updateCheckMarksInAllCells()
+        
+        // Inform delegate that district has changed
+        self.updateSelectedDistrictDelegate?.updateSelectedDistrict(district: districts[indexPath.row])
+    }
+    
+    func updateCheckMarksInAllCells(){
+   
+        guard let selectedDistrict = self.selectedDistrict else { return }
+        for i in 0...(districts.count - 1)  {
+            let indexPath = IndexPath(row: i, section: 0)
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.updateCheckMark(selectedDistrict: selectedDistrict)
+        }
     }
     /*
     // Override to support conditional editing of the table view.
@@ -104,4 +134,14 @@ class DistrictsTableViewController: UITableViewController {
     }
     */
 
+}
+
+fileprivate extension UITableViewCell {
+    func updateCheckMark(selectedDistrict: District){
+        if selectedDistrict.name.lowercased() == self.textLabel?.text?.lowercased() {
+            self.accessoryType = .checkmark
+        } else {
+            self.accessoryType = .none
+        }
+    }
 }
