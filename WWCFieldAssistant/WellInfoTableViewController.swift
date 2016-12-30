@@ -9,7 +9,7 @@
 import UIKit
 
 class WellInfoTableViewController: UITableViewController {
-
+    
     // MARK: - Static Cells
     let wellNameCell: UITableViewCell = UITableViewCell()
     let locationCell: UITableViewCell = UITableViewCell()
@@ -25,33 +25,37 @@ class WellInfoTableViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         self.tableView.allowsSelection = false
-        self.title = "WMIS # 100045 - Camel Well"
-        // Construct cells
-        //wellNameCell.textLabel?.text = "WMIS # 100045 - Camel Well"
-        locationCell.textLabel?.text = "Location: PLS"
-        metalNameTagCell.textLabel?.text = "Metal Tag #: "
-        metalNameTagCell.detailTextLabel?.text = "A00004523D"
-        
-        serialNumberCell.textLabel?.text = "Serial #:"
-        serialNumberCell.detailTextLabel?.text = "M195632453"
-        
-        measurementOptionCell.textLabel?.text = "Measurement Option:"
-        measurementOptionCell.detailTextLabel?.text = "Flow Meter(1)"
-        
-        contactNameCell.textLabel?.text = "Name:"
-        contactNameCell.detailTextLabel?.text = "4H Ranch, Michael Telford"
-        
-        phoneNumberCell.textLabel?.text = "Phone:"
-        phoneNumberCell.detailTextLabel?.text = "(208)3564769"
-        wmisCommentCell.textLabel?.text = "Comment:"
-        wmisCommentCell.detailTextLabel?.text = "Well needs straps"
-        wmisCommentCell.detailTextLabel?.numberOfLines = 0
         
 //        // Add header
 //        let headerView = UIView()
 //        headerView.backgroundColor = UIColor.blue
 //        self.tableView.tableHeaderView = headerView
 //        self.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30)
+    }
+    
+    func updateTableWith(selectedWell well: Well){
+        self.title = "WMIS #\(well.wmisNumber) - \(well.diversionName)"//"WMIS # 100045 - Camel Well"
+        // Construct cells
+        //wellNameCell.textLabel?.text = "WMIS # 100045 - Camel Well"
+        locationCell.textLabel?.text = "Location: PLS"
+        metalNameTagCell.textLabel?.text = "Metal Tag#: "
+        metalNameTagCell.detailTextLabel?.text = well.metalTag
+        
+        serialNumberCell.textLabel?.text = "Serial #:"
+        serialNumberCell.detailTextLabel?.text = well.serialNumber
+        
+        measurementOptionCell.textLabel?.text = "Measurement Option:"
+        measurementOptionCell.detailTextLabel?.text = well.measurementOption
+        
+        contactNameCell.textLabel?.text = "Name:"
+        contactNameCell.detailTextLabel?.text = "\(well.wmisContact), \(well.firstName) \(well.lastName)"
+        
+        phoneNumberCell.textLabel?.text = "Phone:"
+        phoneNumberCell.detailTextLabel?.text = well.phoneNumber
+        wmisCommentCell.textLabel?.text = "Comment:"
+        wmisCommentCell.detailTextLabel?.text = well.wmisComments
+        wmisCommentCell.detailTextLabel?.numberOfLines = 0
+
     }
     
     override func viewDidLoad() {

@@ -10,6 +10,9 @@ import UIKit
 
 class DistrictMainViewController: UIViewController {
     
+    // MARK: - Model Interface
+    var district: District?
+    var selectedWell: Well?
     
     // MARK: - View
     override func viewDidLoad() {
@@ -23,6 +26,10 @@ class DistrictMainViewController: UIViewController {
        // newEntryButtonTapped()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let district = AppDataController.shared.districts[1]
+        updateViewControllerWith(district: district)
+    }
     func setUpNavigationBar(){
         self.navigationItem.titleView = returnTitleView()
         self.navigationController?.navigationBar.isTranslucent = false
@@ -42,10 +49,23 @@ class DistrictMainViewController: UIViewController {
     func returnTitleView() -> UIButton {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(titleButtonTapped), for: .touchUpInside)
-        button.setTitle("Bonneville District", for: .normal)
+        let title = self.district?.name ?? "Tap to select a district"
+        button.setTitle(title, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setTitleColor(UIColor.gray, for: .selected)
         return button
+    }
+    
+    func updateViewControllerWith(district: District){
+        self.district = district
+        setUpNavigationBar()
+        
+        // Pass district on to well info view
+        wellListTVC.updateViewControllerWith(selectedDistrict: district)
+    }
+    
+    func updateViewControllerWith(selectedWell: Well){
+        self.selectedWell = selectedWell
     }
     
     // MARK: - Navigation bar actions
@@ -175,7 +195,7 @@ class DistrictMainViewController: UIViewController {
         wellInfoView.addSubview(wellInfoNavigationController.view)
         wellInfoNavigationController.view.frame = wellInfoView.bounds
         wellInfoNavigationController.didMove(toParentViewController: self)
-        wellInfoNavigationController.pushViewController(WellInfoTableViewController(style: .grouped), animated: false)
+       // wellInfoNavigationController.pushViewController(wellListTVC, animated: false)
         wellInfoNavigationController.navigationBar.isTranslucent = false
         
         // DataEntryNavigationController

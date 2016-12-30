@@ -9,11 +9,16 @@
 import UIKit
 
 class WellListTableViewController: UITableViewController {
+    
     private let reuseIdentifier = "wellCell"
+    var district: District?
+    var wells: [Well] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Bonneville District"
+        //self.title = "Bonneville District"
     
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -26,13 +31,24 @@ class WellListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func updateViewControllerWith(selectedDistrict: District){
+        self.district = selectedDistrict
+        self.title = selectedDistrict.name
+        
+        self.wells = selectedDistrict.wells.flatMap {$0 as? Well}
+        self.tableView.reloadData()
+    }
 
     // MARK: - Segues
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedWell = self.wells[indexPath.row]
         let wellInfoDetailTVC = WellInfoTableViewController(style: .grouped)
+        wellInfoDetailTVC.updateTableWith(selectedWell: selectedWell)
         self.navigationController?.pushViewController(wellInfoDetailTVC, animated: true)
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,7 +58,7 @@ class WellListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return self.wells.count
     }
 
     
@@ -51,8 +67,9 @@ class WellListTableViewController: UITableViewController {
         if (cell == nil) {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
         }
-        
-        cell?.textLabel?.text = "Test well entry"
+        let selectedWell = self.wells[indexPath.row]
+        cell?.textLabel?.text = selectedWell.diversionName
+        cell?.detailTextLabel?.text = selectedWell.wmisNumber
         cell?.accessoryType = .disclosureIndicator
         // Configure the cell...
 
@@ -94,14 +111,5 @@ class WellListTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
