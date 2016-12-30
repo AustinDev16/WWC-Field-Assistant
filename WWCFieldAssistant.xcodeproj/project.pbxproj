@@ -43,6 +43,7 @@
 		FAB14DB31E14B9F0002BEE21 /* DistrictsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */; };
 		FAD681BF1E01C62B0079E9D9 /* DistrictMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */; };
 		FADB6CDA1E15C63F0033D974 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6CD91E15C63F0033D974 /* MapViewController.swift */; };
+		FADB6CDC1E15FB770033D974 /* AppDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6CDB1E15FB770033D974 /* AppDataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictsTableViewController.swift; sourceTree = "<group>"; };
 		FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictMainViewController.swift; sourceTree = "<group>"; };
 		FADB6CD91E15C63F0033D974 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		FADB6CDB1E15FB770033D974 /* AppDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */,
 				FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */,
 				FA426B891DFF7FAD0036B28E /* DistrictController.swift */,
+				FADB6CDB1E15FB770033D974 /* AppDataController.swift */,
 				FA426B8B1DFF820D0036B28E /* MockDataController.swift */,
 			);
 			name = ModelControllers;
@@ -286,6 +289,7 @@
 				FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */,
 				FAB14DAF1E146F65002BEE21 /* MakeAndModelTableViewCell.swift in Sources */,
 				FAA7771C1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift in Sources */,
+				FADB6CDC1E15FB770033D974 /* AppDataController.swift in Sources */,
 				FAA777191E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
