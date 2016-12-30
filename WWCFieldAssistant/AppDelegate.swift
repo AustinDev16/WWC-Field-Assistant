@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // check for saved data or create mock data
+        AppDataController.shared.fetchDistricts()
+        print("Initial fetch count: \(AppDataController.shared.districts.count) ")
+        if AppDataController.shared.districts.count == 0 {
+            MockDataController.populateBonnevilleDistrict()
+            MockDataController.populateBurleyDistrict()
+            AppDataController.shared.fetchDistricts()
+            print("Added districts from mock data: Count: \(AppDataController.shared.districts.count)")
+        } else {
+            print("Persisted data found.")
+        }
+        
         return true
     }
 
