@@ -17,7 +17,7 @@ class AppDataController {
     /// Fetches all districts from persistent store
     func fetchDistricts(){
         let fetchRequest: NSFetchRequest<District> = District.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         if #available(iOS 10.0, *) {

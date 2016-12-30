@@ -7,11 +7,17 @@
 //
 
 import UIKit
+
+// MARK: - Protocols
+
+/// Informs the delegate that a new district has been selected
 protocol DistrictUpdateDelegate: class {
     func updateSelectedDistrict(district: District)
 }
 
 class DistrictsTableViewController: UITableViewController {
+    
+    //MARK: - Properties
     private let reuseIdentifier = "DistrictCell"
     
     var districts: [District] {
@@ -21,6 +27,7 @@ class DistrictsTableViewController: UITableViewController {
     var selectedDistrict: District?
     var updateSelectedDistrictDelegate: DistrictUpdateDelegate?
     
+    // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
 
