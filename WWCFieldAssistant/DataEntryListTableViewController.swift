@@ -107,7 +107,9 @@ class DataEntryListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedDataEntry = dataEntries[indexPath.row]
         let detailVC = DataEntryDetailTableViewController(style: .grouped)
+        detailVC.updateWithDataEntry(dataEntry: selectedDataEntry)
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     /*

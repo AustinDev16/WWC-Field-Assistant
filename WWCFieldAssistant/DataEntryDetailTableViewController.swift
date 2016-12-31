@@ -9,11 +9,19 @@
 import UIKit
 
 class DataEntryDetailTableViewController: UITableViewController {
-
+    // MARK: - Properties
+    var dataEntry: DataEntry?
+    
+    let dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }()
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureStaticCells()
-        configureTitle()
+        
         self.tableView.allowsSelection = false
         self.tableView.isScrollEnabled = false
         
@@ -143,41 +151,45 @@ class DataEntryDetailTableViewController: UITableViewController {
     let readingCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
     let technichianCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
 
-    
+    func updateWithDataEntry(dataEntry: DataEntry){
+        self.dataEntry = dataEntry
+        configureStaticCells()
+        self.title = dateFormatter.string(from: dataEntry.dateCollected as Date)
+    }
     
     func configureStaticCells(){
+        
+        guard let dataEntry = self.dataEntry else { return }
         // Construct cells
         //wellNameCell.textLabel?.text = "WMIS # 100045 - Camel Well"
         locationCell.textLabel?.text = "Location: PLS"
         metalNameTagCell.textLabel?.text = "Metal Tag #: "
-        metalNameTagCell.detailTextLabel?.text = "A00004523D"
+        metalNameTagCell.detailTextLabel?.text = dataEntry.well.metalTag
         
         serialNumberCell.textLabel?.text = "Serial #:"
-        serialNumberCell.detailTextLabel?.text = "M195632453"
+        serialNumberCell.detailTextLabel?.text = dataEntry.serialNumber
         
         makeCell.textLabel?.text = "Make:"
-        makeCell.detailTextLabel?.text = "M3idjf45"
+        makeCell.detailTextLabel?.text = dataEntry.make
         
         modelCell.textLabel?.text = "Model:"
-        modelCell.detailTextLabel?.text = "HJH5634-5"
+        modelCell.detailTextLabel?.text = dataEntry.model
         
         measurementOptionCell.textLabel?.text = "Measurement Option:"
-        measurementOptionCell.detailTextLabel?.text = "Flow Meter(1)"
+        measurementOptionCell.detailTextLabel?.text = dataEntry.well.measurementOption
         
 //        dateCell.textLabel?.text = "Date:"
 //        dateCell.detailTextLabel?.text = "Sept 23, 2016"
         
         readingCell.textLabel?.text = "Measurement"
-        readingCell.detailTextLabel?.text = "345689 0.001 AF"
+        readingCell.detailTextLabel?.text = "\(dataEntry.meterReading) \(dataEntry.multiplier) \(dataEntry.unitTypeString)"
         readingCell.detailTextLabel?.textColor = UIColor.black
         
         technichianCell.textLabel?.text = "Collected by:"
         technichianCell.detailTextLabel?.text = "Jason D."
     }
     
-    func configureTitle(){
-        self.title = "Sept. 23, 2016"
-    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
