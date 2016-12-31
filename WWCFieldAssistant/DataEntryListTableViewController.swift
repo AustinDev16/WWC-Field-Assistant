@@ -14,7 +14,9 @@ class DataEntryListTableViewController: UITableViewController {
     var well: Well?
     var dataEntries: [DataEntry] {
         if let well = self.well {
-            return well.dataEntries.flatMap{$0 as? DataEntry}
+            return well.dataEntries.flatMap{$0 as? DataEntry}.sorted(by: { (entry1, entry2) -> Bool in
+                return entry1.dateCollected.timeIntervalSince1970 > entry2.dateCollected.timeIntervalSince1970
+            })
         } else {
             return []
         }

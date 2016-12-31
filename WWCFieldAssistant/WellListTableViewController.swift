@@ -52,6 +52,9 @@ class WellListTableViewController: UITableViewController {
         wellInfoDetailTVC.updateTableWith(selectedWell: selectedWell)
         self.updateSelectedWellDelegate?.updateSelectedWell(selectedWell: selectedWell)
         self.navigationController?.pushViewController(wellInfoDetailTVC, animated: true)
+        
+        let notification = Notification(name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(notification)
     }
     
     // MARK: - Table view data source
