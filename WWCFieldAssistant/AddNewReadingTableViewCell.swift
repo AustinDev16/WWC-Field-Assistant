@@ -57,7 +57,7 @@ class AddNewReadingTableViewCell: UITableViewCell {
     func setUpClearButton(){
         clearButton.translatesAutoresizingMaskIntoConstraints = false
         clearButton.setTitle("Clear", for: .normal)
-        clearButton.setTitleColor(UIColor.red, for: .normal)
+        clearButton.setTitleColor(UIColor.blue, for: .normal)
         clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
         //clearButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         

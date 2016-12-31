@@ -10,6 +10,7 @@ import UIKit
 
 class AddNewEntryTableViewController: UITableViewController {
 
+    var well: Well?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,8 @@ class AddNewEntryTableViewController: UITableViewController {
     
     func saveButtonTapped(){
         print("Save button tapped")
+        self.isEditing = false
+        self.dismiss(animated: true, completion: nil)
     }
     // MARK: - Static Cells
     

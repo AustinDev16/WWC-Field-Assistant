@@ -10,6 +10,10 @@ import UIKit
 
 class MakeAndModelTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    let resetMake: String? = nil
+    let resetModel: String? = nil
+    
     // MARK: - Cell Elements
     let makeLabel = UILabel()
     let makeTextField = UITextField()
@@ -123,8 +127,8 @@ class MakeAndModelTableViewCell: UITableViewCell {
     }
     
     @objc func resetButtonTapped(){
-        makeTextField.text = "M1896425"
-        modelTextField.text = "D45t67280"
+        makeTextField.text = self.resetMake ?? "Error"
+        modelTextField.text = self.resetModel ?? "Error"
     }
     
 

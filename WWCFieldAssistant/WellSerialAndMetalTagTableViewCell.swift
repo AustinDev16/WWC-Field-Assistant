@@ -10,6 +10,10 @@ import UIKit
 
 class WellSerialAndMetalTagTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    var resetSerial: String? = nil
+    var resetMetalTag: String? = nil
+    
     // MARK: - Cell Elements
     let serialNumberLabel = UILabel()
     let metalTagNumberLabel = UILabel()
@@ -124,8 +128,8 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     }
     
     @objc func resetButtonTapped(){
-        serialNumberTextField.text = "M1896425"
-        metalTagTextField.text = "D45t67280"
+        serialNumberTextField.text = self.resetSerial ?? "Error"
+        metalTagTextField.text = self.resetMetalTag ?? "Error"
     }
     
 
