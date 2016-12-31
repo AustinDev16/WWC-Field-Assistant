@@ -22,6 +22,8 @@ class WellListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(selectWellWith(notification:)), name: Notification.Name(rawValue: "MapViewUpdatedWell"), object: nil)
+        
         //self.title = "Bonneville District"
     
         // Uncomment the following line to preserve selection between presentations
@@ -29,6 +31,16 @@ class WellListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func selectWellWith(notification: Notification) {
+        guard let selectedWell = notification.object as? Well else { return }
+        _ = self.navigationController?.popToRootViewController(animated: false)
+        
+        let wellInfoDetailTVC = WellInfoTableViewController(style: .grouped)
+        wellInfoDetailTVC.updateTableWith(selectedWell: selectedWell)
+        self.navigationController?.pushViewController(wellInfoDetailTVC, animated: false)
+
     }
 
     override func didReceiveMemoryWarning() {

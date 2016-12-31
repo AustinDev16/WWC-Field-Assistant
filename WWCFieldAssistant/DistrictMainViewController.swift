@@ -34,12 +34,12 @@ class DistrictMainViewController: UIViewController {
         
         // for testing
        // newEntryButtonTapped()
-        NotificationCenter.default.addObserver(self, selector: #selector(mapViewUpdatedWellFrom(notification:)), name: Notification.Name(rawValue:"MapViewUpdatedWell"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mapViewUpdatedWellWith(notification:)), name: Notification.Name(rawValue:"MapViewUpdatedWell"), object: nil)
         
 
     }
     
-    func mapViewUpdatedWellFrom(notification: Notification){
+    func mapViewUpdatedWellWith(notification: Notification){
         guard let updatedWell = notification.object as? Well else { return }
         self.selectedWell = updatedWell
     }
