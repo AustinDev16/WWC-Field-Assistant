@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 class MockDataController {
     
@@ -89,5 +90,34 @@ class MockDataController {
         
     }
     
+    static func mockMapAnnotations(district: District) -> [WellAnnotation] {
+        let wells = district.wells.flatMap{$0 as? Well}
+        var annotations: [WellAnnotation] = []
+        for well in wells {
+            if wells.index(of: well) == 0 {
+                let location = CLLocationCoordinate2D(latitude: 43.4917 + 0.08, longitude: -112.0340 - 0.09)
+                let newAnnotation = WellAnnotation(coordinate: location, title: well.diversionName, subtitle: well.district.name)
+                annotations.append(newAnnotation)
+            } else {
+                let location = CLLocationCoordinate2D(latitude: 43.4917 - 0.08, longitude: -112.0340 + 0.09)
+                let newAnnotation = WellAnnotation(coordinate: location, title: well.diversionName, subtitle: well.district.name)
+                annotations.append(newAnnotation)
+            }
+        }
+        return annotations
+    }
     
+    
+}
+
+class WellAnnotation: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?){
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+    }
 }
