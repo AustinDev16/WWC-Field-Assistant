@@ -11,8 +11,18 @@ import UIKit
 class DistrictMainViewController: UIViewController {
     
     // MARK: - Model Interface
-    var district: District?
-    var selectedWell: Well?
+    var district: District? {
+        didSet{
+            let notification = Notification(name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: self.district, userInfo: nil)
+            NotificationCenter.default.post(notification)
+        }
+    }
+    var selectedWell: Well? {
+        didSet {
+           let notification = Notification(name: Notification.Name(rawValue: "SelectedWellUpdated"), object: self.selectedWell, userInfo: nil)
+            NotificationCenter.default.post(notification)
+        }
+    }
     
     // MARK: - View
     override func viewDidLoad() {
@@ -121,6 +131,7 @@ class DistrictMainViewController: UIViewController {
     
     lazy var wellListTVC: WellListTableViewController = {
        let viewController = WellListTableViewController()
+        viewController.updateSelectedWellDelegate = self
         return viewController
     }()
     
@@ -207,7 +218,7 @@ class DistrictMainViewController: UIViewController {
         dataEntryDetailView.addSubview(dataEntryNavigationController.view)
         dataEntryNavigationController.view.frame = dataEntryDetailView.bounds
         dataEntryNavigationController.didMove(toParentViewController: self)
-        dataEntryNavigationController.pushViewController(DataEntryDetailTableViewController(style: .grouped), animated: false)
+        //dataEntryNavigationController.pushViewController(DataEntryDetailTableViewController(style: .grouped), animated: false)
         dataEntryNavigationController.navigationBar.isTranslucent = false
     }
     
@@ -317,5 +328,11 @@ class DistrictMainViewController: UIViewController {
 extension DistrictMainViewController: DistrictUpdateDelegate {
     func updateSelectedDistrict(district: District) {
         updateViewControllerWith(district: district)
+    }
+}
+
+extension DistrictMainViewController: WellUpdateDelegate {
+    func updateSelectedWell(selectedWell: Well) {
+        self.selectedWell = selectedWell
     }
 }

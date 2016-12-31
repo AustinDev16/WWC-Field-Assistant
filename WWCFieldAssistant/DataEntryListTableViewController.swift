@@ -9,22 +9,53 @@
 import UIKit
 
 class DataEntryListTableViewController: UITableViewController {
+    // MARK: Properties
     private let reuseIdentifier = "dataEntryCell"
+    var well: Well?
+    var dataEntries: [DataEntry] {
+        if let well = self.well {
+            return well.dataEntries.flatMap{$0 as? DataEntry}
+        } else {
+            return []
+        }
+    }
+    
+    let dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }()
+    
+    // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "Data Entries"
-
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
     }
-
-   
+    
+    /// Updates the selected well so that table view will show data entries from it
+    func updateSelectedWell(notification: Notification){
+        let selectedWell = notification.object as? Well
+        print("Notification received")
+        print(selectedWell?.diversionName ?? "nil object")
+        // get the selected well from the parent view
+        if let selectedWell = selectedWell {
+            updateWith(selectedWell: selectedWell)
+        }
+    }
+    
+    /// Called to reset the view when no well is selected (i.e. new district is selected)
+    func resetDataEntryView(notification: Notification){
+        self.well = nil
+        tableView.reloadData()
+    }
+    
+    func updateWith(selectedWell: Well) {
+        self.well = selectedWell
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,12 +65,28 @@ class DataEntryListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        if self.well == nil {
+            tableView.separatorStyle = .none
+            let noWellSelectedLabel = UILabel(frame: tableView.frame)
+            noWellSelectedLabel.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+            noWellSelectedLabel.text = "No well selected"
+            noWellSelectedLabel.textAlignment = .center
+            tableView.backgroundView = noWellSelectedLabel
+            self.title = "Data Entries"
+            
+            
+            return 0
+        } else {
+            self.title = well?.diversionName
+            self.tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+            return 1
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return dataEntries.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,8 +94,10 @@ class DataEntryListTableViewController: UITableViewController {
         if (cell == nil) {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
         }
+        let dataEntry = dataEntries[indexPath.row]
         
-        cell?.textLabel?.text = "Past Entries"
+        cell?.textLabel?.text = dataEntry.meterReading.stringRepresentation()
+        cell?.detailTextLabel?.text = dateFormatter.string(from: dataEntry.dateCollected as Date)
         cell?.accessoryType = .disclosureIndicator
         // Configure the cell...
         

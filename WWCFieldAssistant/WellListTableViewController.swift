@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol WellUpdateDelegate: class  {
+    func updateSelectedWell(selectedWell: Well)
+}
+
 class WellListTableViewController: UITableViewController {
     
     private let reuseIdentifier = "wellCell"
     var district: District?
     var wells: [Well] = []
-    
+    var updateSelectedWellDelegate: WellUpdateDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,7 @@ class WellListTableViewController: UITableViewController {
         let selectedWell = self.wells[indexPath.row]
         let wellInfoDetailTVC = WellInfoTableViewController(style: .grouped)
         wellInfoDetailTVC.updateTableWith(selectedWell: selectedWell)
+        self.updateSelectedWellDelegate?.updateSelectedWell(selectedWell: selectedWell)
         self.navigationController?.pushViewController(wellInfoDetailTVC, animated: true)
     }
     
