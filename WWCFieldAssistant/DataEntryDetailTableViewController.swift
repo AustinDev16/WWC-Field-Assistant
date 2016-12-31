@@ -16,6 +16,9 @@ class DataEntryDetailTableViewController: UITableViewController {
         configureTitle()
         self.tableView.allowsSelection = false
         self.tableView.isScrollEnabled = false
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,6 +26,10 @@ class DataEntryDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    func resetDataEntryView(notification: Notification){
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

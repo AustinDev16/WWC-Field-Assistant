@@ -66,6 +66,12 @@ class WellInfoTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetWellInfoView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
+
+    }
+    
+    func resetWellInfoView(notification: Notification){
+         _ = self.navigationController?.popToRootViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
