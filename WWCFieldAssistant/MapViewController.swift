@@ -12,19 +12,42 @@ import MapKit
 class MapViewController: UIViewController {
 
     let mapView = MKMapView()
+    var selectedDistrict: District? {
+        didSet{
+            drawWellsInDistrict()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 1)
 
         configureMapView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDistrict(notification:)), name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    func updateDistrict(notification: Notification) {
+        guard let newDistrict = notification.object as? District else { return }
+        self.selectedDistrict = newDistrict
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func drawWellsInDistrict(){
+        guard let selectedDistrict = self.selectedDistrict else { return }
+        // remove old annotations
+        mapView.removeAnnotations(mapView.annotations)
+        // Add new annotations
+        let newAnnotations = MockDataController.mockMapAnnotations(district: selectedDistrict)
+        mapView.addAnnotations(newAnnotations)
+        
+    }
+    // MARK: - Initial Configuration of map
     
     func configureMapView(){
         mapView.delegate = self
@@ -60,6 +83,23 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("Annotation tapped")
+        guard let selectedAnnotation = view.annotation as? WellAnnotation else { return }
+        let selectedWell = selectedAnnotation.well
         
+        let notification = Notification(name: Notification.Name(rawValue: "MapViewUpdatedWell"), object: selectedWell, userInfo: nil)
+        NotificationCenter.default.post(notification)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let view = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        view.canShowCallout = true
+        view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("Call out tapped")
     }
 }
