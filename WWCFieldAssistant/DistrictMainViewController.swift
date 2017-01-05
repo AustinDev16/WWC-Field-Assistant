@@ -94,7 +94,9 @@ class DistrictMainViewController: UIViewController {
     
     func syncButtonTapped(){
         print("syncButtonTapped")
+        adjustMapView()
     }
+    
     
     func titleButtonTapped(){
         let districtsPopoverController = DistrictsTableViewController()
@@ -114,24 +116,25 @@ class DistrictMainViewController: UIViewController {
     
     // MARK: - Child Views
     
-    let wellListView: UIView = UIView()
+    // StackViews
+    let fullScreenStackView = UIStackView()
+    let leftPanelStackView = UIStackView()
+    let rightPanelStackView = UIStackView()
+    
+    //let wellListView: UIView = UIView()
     let mapView: UIView = UIView()
-    let dataEntryListView: UIView = UIView()
     let wellInfoView: UIView = UIView()
     let dataEntryDetailView: UIView = UIView()
     let newEntryButtonView: UIView = UIView()
     
     // Proportions
-    let wellListWidthProportion: CGFloat = 0.25
-    let mapViewWidthProportion: CGFloat = 0.5
-    let mapViewHeightProportion: CGFloat = 0.66
-    let wellInfoHeightProportion: CGFloat = 1.0
     let newEntryButtonViewHeight: CGFloat = 50
     
-    // View Controllers
+    // MARK: - View Controllers
     
     lazy var mapViewController: MapViewController = {
         let viewController = MapViewController()
+        viewController.expandableMapDelegate = self
         return viewController
     }()
     
@@ -163,60 +166,115 @@ class DistrictMainViewController: UIViewController {
     
     /// Adds subviews and corresponding constraints.
     func setUpChildViews(){
-        addViewsAsSubviews()
-        
-//        addContraintsToWellListView()
-//        wellListView.backgroundColor = UIColor.blue
-        
-        addConstraintsToMapView()
-       // mapView.backgroundColor = UIColor.lightGray
-        
-        addConstraintsToWellInfoView()
-        wellInfoView.backgroundColor = UIColor.purple
-
-        //addContraintsToDataEntryListView()
-        //dataEntryListView.backgroundColor = UIColor.brown
-        
-        addContraintsToDataEntryDetailView()
-        //dataEntryDetailView.backgroundColor = UIColor.darkGray
-        
-        addConstraintsToNewEntryButton()
+        configureStackViews()
         newEntryButtonView.backgroundColor = UIColor(red: 38/255.0, green: 145/255.0, blue: 15/255.0, alpha: 1.0)
         setUpEntryButton()
     }
     
+    func configureStackViews(){
+        self.view.addSubview(fullScreenStackView)
+        self.view.addSubview(leftPanelStackView)
+        self.view.addSubview(rightPanelStackView)
+        
+        addConstraintsToFullScreenStackView()
+        setUpLeftPanelStackView()
+        setUpRightPanelStackView()
+    }
+    
+    func addConstraintsToFullScreenStackView(){
+        fullScreenStackView.translatesAutoresizingMaskIntoConstraints = false
+        fullScreenStackView.alignment = .fill
+        fullScreenStackView.axis = .horizontal
+        fullScreenStackView.distribution = .fillEqually // Splits the view equally in half
+        fullScreenStackView.spacing = 8
+        
+        let leading = NSLayoutConstraint(item: fullScreenStackView,
+                                         attribute: .leading,
+                                         relatedBy: .equal,
+                                         toItem: self.view,
+                                         attribute: .leading,
+                                         multiplier: 1.0,
+                                         constant: 8)
+        let top = NSLayoutConstraint(item: fullScreenStackView,
+                                     attribute: .top,
+                                     relatedBy: .equal,
+                                     toItem: self.topLayoutGuide,
+                                     attribute: .bottom,
+                                     multiplier: 1.0,
+                                     constant: 8)
+        let trailing = NSLayoutConstraint(item: fullScreenStackView,
+                                          attribute: .trailing,
+                                          relatedBy: .equal,
+                                          toItem: self.view,
+                                          attribute: .trailing,
+                                          multiplier: 1.0,
+                                          constant: -8)
+        let bottom = NSLayoutConstraint(item: fullScreenStackView,
+                                        attribute: .bottom,
+                                        relatedBy: .equal,
+                                        toItem: self.view,
+                                        attribute: .bottom,
+                                        multiplier: 1.0,
+                                        constant: -8)
+        self.view.addConstraints([leading, top, trailing, bottom])
+        
+        fullScreenStackView.addArrangedSubview(leftPanelStackView)
+        fullScreenStackView.addArrangedSubview(rightPanelStackView)
+    }
+    
+    func setUpLeftPanelStackView(){
+        leftPanelStackView.addArrangedSubview(mapView)
+        leftPanelStackView.addArrangedSubview(wellInfoView)
+        leftPanelStackView.axis = .vertical
+        leftPanelStackView.alignment = .fill
+        leftPanelStackView.distribution = .fillEqually
+        leftPanelStackView.spacing = 8
+        
+        // Map view
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        // Well info view
+        wellInfoView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setUpRightPanelStackView(){
+        rightPanelStackView.addArrangedSubview(dataEntryDetailView)
+        rightPanelStackView.addArrangedSubview(newEntryButtonView)
+        rightPanelStackView.axis = .vertical
+        rightPanelStackView.alignment = .fill
+        rightPanelStackView.distribution = .fill
+        rightPanelStackView.spacing = 8
+        
+        // DataEntry
+        dataEntryDetailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // NewEntry Button
+        newEntryButtonView.translatesAutoresizingMaskIntoConstraints = false
+        let buttonHeight = NSLayoutConstraint(item: newEntryButtonView,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: rightPanelStackView,
+                                              attribute: .height,
+                                              multiplier: 0.0,
+                                              constant: newEntryButtonViewHeight)
+        rightPanelStackView.addConstraint(buttonHeight)
+    }
+    
     /// Instantiates view controllers and assigns their view to the child views.
     func loadViewControllers(){
-//        // WellListTVC
-//        self.addChildViewController(wellListTVC)
-//        wellListView.addSubview(wellListTVC.view)
-//        wellListTVC.view.frame = wellListView.bounds
-//        wellListTVC.didMove(toParentViewController: self)
+
         // MapView
         self.addChildViewController(mapViewController)
         mapView.addSubview(mapViewController.view)
         mapViewController.view.frame = mapView.bounds
         mapViewController.didMove(toParentViewController: self)
         
-        //DataEntryListTVC
-        self.addChildViewController(dataEntryListTVC)
-        dataEntryListView.addSubview(dataEntryListTVC.view)
-        dataEntryListTVC.view.frame = dataEntryListView.bounds
-        dataEntryListTVC.didMove(toParentViewController: self)
-        
-//        //WellInfoTVC
-//        self.addChildViewController(wellInfoTVC)
-//        wellInfoView.addSubview(wellInfoTVC.view)
-//        wellInfoTVC.view.frame = wellInfoView.bounds
-//        wellInfoTVC.didMove(toParentViewController: self)
-        
-        
         //WellInfoNavigationController
         self.addChildViewController(wellInfoNavigationController)
         wellInfoView.addSubview(wellInfoNavigationController.view)
         wellInfoNavigationController.view.frame = wellInfoView.bounds
         wellInfoNavigationController.didMove(toParentViewController: self)
-       // wellInfoNavigationController.pushViewController(wellListTVC, animated: false)
         wellInfoNavigationController.navigationBar.isTranslucent = false
         
         // DataEntryNavigationController
@@ -224,74 +282,7 @@ class DistrictMainViewController: UIViewController {
         dataEntryDetailView.addSubview(dataEntryNavigationController.view)
         dataEntryNavigationController.view.frame = dataEntryDetailView.bounds
         dataEntryNavigationController.didMove(toParentViewController: self)
-        //dataEntryNavigationController.pushViewController(DataEntryDetailTableViewController(style: .grouped), animated: false)
         dataEntryNavigationController.navigationBar.isTranslucent = false
-    }
-    
-    func addViewsAsSubviews(){
-        //self.view.addSubview(wellListView)
-        self.view.addSubview(mapView)
-        self.view.addSubview(dataEntryListView)
-        self.view.addSubview(wellInfoView)
-        self.view.addSubview(dataEntryDetailView)
-        self.view.addSubview(newEntryButtonView)
-    }
-    
-    func addContraintsToWellListView(){
-        self.wellListView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.wellListView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
-        let top = NSLayoutConstraint(item: self.wellListView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: self.wellListView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let width = NSLayoutConstraint(item: self.wellListView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: wellListWidthProportion, constant: 0)
-        self.view.addConstraints([leading, top, bottom, width])
-    }
-    
-    func addConstraintsToMapView(){
-        self.mapView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.mapView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.mapView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 8)
-        let width = NSLayoutConstraint(item: self.mapView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: mapViewWidthProportion, constant: -8)
-        let height = NSLayoutConstraint(item: self.mapView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: mapViewHeightProportion, constant: 0)
-        self.view.addConstraints([leading, top, width, height])
-    }
-    
-    func addConstraintsToWellInfoView(){
-        self.wellInfoView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.wellInfoView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.wellInfoView, attribute: .top, relatedBy: .equal, toItem: self.mapView, attribute: .bottom, multiplier: 1.0, constant: 8)
-        let width = NSLayoutConstraint(item: self.wellInfoView, attribute: .width, relatedBy: .equal, toItem: self.mapView, attribute: .width, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: self.wellInfoView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -8)
-        self.view.addConstraints([leading, top, width, bottom])
-        
-    }
-    
-    func addContraintsToDataEntryListView(){
-        self.dataEntryListView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.dataEntryListView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.dataEntryListView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let trailing = NSLayoutConstraint(item: self.dataEntryListView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let height = NSLayoutConstraint(item: self.dataEntryListView, attribute: .height, relatedBy: .equal, toItem: self.mapView, attribute: .height, multiplier: wellInfoHeightProportion, constant: 0)
-        self.view.addConstraints([leading, top, trailing, height])
-    }
-    
-    
-    func addContraintsToDataEntryDetailView(){
-        self.dataEntryDetailView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .leading, relatedBy: .equal, toItem: self.mapView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let top = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 8)
-        let trailing = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -8)
-        let bottom = NSLayoutConstraint(item: self.dataEntryDetailView, attribute: .bottom, relatedBy: .equal, toItem: self.newEntryButtonView, attribute: .top, multiplier: 1.0, constant: -8)
-        self.view.addConstraints([leading, top, trailing, bottom])
-        
-    }
-
-    func addConstraintsToNewEntryButton(){
-        self.newEntryButtonView.translatesAutoresizingMaskIntoConstraints = false
-        let leading = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .leading, relatedBy: .equal, toItem: self.wellInfoView, attribute: .trailing, multiplier: 1.0, constant: 8)
-        let bottom = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -8)
-        let trailing = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -8)
-        let height = NSLayoutConstraint(item: self.newEntryButtonView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: newEntryButtonViewHeight)
-        self.view.addConstraints([leading, bottom, trailing, height])
     }
     
     // MARK: - New Entry button
@@ -319,15 +310,6 @@ class DistrictMainViewController: UIViewController {
         //nc.preferredContentSize = CGSize(width: 100, height: 200)
         self.present(nc, animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -340,5 +322,22 @@ extension DistrictMainViewController: DistrictUpdateDelegate {
 extension DistrictMainViewController: WellUpdateDelegate {
     func updateSelectedWell(selectedWell: Well) {
         self.selectedWell = selectedWell
+    }
+}
+
+extension DistrictMainViewController: ExpandableMapDelegate {
+    func adjustMapView(){
+        if self.rightPanelStackView.isHidden == false {
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+                self.rightPanelStackView.isHidden = true
+                self.wellInfoView.isHidden = true
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+                self.wellInfoView.isHidden = false
+                self.rightPanelStackView.isHidden = false
+            }, completion: nil)
+        }
+        
     }
 }

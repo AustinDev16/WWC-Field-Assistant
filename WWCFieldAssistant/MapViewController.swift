@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol ExpandableMapDelegate: class {
+    func adjustMapView()
+}
+
 class MapViewController: UIViewController {
 
     let mapView = MKMapView()
@@ -17,6 +21,8 @@ class MapViewController: UIViewController {
             drawWellsInDistrict()
         }
     }
+    
+    weak var expandableMapDelegate: ExpandableMapDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +84,10 @@ class MapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func toggleExpandableMapButtonTapped(){
+        expandableMapDelegate?.adjustMapView()
+    }
 
 }
 
