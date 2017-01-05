@@ -114,6 +114,101 @@ class DistrictMainViewController: UIViewController {
     
     // MARK: - Child Views
     
+    // StackViews
+    let fullScreenStackView = UIStackView()
+    let leftPanelStackView = UIStackView()
+    let rightPanelStackView = UIStackView()
+    
+    func configureStackViews(){
+        self.view.addSubview(fullScreenStackView)
+        self.view.addSubview(leftPanelStackView)
+        self.view.addSubview(rightPanelStackView)
+        
+        addConstraintsToFullScreenStackView()
+        setUpLeftPanelStackView()
+        setUpRightPanelStackView()
+    }
+    
+    func addConstraintsToFullScreenStackView(){
+        fullScreenStackView.translatesAutoresizingMaskIntoConstraints = false
+        fullScreenStackView.alignment = .fill
+        fullScreenStackView.axis = .horizontal
+        fullScreenStackView.distribution = .fillEqually // Splits the view equally in half
+        fullScreenStackView.spacing = 8
+        
+        let leading = NSLayoutConstraint(item: fullScreenStackView,
+                                         attribute: .leading,
+                                         relatedBy: .equal,
+                                         toItem: self.view,
+                                         attribute: .leading,
+                                         multiplier: 1.0,
+                                         constant: 8)
+        let top = NSLayoutConstraint(item: fullScreenStackView,
+                                     attribute: .top,
+                                     relatedBy: .equal,
+                                     toItem: self.topLayoutGuide,
+                                     attribute: .bottom,
+                                     multiplier: 1.0,
+                                     constant: 8)
+        let trailing = NSLayoutConstraint(item: fullScreenStackView,
+                                          attribute: .trailing,
+                                          relatedBy: .equal,
+                                          toItem: self.view,
+                                          attribute: .trailing,
+                                          multiplier: 1.0,
+                                          constant: -8)
+        let bottom = NSLayoutConstraint(item: fullScreenStackView,
+                                        attribute: .bottom,
+                                        relatedBy: .equal,
+                                        toItem: self.view,
+                                        attribute: .bottom,
+                                        multiplier: 1.0,
+                                        constant: -8)
+        self.view.addConstraints([leading, top, trailing, bottom])
+        
+        fullScreenStackView.addArrangedSubview(leftPanelStackView)
+        fullScreenStackView.addArrangedSubview(rightPanelStackView)
+    }
+    
+    func setUpLeftPanelStackView(){
+        leftPanelStackView.addArrangedSubview(mapView)
+        leftPanelStackView.addArrangedSubview(wellInfoView)
+        leftPanelStackView.axis = .vertical
+        leftPanelStackView.alignment = .fill
+        leftPanelStackView.distribution = .fillEqually
+        leftPanelStackView.spacing = 8
+        
+        // Map view
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        // Well info view
+        wellInfoView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setUpRightPanelStackView(){
+        rightPanelStackView.addArrangedSubview(dataEntryDetailView)
+        rightPanelStackView.addArrangedSubview(newEntryButtonView)
+        rightPanelStackView.axis = .vertical
+        rightPanelStackView.alignment = .fill
+        rightPanelStackView.distribution = .fill
+        rightPanelStackView.spacing = 8
+        
+        // DataEntry
+        dataEntryDetailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // NewEntry Button
+        newEntryButtonView.translatesAutoresizingMaskIntoConstraints = false
+        let buttonHeight = NSLayoutConstraint(item: newEntryButtonView,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: rightPanelStackView,
+                                              attribute: .height,
+                                              multiplier: 0.0,
+                                              constant: newEntryButtonViewHeight)
+        rightPanelStackView.addConstraint(buttonHeight)
+    }
+    
     let wellListView: UIView = UIView()
     let mapView: UIView = UIView()
     let dataEntryListView: UIView = UIView()
@@ -163,24 +258,25 @@ class DistrictMainViewController: UIViewController {
     
     /// Adds subviews and corresponding constraints.
     func setUpChildViews(){
-        addViewsAsSubviews()
+       // addViewsAsSubviews()
+        configureStackViews()
         
-//        addContraintsToWellListView()
-//        wellListView.backgroundColor = UIColor.blue
-        
-        addConstraintsToMapView()
-       // mapView.backgroundColor = UIColor.lightGray
-        
-        addConstraintsToWellInfoView()
-        wellInfoView.backgroundColor = UIColor.purple
-
-        //addContraintsToDataEntryListView()
-        //dataEntryListView.backgroundColor = UIColor.brown
-        
-        addContraintsToDataEntryDetailView()
-        //dataEntryDetailView.backgroundColor = UIColor.darkGray
-        
-        addConstraintsToNewEntryButton()
+////        addContraintsToWellListView()
+////        wellListView.backgroundColor = UIColor.blue
+//        
+//        addConstraintsToMapView()
+//       // mapView.backgroundColor = UIColor.lightGray
+//        
+//        addConstraintsToWellInfoView()
+//        wellInfoView.backgroundColor = UIColor.purple
+//
+//        //addContraintsToDataEntryListView()
+//        //dataEntryListView.backgroundColor = UIColor.brown
+//        
+//        addContraintsToDataEntryDetailView()
+//        //dataEntryDetailView.backgroundColor = UIColor.darkGray
+//        
+//        addConstraintsToNewEntryButton()
         newEntryButtonView.backgroundColor = UIColor(red: 38/255.0, green: 145/255.0, blue: 15/255.0, alpha: 1.0)
         setUpEntryButton()
     }
