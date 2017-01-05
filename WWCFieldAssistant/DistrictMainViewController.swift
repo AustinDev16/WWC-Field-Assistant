@@ -94,6 +94,22 @@ class DistrictMainViewController: UIViewController {
     
     func syncButtonTapped(){
         print("syncButtonTapped")
+        adjustMapView()
+    }
+    
+    func adjustMapView(){
+        if self.rightPanelStackView.isHidden == false {
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+                self.rightPanelStackView.isHidden = true
+                self.wellInfoView.isHidden = true
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+                self.wellInfoView.isHidden = false
+                self.rightPanelStackView.isHidden = false
+            }, completion: nil)
+        }
+        
     }
     
     func titleButtonTapped(){
