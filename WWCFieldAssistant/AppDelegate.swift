@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Persisted districts found.")
         }
         
-         AppDataController.shared.fetchUsers()
+        AppDataController.shared.fetchUsers()
         print("Initial user count: \(AppDataController.shared.users.count)")
         if AppDataController.shared.users.count == 0 {
             MockDataController.populateUsers()
@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("Persisted users found.")
         }
+        
+        
         return true
     }
 

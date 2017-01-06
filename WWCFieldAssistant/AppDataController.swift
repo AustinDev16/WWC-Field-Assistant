@@ -15,6 +15,8 @@ class AppDataController {
     var districts: [District] = []
     var users: [User] = []
     
+    var loggedInUser: User?
+    
     /// Fetches all districts from persistent store
     func fetchDistricts(){
         let fetchRequest: NSFetchRequest<District> = District.fetchRequest()
