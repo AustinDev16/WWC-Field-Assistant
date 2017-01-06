@@ -11,6 +11,13 @@ import MapKit
 
 class MockDataController {
     
+    static func populateUsers(){
+        _ = User(firstName: "Jason", lastName: "Dayley", password: "password")
+        _ = User(firstName: "Jaxon", lastName: "Higgs", password: "password")
+        _ = User(firstName: "Austin", lastName: "Blaser", password: "password")
+        PersistenceController.saveToPersistedStore()
+    }
+    
     static func populateBonnevilleDistrict(){
         let bonneville = District(name: "Bonneville")
         if let bonneville = bonneville {

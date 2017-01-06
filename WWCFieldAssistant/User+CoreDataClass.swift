@@ -13,8 +13,7 @@ import CoreData
 public class User: NSManagedObject {
     convenience init?(firstName: String,
                       lastName: String,
-                      password: String,
-                      userName: String){
+                      password: String){
         
         if #available(iOS 10.0, *) {
             let context = CoreDataStack.context
@@ -27,6 +26,7 @@ public class User: NSManagedObject {
         
         self.firstName = firstName
         self.lastName = lastName
+        self.userName = "\(firstName) \(lastName)"
         self.password = password
         self.uuid = UUID().uuidString
         

@@ -19,15 +19,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // check for saved data or create mock data
         AppDataController.shared.fetchDistricts()
-        print("Initial fetch count: \(AppDataController.shared.districts.count) ")
+       
+        print("Initial District count: \(AppDataController.shared.districts.count) ")
         if AppDataController.shared.districts.count == 0 {
             MockDataController.populateBonnevilleDistrict()
             MockDataController.populateBurleyDistrict()
             AppDataController.shared.fetchDistricts()
             print("Added districts from mock data: Count: \(AppDataController.shared.districts.count)")
         } else {
-            print("Persisted data found.")
+            print("Persisted districts found.")
         }
+        
+        AppDataController.shared.fetchUsers()
+        print("Initial user count: \(AppDataController.shared.users.count)")
+        if AppDataController.shared.users.count == 0 {
+            MockDataController.populateUsers()
+            AppDataController.shared.fetchUsers()
+            print("Added users from mock data: Count: \(AppDataController.shared.users.count)")
+        } else {
+            print("Persisted users found.")
+        }
+        AppDataController.shared.loggedInUser = AppDataController.shared.users[1]
+        
         
         return true
     }

@@ -13,6 +13,9 @@ class AppDataController {
     static let shared = AppDataController()
     
     var districts: [District] = []
+    var users: [User] = []
+    
+    var loggedInUser: User?
     
     /// Fetches all districts from persistent store
     func fetchDistricts(){
@@ -42,10 +45,44 @@ class AppDataController {
 
     }
     
+    /// Fetches all saved users from persistent store
+    func fetchUsers(){
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "userName", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        if #available(iOS 10.0, *) {
+            let moc = CoreDataStack.context
+            do {
+                let results = try moc.fetch(fetchRequest)
+                self.users = results
+            } catch {
+                print("Error fetching users, iOS10 \(error.localizedDescription)")
+            }
+            
+        } else {
+            // Fallback on earlier versions
+            let moc = Stack.sharedStack.managedObjectContext
+            do {
+                let results = try moc.fetch(fetchRequest)
+                self.users = results
+            } catch {
+                print("Error fetching users, iOS9 \(error.localizedDescription)")
+            }
+        }
+        
+    }
+    
     /// Creates an instance of DistrictController with a selected district
     func initiateDistrictController(district: District) -> DistrictController {
         return DistrictController(district: district)
     }
     
     
+}
+
+extension AppDataController: LoggedInUserUpdateDelegate {
+    func updateLoggedInUser(user: User) {
+        self.loggedInUser = user
+    }
 }
