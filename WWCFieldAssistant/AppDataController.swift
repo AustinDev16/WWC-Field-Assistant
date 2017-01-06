@@ -80,3 +80,9 @@ class AppDataController {
     
     
 }
+
+extension AppDataController: LoggedInUserUpdateDelegate {
+    func updateLoggedInUser(user: User) {
+        self.loggedInUser = user
+    }
+}

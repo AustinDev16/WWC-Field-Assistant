@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("Persisted users found.")
         }
+        AppDataController.shared.loggedInUser = AppDataController.shared.users[1]
         
         
         return true

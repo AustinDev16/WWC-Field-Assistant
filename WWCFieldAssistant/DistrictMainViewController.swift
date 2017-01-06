@@ -54,7 +54,8 @@ class DistrictMainViewController: UIViewController {
 
         
         // Bar buttons
-        let logout = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        let logout = UIBarButtonItem(title: "Change User", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        logout.tag = 20
         let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
         let sync = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(syncButtonTapped))
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
@@ -89,7 +90,19 @@ class DistrictMainViewController: UIViewController {
     // MARK: - Navigation bar actions
     
     func logoutButtonTapped(){
-        print("logout button tapped")
+        let usersPopoverController = UsersTableViewController()
+        usersPopoverController.loggedInUser = AppDataController.shared.loggedInUser
+        usersPopoverController.updateLoggedInUserDelegate = AppDataController.shared
+        usersPopoverController.modalPresentationStyle = .popover
+        usersPopoverController.preferredContentSize = CGSize(width: 200, height: 300)
+        present(usersPopoverController, animated: true, completion: nil)
+        
+        let presentationController = usersPopoverController.popoverPresentationController
+        presentationController?.permittedArrowDirections = [.any]
+        guard let barButtons = self.navigationItem.leftBarButtonItems
+             else { return }
+        let logout = barButtons.filter{ $0.tag == 20 }.first
+        presentationController?.barButtonItem = logout!
     }
     
     func syncButtonTapped(){
