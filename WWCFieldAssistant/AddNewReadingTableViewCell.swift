@@ -94,7 +94,7 @@ extension AddNewReadingTableViewCell: UIPickerViewDelegate, UIPickerViewDataSour
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
-        case 0: return 4
+        case 0: return 6
         case 1: return 2
         default: return 0
         }
@@ -105,17 +105,19 @@ extension AddNewReadingTableViewCell: UIPickerViewDelegate, UIPickerViewDataSour
         case 0:
             // first one
             switch row {
-            case 0: return Multiplier.one.rawValue.stringRepresentation()
-            case 1: return Multiplier.tenth.rawValue.stringRepresentation()
-            case 2: return Multiplier.hundreth.rawValue.stringRepresentation()
-            case 3: return Multiplier.thousandeth.rawValue.stringRepresentation()
+            case 0: return Multiplier.million.rawValue.stringRepresentation()
+            case 1: return Multiplier.thousand.rawValue.stringRepresentation()
+            case 2: return Multiplier.one.rawValue.stringRepresentation()
+            case 3: return Multiplier.tenth.rawValue.stringRepresentation()
+            case 4: return Multiplier.hundreth.rawValue.stringRepresentation()
+            case 5: return Multiplier.thousandeth.rawValue.stringRepresentation()
             default: return "Error with multiplier enum"
             }
         case 1:
             // second one
             switch row {
-            case 0: return MeterUnitType.acreFeet.rawValue
-            case 1: return MeterUnitType.gallons.rawValue
+            case 0: return MeterUnitType.gallons.rawValue
+            case 1: return MeterUnitType.acreFeet.rawValue
             default: return "Error with unit type"
             }
         default: return nil
@@ -124,5 +126,37 @@ extension AddNewReadingTableViewCell: UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 110
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            // pick a multiplier
+            let unitIndex = self.multiplierUnitPicker.selectedRow(inComponent: 1)
+            switch unitIndex {
+            case 0: // Gallons
+                if row > 1 {
+                    self.multiplierUnitPicker.selectRow(2, inComponent: 0, animated: false)
+                }
+            case 1: // AcreFeet
+                if row < 2 {
+                    self.multiplierUnitPicker.selectRow(2, inComponent: 0, animated: false)
+                }
+            default: return
+            }
+        } else {
+            // pick a unit
+            let multiplierIndex = self.multiplierUnitPicker.selectedRow(inComponent: 0)
+            switch row {
+            case 0:
+                if multiplierIndex > 1 {
+                    self.multiplierUnitPicker.selectRow(2, inComponent: 0, animated: false)
+                }
+            case 1:
+                if multiplierIndex < 2 {
+                    self.multiplierUnitPicker.selectRow(2, inComponent: 0, animated: false)
+                }
+            default: return
+            }
+        }
     }
 }

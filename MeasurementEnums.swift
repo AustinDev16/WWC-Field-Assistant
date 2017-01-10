@@ -14,6 +14,8 @@ enum MeterUnitType: String {
 }
 
 enum Multiplier: Double {
+    case million = 1000000
+    case thousand = 1000
     case one = 1.0
     case tenth = 0.1
     case hundreth = 0.01
@@ -22,6 +24,10 @@ enum Multiplier: Double {
 
 extension Double {
     func stringRepresentation() -> String {
+        if self == 1000000 {
+            return "1 million"
+        } else {
         return String(self)
+        }
     }
 }
