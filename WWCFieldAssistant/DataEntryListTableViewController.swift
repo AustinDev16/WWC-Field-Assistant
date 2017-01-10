@@ -109,6 +109,9 @@ class DataEntryListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let backButton = UIBarButtonItem()
+        backButton.title = "Entries"
+        navigationItem.backBarButtonItem = backButton
         let selectedDataEntry = dataEntries[indexPath.row]
         let detailVC = DataEntryDetailTableViewController(style: .grouped)
         detailVC.updateWithDataEntry(dataEntry: selectedDataEntry)

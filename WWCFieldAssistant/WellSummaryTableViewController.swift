@@ -114,6 +114,9 @@ class WellSummaryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             guard let selectedWell = self.well else { return }
+            let backButton = UIBarButtonItem()
+            backButton.title = "Summary"
+            navigationItem.backBarButtonItem = backButton
             let dataEntryList = DataEntryListTableViewController()
             dataEntryList.updateWith(selectedWell: selectedWell)
             self.navigationController?.pushViewController(dataEntryList, animated: true)
