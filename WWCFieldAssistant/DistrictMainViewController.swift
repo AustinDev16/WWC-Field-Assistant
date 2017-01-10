@@ -173,8 +173,13 @@ class DistrictMainViewController: UIViewController {
     }()
     
     lazy var dataEntryNavigationController: UINavigationController = {
-       let nc = UINavigationController(rootViewController: self.dataEntryListTVC)
+       let nc = UINavigationController(rootViewController: self.wellSummaryTVC)
         return nc 
+    }()
+    
+    lazy var wellSummaryTVC: WellSummaryTableViewController = {
+        let viewController = WellSummaryTableViewController(style: .grouped)
+        return viewController
     }()
     
     /// Adds subviews and corresponding constraints.
