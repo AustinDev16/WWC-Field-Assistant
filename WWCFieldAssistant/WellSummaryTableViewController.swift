@@ -15,6 +15,7 @@ class WellSummaryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.isScrollEnabled = false
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
@@ -117,6 +118,19 @@ class WellSummaryTableViewController: UITableViewController {
             dataEntryList.updateWith(selectedWell: selectedWell)
             self.navigationController?.pushViewController(dataEntryList, animated: true)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0: return 160
+        case 1: return 160
+        case 2: return 60
+        default: return 20
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 { return 40} else { return 24}
     }
 
 }
