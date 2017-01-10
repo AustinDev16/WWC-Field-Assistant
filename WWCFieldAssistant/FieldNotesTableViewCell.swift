@@ -30,6 +30,10 @@ class FieldNotesTableViewCell: UITableViewCell {
         setUpFieldNotesTextView()
     }
     
+    func disableEditingOnTextView(){
+        fieldNotesTextView.isEditable = false
+    }
+    
     func setUpFieldNotesTextView(){
         fieldNotesTextView.autocapitalizationType = .sentences
         fieldNotesTextView.autocorrectionType = .default

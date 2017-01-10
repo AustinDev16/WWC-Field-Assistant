@@ -10,24 +10,78 @@ import UIKit
 
 class WellSummaryTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    var well: Well?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
 
+
+    }
+    
+    // MARK: - Notification functions
+    
+    func updateSelectedWell(notification: Notification){
+        guard let well = notification.object as? Well else { return }
+        self.title = "WMIS# \(well.wmisNumber) Summary"
+        updateWith(selectedWell: well)
+        
+    }
+    
+    func resetDataEntryView(notification: Notification){
+        self.well = nil
+        self.tableView.reloadData()
     }
 
     // MARK: - Static cells
     
     func returnCellFor(indexPath: IndexPath) -> UITableViewCell {
-        
-        return UITableViewCell()
+        switch indexPath.section {
+        case 0:
+            let cell = FieldNotesTableViewCell()
+            cell.configureCell()
+            cell.disableEditingOnTextView()
+            return cell
+        case 1:
+            let cell = FieldPhotoTableViewCell()
+            cell.configureCell()
+            return cell
+        case 2:
+            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+            cell.accessoryType = .disclosureIndicator
+            cell.textLabel?.text = "Data Entries"
+            return cell
+        default: return UITableViewCell()
+        }
+    }
+    
+    func updateWith(selectedWell: Well){
+        self.well = selectedWell
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        if self.well == nil {
+            tableView.separatorStyle = .none
+            let noWellSelectedLabel = UILabel(frame: tableView.frame)
+            noWellSelectedLabel.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+            noWellSelectedLabel.text = "No well selected"
+            noWellSelectedLabel.textAlignment = .center
+            tableView.backgroundView = noWellSelectedLabel
+            self.title = "Well Summary"
+            
+            
+            return 0
+        } else {
+            self.tableView.backgroundView = nil
+            return 3
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,50 +98,25 @@ class WellSummaryTableViewController: UITableViewController {
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "Notes"
+        case 1: return "Field Photos"
+        default: return nil
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 2
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            guard let selectedWell = self.well else { return }
+            let dataEntryList = DataEntryListTableViewController()
+            dataEntryList.updateWith(selectedWell: selectedWell)
+            self.navigationController?.pushViewController(dataEntryList, animated: true)
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

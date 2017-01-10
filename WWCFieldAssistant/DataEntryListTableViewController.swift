@@ -38,19 +38,21 @@ class DataEntryListTableViewController: UITableViewController {
     
     /// Updates the selected well so that table view will show data entries from it
     func updateSelectedWell(notification: Notification){
-        let selectedWell = notification.object as? Well
-        print("Notification received")
-        print(selectedWell?.diversionName ?? "nil object")
-        // get the selected well from the parent view
-        if let selectedWell = selectedWell {
-            updateWith(selectedWell: selectedWell)
-        }
+        _ = self.navigationController?.popToRootViewController(animated: true)
+//        let selectedWell = notification.object as? Well
+//        print("Notification received")
+//        print(selectedWell?.diversionName ?? "nil object")
+//        // get the selected well from the parent view
+//        if let selectedWell = selectedWell {
+//            updateWith(selectedWell: selectedWell)
+//        }
     }
     
     /// Called to reset the view when no well is selected (i.e. new district is selected)
     func resetDataEntryView(notification: Notification){
-        self.well = nil
-        tableView.reloadData()
+        _ = self.navigationController?.popToRootViewController(animated: true)
+//        self.well = nil
+//        tableView.reloadData()
     }
     
     func updateWith(selectedWell: Well) {
