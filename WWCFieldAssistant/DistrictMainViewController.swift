@@ -27,7 +27,7 @@ class DistrictMainViewController: UIViewController {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 1)// UIColor.darkGray
+        self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.5)// UIColor.darkGray
         setUpChildViews()
         loadViewControllers()
         setUpNavigationBar()

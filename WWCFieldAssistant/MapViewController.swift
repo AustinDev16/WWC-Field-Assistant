@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
             drawWellsInDistrict()
         }
     }
-    let toggleButton = UIButton(type: .custom)
+    let toggleButton = UIButton(type: .roundedRect)
     
     /// This variable indicates when a well is selected from another view rather than from a user tap on the annotation
     var notifiedFromExternal: Bool = false
@@ -99,14 +99,17 @@ class MapViewController: UIViewController {
     func configureToggleButton(){
         self.view.addSubview(toggleButton)
         toggleButton.translatesAutoresizingMaskIntoConstraints = false
-        toggleButton.setTitle("TOGGLE", for: .normal)
+        toggleButton.setTitle("Full Screen", for: .normal)
         toggleButton.setTitleColor(UIColor.white, for: .normal)
+        toggleButton.setTitleColor(UIColor.lightGray, for: .selected)
         toggleButton.addTarget(self, action: #selector(toggleExpandableMapButtonTapped), for: .touchUpInside)
-        
+        toggleButton.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 1)
+        toggleButton.layer.cornerRadius = 10
+
         let trailing = NSLayoutConstraint(item: toggleButton, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -8)
         let bottom = NSLayoutConstraint(item: toggleButton, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -8)
         let height = NSLayoutConstraint(item: toggleButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.0, constant: 40)
-        let width = NSLayoutConstraint(item: toggleButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: 80)
+        let width = NSLayoutConstraint(item: toggleButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: 100)
         self.view.addConstraints([trailing, bottom, height, width])
     }
 
@@ -114,6 +117,11 @@ class MapViewController: UIViewController {
     func toggleExpandableMapButtonTapped(){
         guard let delegate = expandableMapDelegate else { return }
             delegate.adjustMapView()
+        if delegate.isExpanded{
+            toggleButton.setTitle("Detail View", for: .normal)
+        } else {
+            toggleButton.setTitle("Full Screen", for: .normal)
+        }
     }
     
     /// This is called when the callout view is tapped
@@ -121,6 +129,7 @@ class MapViewController: UIViewController {
         guard let delegate = expandableMapDelegate else { return }
         if delegate.isExpanded{
             delegate.adjustMapView()
+            toggleButton.setTitle("Full Screen", for: .normal)
         }
     }
 
