@@ -94,6 +94,8 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("Annotation tapped")
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8.0, options: .curveLinear, animations: {view.image = #imageLiteral(resourceName: "AnnotationLarge")}, completion: nil)
+        //view.image = #imageLiteral(resourceName: "AnnotationLarge")
         guard let selectedAnnotation = view.annotation as? WellAnnotation else { return }
         let selectedWell = selectedAnnotation.well
         
@@ -101,12 +103,24 @@ extension MapViewController: MKMapViewDelegate {
         NotificationCenter.default.post(notification)
     }
     
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {view.image = #imageLiteral(resourceName: "AnnotationSmall")}, completion: nil)
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation { // Return blue dot for the user's location
+            return nil
+        }
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        annotationView.canShowCallout = true
         
-        let view = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
-        view.canShowCallout = true
-        view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        return nil
+        let button = UIButton(type: .contactAdd)
+        button.tintColor = UIColor.blue
+        annotationView.rightCalloutAccessoryView = button
+        
+        annotationView.image = #imageLiteral(resourceName: "AnnotationSmall")
+        
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
