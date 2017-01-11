@@ -50,7 +50,7 @@ class DistrictMainViewController: UIViewController {
     }
     func setUpNavigationBar(){
         self.navigationItem.titleView = returnTitleView()
-        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isTranslucent = true
 
         
         // Bar buttons
@@ -305,9 +305,10 @@ class DistrictMainViewController: UIViewController {
     
     // MARK: - New Entry button
     func setUpEntryButton(){
-        let newEntryButton = UIButton(type: .custom)
+        let newEntryButton = UIButton(type: .roundedRect)
         newEntryButton.setTitle("Tap to add a new entry", for: .normal)
         newEntryButton.setTitleColor(UIColor.white, for: .normal)
+        newEntryButton.setTitleColor(UIColor.lightGray, for: .selected)
         newEntryButton.addTarget(self, action: #selector(newEntryButtonTapped), for: .touchUpInside)
         newEntryButtonView.addSubview(newEntryButton)
         
