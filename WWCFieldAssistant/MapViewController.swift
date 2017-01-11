@@ -23,6 +23,9 @@ class MapViewController: UIViewController {
         }
     }
     
+    /// This variable indicates when a well is selected from another view rather than from a user tap on the annotation
+    var notifiedFromExternal: Bool = false
+    
     weak var expandableMapDelegate: ExpandableMapDelegate?
     
     override func viewDidLoad() {
@@ -43,10 +46,9 @@ class MapViewController: UIViewController {
     
     func updateWell(notification: Notification){
         guard let newWell = notification.object as? Well else { return }
-        
+        self.notifiedFromExternal = true
         guard let annotation = findAnnotationFor(selectedWell: newWell) else { return }
-        // NEED TO RECONFIGURE THIS AS IT CREATES A LOOP OF NOTIFICATIONS THAT CRASHES THE APP
-        //mapView.selectAnnotation(annotation, animated: true)
+        mapView.selectAnnotation(annotation, animated: true)
     }
 
     func findAnnotationFor(selectedWell: Well) -> MKAnnotation? {
@@ -92,16 +94,7 @@ class MapViewController: UIViewController {
         let bottom = NSLayoutConstraint(item: mapView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.view.addConstraints([top, leading, trailing, bottom])
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     func toggleExpandableMapButtonTapped(){
         guard let delegate = expandableMapDelegate else { return }
         if delegate.isExpanded{
@@ -115,11 +108,17 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("Annotation tapped")
         UIView.animate(withDuration: 0.21, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8.0, options: .curveLinear, animations: {view.image = #imageLiteral(resourceName: "AnnotationLarge")}, completion: nil)
-        guard let selectedAnnotation = view.annotation as? WellAnnotation else { return }
-        let selectedWell = selectedAnnotation.well
         
-        let notification = Notification(name: Notification.Name(rawValue: "MapViewUpdatedWell"), object: selectedWell, userInfo: nil)
-        NotificationCenter.default.post(notification)
+        if !self.notifiedFromExternal { // User tapped on map annotation, notify other views of change
+            guard let selectedAnnotation = view.annotation as? WellAnnotation else { return }
+            let selectedWell = selectedAnnotation.well
+            
+            let notification = Notification(name: Notification.Name(rawValue: "MapViewUpdatedWell"), object: selectedWell, userInfo: nil)
+            NotificationCenter.default.post(notification)
+            self.notifiedFromExternal = false
+        } else { // User selected well from other view; no further notification
+            self.notifiedFromExternal = false
+        }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
