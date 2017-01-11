@@ -32,6 +32,7 @@ class MapViewController: UIViewController {
         configureMapView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateDistrict(notification:)), name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -39,7 +40,22 @@ class MapViewController: UIViewController {
         guard let newDistrict = notification.object as? District else { return }
         self.selectedDistrict = newDistrict
     }
+    
+    func updateWell(notification: Notification){
+        guard let newWell = notification.object as? Well else { return }
+        
+        guard let annotation = findAnnotationFor(selectedWell: newWell) else { return }
+        // NEED TO RECONFIGURE THIS AS IT CREATES A LOOP OF NOTIFICATIONS THAT CRASHES THE APP
+        //mapView.selectAnnotation(annotation, animated: true)
+    }
 
+    func findAnnotationFor(selectedWell: Well) -> MKAnnotation? {
+        let wells = self.selectedDistrict?.wells.flatMap{$0 as? Well }
+        let index = wells!.index(of: selectedWell)
+        
+        return mapView.annotations[index!]
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
