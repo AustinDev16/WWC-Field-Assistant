@@ -132,8 +132,8 @@ extension MapViewController: MKMapViewDelegate {
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
         annotationView.canShowCallout = true
         
-        let button = UIButton(type: .contactAdd)
-        button.tintColor = UIColor.blue
+        let button = UIButton(type: .infoDark)
+        //button.tintColor = UIColor.blue
         annotationView.rightCalloutAccessoryView = button
         
         annotationView.image = #imageLiteral(resourceName: "AnnotationSmall")
