@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
             drawWellsInDistrict()
         }
     }
+    let toggleButton = UIButton(type: .custom)
     
     /// This variable indicates when a well is selected from another view rather than from a user tap on the annotation
     var notifiedFromExternal: Bool = false
@@ -33,7 +34,7 @@ class MapViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 1)
 
         configureMapView()
-        
+        configureToggleButton()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDistrict(notification:)), name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         // Do any additional setup after loading the view.
@@ -94,8 +95,29 @@ class MapViewController: UIViewController {
         let bottom = NSLayoutConstraint(item: mapView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.view.addConstraints([top, leading, trailing, bottom])
     }
+    
+    func configureToggleButton(){
+        self.view.addSubview(toggleButton)
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        toggleButton.setTitle("TOGGLE", for: .normal)
+        toggleButton.setTitleColor(UIColor.white, for: .normal)
+        toggleButton.addTarget(self, action: #selector(toggleExpandableMapButtonTapped), for: .touchUpInside)
+        
+        let trailing = NSLayoutConstraint(item: toggleButton, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: -8)
+        let bottom = NSLayoutConstraint(item: toggleButton, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -8)
+        let height = NSLayoutConstraint(item: toggleButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.0, constant: 40)
+        let width = NSLayoutConstraint(item: toggleButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.0, constant: 80)
+        self.view.addConstraints([trailing, bottom, height, width])
+    }
 
+    /// This is called when the toggle button is tapped.
     func toggleExpandableMapButtonTapped(){
+        guard let delegate = expandableMapDelegate else { return }
+            delegate.adjustMapView()
+    }
+    
+    /// This is called when the callout view is tapped
+    func collapseFullScreenIfNeeded(){
         guard let delegate = expandableMapDelegate else { return }
         if delegate.isExpanded{
             delegate.adjustMapView()
@@ -143,6 +165,6 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Call out tapped")
-        toggleExpandableMapButtonTapped()
+        collapseFullScreenIfNeeded()
     }
 }

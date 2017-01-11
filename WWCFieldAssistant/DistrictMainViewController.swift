@@ -107,7 +107,7 @@ class DistrictMainViewController: UIViewController {
     
     func syncButtonTapped(){
         print("syncButtonTapped")
-        adjustMapView()
+        
     }
     
     
