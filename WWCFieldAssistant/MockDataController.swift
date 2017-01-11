@@ -38,7 +38,7 @@ class MockDataController {
             bonnevilleController.district.addToWells(well1!)
             
             // Well 2
-            let well2 = Well(diversionName: "Highpoint Well", firstName: "John", lastName: "Doe", make: "General Electric", measurementOption: "Flow Meter(1)", metalTag: "A00004532D", model: "D-3452A", multiplier: .thousandeth, phoneNumber: "(208)1234567", serialNumber: "M195632453", unitType: .acreFeet, wmisComments: "", wmisContact: "Eagle Eye Farms", wmisNumber: "100045", district: bonneville)
+            let well2 = Well(diversionName: "Highpoint Well", firstName: "John", lastName: "Doe", make: "General Electric", measurementOption: "Flow Meter(1)", metalTag: "A00004532D", model: "D-3452A", multiplier: .thousandeth, phoneNumber: "(208)1234567", serialNumber: "M195632453", unitType: .acreFeet, wmisComments: "", wmisContact: "Eagle Eye Farms", wmisNumber: "100046", district: bonneville)
             
             let well2Controller = DataEntryController(well: well2!)
             well2Controller.addDataEntry(dateCollected: NSDate().addingTimeInterval(-10000000), fieldNotes: "", make: "GE", meterReading: 235678, model: "D-3452A", multiplier: .thousandeth, serialNumber: "M195632453", unitType: .acreFeet)
@@ -65,7 +65,7 @@ class MockDataController {
             let burleyController = DistrictController(district: burley)
             
             // Well 1
-            let well1 = Well(diversionName: "Highpoint Well 2", firstName: "John", lastName: "Doe", make: "General Electric", measurementOption: "Flow Meter(1)", metalTag: "A00004532D", model: "D-3452A", multiplier: .thousandeth, phoneNumber: "(208)1234567", serialNumber: "M195632453", unitType: .acreFeet, wmisComments: "", wmisContact: "Eagle Eye Farms", wmisNumber: "100045", district: burley)
+            let well1 = Well(diversionName: "Highpoint Well 2", firstName: "John", lastName: "Doe", make: "General Electric", measurementOption: "Flow Meter(1)", metalTag: "A00004532D", model: "D-3452A", multiplier: .thousandeth, phoneNumber: "(208)1234567", serialNumber: "M195632453", unitType: .acreFeet, wmisComments: "", wmisContact: "Eagle Eye Farms", wmisNumber: "100047", district: burley)
             
             let well1Controller = DataEntryController(well: well1!)
             well1Controller.addDataEntry(dateCollected: NSDate().addingTimeInterval(-10000000), fieldNotes: "", make: "GE", meterReading: 235678, model: "D-3452A", multiplier: .hundreth, serialNumber: "M195632453", unitType: .acreFeet)
@@ -79,7 +79,7 @@ class MockDataController {
             burleyController.district.addToWells(well1!)
             
             // Well 2
-            let well2 = Well(diversionName: "Highpoint Well3", firstName: "John", lastName: "Doe", make: "General Electric", measurementOption: "Flow Meter(1)", metalTag: "A00004532D", model: "D-3452A", multiplier: .thousandeth, phoneNumber: "(208)1234567", serialNumber: "M195632453", unitType: .acreFeet, wmisComments: "", wmisContact: "Eagle Eye Farms", wmisNumber: "100045", district: burley)
+            let well2 = Well(diversionName: "Highpoint Well3", firstName: "John", lastName: "Doe", make: "General Electric", measurementOption: "Flow Meter(1)", metalTag: "A00004532D", model: "D-3452A", multiplier: .thousandeth, phoneNumber: "(208)1234567", serialNumber: "M195632453", unitType: .acreFeet, wmisComments: "", wmisContact: "Eagle Eye Farms", wmisNumber: "100048", district: burley)
             
             let well2Controller = DataEntryController(well: well2!)
             well2Controller.addDataEntry(dateCollected: NSDate().addingTimeInterval(-10000000), fieldNotes: "", make: "GE", meterReading: 235678, model: "D-3452A", multiplier: .thousandeth, serialNumber: "M195632453", unitType: .acreFeet)
@@ -125,8 +125,8 @@ class WellAnnotation: NSObject, MKAnnotation {
     
     init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, well: Well){
         self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
+        self.title = "WMIS: \(well.wmisNumber)"
+        self.subtitle = "Tag: \(well.metalTag)"
         self.well = well
     }
 }
