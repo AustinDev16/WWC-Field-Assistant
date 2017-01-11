@@ -358,4 +358,8 @@ extension DistrictMainViewController: ExpandableMapDelegate {
         }
         
     }
+    
+    var isExpanded: Bool {
+        return self.rightPanelStackView.isHidden
+    }
 }

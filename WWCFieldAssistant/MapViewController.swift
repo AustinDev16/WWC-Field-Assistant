@@ -11,6 +11,7 @@ import MapKit
 
 protocol ExpandableMapDelegate: class {
     func adjustMapView()
+    var isExpanded: Bool {get}
 }
 
 class MapViewController: UIViewController {
@@ -86,7 +87,10 @@ class MapViewController: UIViewController {
     */
     
     func toggleExpandableMapButtonTapped(){
-        expandableMapDelegate?.adjustMapView()
+        guard let delegate = expandableMapDelegate else { return }
+        if delegate.isExpanded{
+            delegate.adjustMapView()
+        }
     }
 
 }
@@ -94,8 +98,7 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("Annotation tapped")
-        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8.0, options: .curveLinear, animations: {view.image = #imageLiteral(resourceName: "AnnotationLarge")}, completion: nil)
-        //view.image = #imageLiteral(resourceName: "AnnotationLarge")
+        UIView.animate(withDuration: 0.21, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8.0, options: .curveLinear, animations: {view.image = #imageLiteral(resourceName: "AnnotationLarge")}, completion: nil)
         guard let selectedAnnotation = view.annotation as? WellAnnotation else { return }
         let selectedWell = selectedAnnotation.well
         
@@ -125,5 +128,6 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Call out tapped")
+        toggleExpandableMapButtonTapped()
     }
 }
