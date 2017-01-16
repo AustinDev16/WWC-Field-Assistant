@@ -21,6 +21,19 @@ class RootPhotoPagesViewController: UIViewController {
         // Do any additional setup after loading the view.
         // Setup Page View Controller
         configurePageViewController()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
+
+    }
+    
+    func updateSelectedWell(notification: Notification){
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    /// Called to reset the view when no well is selected (i.e. new district is selected)
+    func resetDataEntryView(notification: Notification){
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     func configurePageViewController(){
