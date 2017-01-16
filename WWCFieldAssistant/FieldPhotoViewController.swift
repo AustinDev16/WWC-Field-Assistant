@@ -21,15 +21,7 @@ class FieldPhotoViewController: UIViewController {
         super.viewDidLoad()
         configureStackView()
         configureViewElements()
-        self.view.backgroundColor = UIColor.darkGray
-        // Do any additional setup after loading the view.
-        //        caption.translatesAutoresizingMaskIntoConstraints = false
-        //        caption.textAlignment = .center
-        //        caption.textColor = UIColor.black
-        //        self.view.addSubview(caption)
-        //        let centerY = NSLayoutConstraint(item: caption, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 0)
-        //        let centerX = NSLayoutConstraint(item: caption, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0)
-        //        self.view.addConstraints([centerY, centerX])
+        self.view.backgroundColor = UIColor.white
     }
     
     func updateWith(photoData: String){
@@ -41,17 +33,17 @@ class FieldPhotoViewController: UIViewController {
     func configureStackView(){
         self.view.addSubview(stackView)
         
-        stackView.alignment = .leading
-        stackView.distribution = .fillProportionally
+        stackView.alignment = .top
+        stackView.distribution = .fill
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 8
         
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        let top = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 8)
         let leading = NSLayoutConstraint(item: stackView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: stackView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: stackView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let bottom = NSLayoutConstraint(item: stackView, attribute: .bottom, relatedBy: .lessThanOrEqual, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.view.addConstraints([top, leading, trailing, bottom])
         
         self.stackView.addArrangedSubview(imageView)
@@ -62,18 +54,24 @@ class FieldPhotoViewController: UIViewController {
     func configureViewElements(){
         // Image View
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let imageViewHeight = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: self.stackView, attribute: .height, multiplier: 0.5, constant: 0)
+        let imageViewWidth = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .lessThanOrEqual, toItem: self.stackView, attribute: .width, multiplier: 1.0, constant: 0)
+        stackView.addConstraints([imageViewHeight, imageViewWidth])
         
         
         // Date
-        date.textColor = UIColor.white
+        date.textColor = UIColor.black
         date.textAlignment = .center
         let dateHeight = NSLayoutConstraint(item: date, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0, constant: 40)
+        let leading = NSLayoutConstraint(item: date, attribute: .leading, relatedBy: .equal, toItem: self.stackView, attribute: .leading, multiplier: 1.0, constant: 8)
         stackView.addConstraint(dateHeight)
+        stackView.addConstraints([leading])
         
         // Caption
-        caption.textColor = UIColor.white
-        caption.lineBreakMode = .byWordWrapping
+        caption.textColor = UIColor.black
         caption.numberOfLines = 0
+        caption.text = "asldfjk asdjfas ajfjiej jakdje fjie ajithe hjijejaieh fjiej ajij the tiehs tiema i went ot he sot balwjsk ejs euqid quaiuititoi ajk wui s ituaid"
         let captionHeight = NSLayoutConstraint(item: caption, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0, constant: 100)
         stackView.addConstraint(captionHeight)
     }
