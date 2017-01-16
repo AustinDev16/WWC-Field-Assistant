@@ -47,8 +47,7 @@ class WellSummaryTableViewController: UITableViewController {
             cell.disableEditingOnTextView()
             return cell
         case 1:
-            let cell = FieldPhotoTableViewCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 160))
-            
+            let cell = FieldPhotoTableViewCell()
             cell.configureCell(parentView: self)
             return cell
         case 2:
@@ -68,7 +67,6 @@ class WellSummaryTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         if self.well == nil {
             tableView.separatorStyle = .none
             let noWellSelectedLabel = UILabel(frame: tableView.frame)

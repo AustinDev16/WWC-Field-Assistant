@@ -16,14 +16,12 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureCollectionView()
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        configureCollectionView()
-    }
     override func viewDidLayoutSubviews() {
-        configureCollectionView()
+        // To ensure the view has the right bounds before configuring the collection view
+       configureCollectionView()
     }
     
     func configureCollectionView(){
