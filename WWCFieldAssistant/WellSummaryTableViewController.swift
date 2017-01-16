@@ -47,7 +47,8 @@ class WellSummaryTableViewController: UITableViewController {
             cell.disableEditingOnTextView()
             return cell
         case 1:
-            let cell = FieldPhotoTableViewCell()
+            let cell = FieldPhotoTableViewCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 160))
+            
             cell.configureCell(parentView: self)
             return cell
         case 2:

@@ -16,31 +16,33 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureCollectionView()
+    }
+    override func viewDidLayoutSubviews() {
+        configureCollectionView()
+    }
+    
+    func configureCollectionView(){
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 90, height: 90)
         layout.scrollDirection = .horizontal
+        
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = UIColor.white
         self.view.addSubview(collectionView)
         
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
         // Register cell classes
         self.collectionView!.register(FieldPhotoThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-        // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        collectionView.frame = self.view.bounds
-    }
     // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
