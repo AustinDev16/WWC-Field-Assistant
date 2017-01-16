@@ -11,13 +11,8 @@ import UIKit
 class FieldPhotoTableViewCell: UITableViewCell {
 
     // MARK: - Cell elements
-    var collectionView = UIView()
-    let collectionViewController: UICollectionViewController? = nil
+    var containingView = UIView()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -25,22 +20,32 @@ class FieldPhotoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(){
-        self.contentView.addSubview(collectionView)
+    func configureCell<T: UIViewController>(parentView: T){
+        self.contentView.addSubview(containingView)
         
-        setUpCollectionView()
+        setUpContainingView()
+        configureCollectionView(parentView: parentView)
         
     }
     
-    func setUpCollectionView(){
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.brown.withAlphaComponent(0.3)
+    func setUpContainingView(){
+        containingView.translatesAutoresizingMaskIntoConstraints = false
+        containingView.backgroundColor = UIColor.brown.withAlphaComponent(0.3)
         
-        let leading = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
-        let top = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: collectionView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0)
-        let trailing = NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: containingView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: containingView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0)
+        let bottom = NSLayoutConstraint(item: containingView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let trailing = NSLayoutConstraint(item: containingView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         self.contentView.addConstraints([leading, top, bottom, trailing])
+        
+    }
+    
+    func configureCollectionView<T: UIViewController>(parentView: T){
+        let collectionView = FieldPhotoCollectionViewController()
+        collectionView.view.frame = containingView.bounds
+        containingView.addSubview(collectionView.view)
+        parentView.addChildViewController(collectionView)
+        collectionView.didMove(toParentViewController: parentView)
         
     }
 
