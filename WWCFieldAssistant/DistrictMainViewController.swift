@@ -61,7 +61,7 @@ class DistrictMainViewController: UIViewController {
         let sync = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(syncButtonTapped))
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
         let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
-        
+        camera.tag = 30
         self.navigationItem.leftBarButtonItems = [logout, settings]
         self.navigationItem.rightBarButtonItems = [sync, camera, folders]
         
@@ -104,7 +104,7 @@ class DistrictMainViewController: UIViewController {
         guard let barButtons = self.navigationItem.leftBarButtonItems
              else { return }
         let logout = barButtons.filter{ $0.tag == 20 }.first
-        presentationController?.barButtonItem = logout!
+        presentationController?.barButtonItem = logout
     }
     
     func syncButtonTapped(){
@@ -130,6 +130,16 @@ class DistrictMainViewController: UIViewController {
     }
     
     func cameraButtonTapped(){
+        let cameraOptions = CameraOptionsTableViewController()
+        let nc = UINavigationController(rootViewController: cameraOptions)
+        nc.modalPresentationStyle = .popover
+        nc.preferredContentSize = CGSize(width: 250, height: 87)
+        present(nc, animated: true, completion: nil)
+        let presentationController = nc.popoverPresentationController
+        presentationController?.permittedArrowDirections = [.up]
+        guard let barButtons = self.navigationItem.rightBarButtonItems else { return }
+        let camera = barButtons.filter{ $0.tag == 30 }.first
+        presentationController?.barButtonItem = camera
         
     }
     

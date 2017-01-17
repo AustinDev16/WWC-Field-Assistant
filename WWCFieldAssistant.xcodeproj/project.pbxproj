@@ -12,6 +12,7 @@
 		FA0D9C831E2C48530097E378 /* FieldPhotoThumbnailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9C821E2C48530097E378 /* FieldPhotoThumbnailCollectionViewCell.swift */; };
 		FA0D9C851E2C48920097E378 /* RootPhotoPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9C841E2C48920097E378 /* RootPhotoPagesViewController.swift */; };
 		FA0D9C871E2C49890097E378 /* FieldPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9C861E2C49890097E378 /* FieldPhotoCollectionViewController.swift */; };
+		FA1007921E2DC46B006AC87A /* CameraOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1007911E2DC46B006AC87A /* CameraOptionsTableViewController.swift */; };
 		FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB31DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld */; };
 		FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */; };
 		FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */; };
@@ -58,6 +59,7 @@
 		FA0D9C821E2C48530097E378 /* FieldPhotoThumbnailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoThumbnailCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA0D9C841E2C48920097E378 /* RootPhotoPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootPhotoPagesViewController.swift; sourceTree = "<group>"; };
 		FA0D9C861E2C49890097E378 /* FieldPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		FA1007911E2DC46B006AC87A /* CameraOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraOptionsTableViewController.swift; sourceTree = "<group>"; };
 		FA28EEB41DFF2D1D004A8167 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
 				FADB6CD91E15C63F0033D974 /* MapViewController.swift */,
 				FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */,
+				FA1007911E2DC46B006AC87A /* CameraOptionsTableViewController.swift */,
 				FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */,
 				FAB0534F1E01EFF6007A7BFB /* WellListTableViewController.swift */,
 				FAB053511E01FA35007A7BFB /* DataEntryListTableViewController.swift */,
@@ -311,6 +314,7 @@
 				FAA777191E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
 				FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */,
+				FA1007921E2DC46B006AC87A /* CameraOptionsTableViewController.swift in Sources */,
 				FA28EEC91DFF4D49004A8167 /* District+CoreDataProperties.swift in Sources */,
 				FAB053521E01FA35007A7BFB /* DataEntryListTableViewController.swift in Sources */,
 				FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */,
