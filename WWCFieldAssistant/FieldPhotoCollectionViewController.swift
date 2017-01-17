@@ -57,7 +57,7 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FieldPhotoThumbnailCollectionViewCell
         cell?.configureCell()
-        cell?.updateWith()
+        cell?.updateWith(isFirst: indexPath.row == 0)
         
         // Configure the cell
         

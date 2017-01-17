@@ -48,6 +48,7 @@ class DistrictMainViewController: UIViewController {
         let district = AppDataController.shared.districts[1]
         updateViewControllerWith(district: district)
     }
+    
     func setUpNavigationBar(){
         self.navigationItem.titleView = returnTitleView()
         self.navigationController?.navigationBar.isTranslucent = false
@@ -59,9 +60,10 @@ class DistrictMainViewController: UIViewController {
         let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
         let sync = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(syncButtonTapped))
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
+        let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
         
         self.navigationItem.leftBarButtonItems = [logout, settings]
-        self.navigationItem.rightBarButtonItems = [sync, folders]
+        self.navigationItem.rightBarButtonItems = [sync, camera, folders]
         
     }
     
@@ -125,6 +127,10 @@ class DistrictMainViewController: UIViewController {
         presentationController?.sourceView = self.navigationItem.titleView
         let width = self.navigationItem.titleView?.frame.width ?? 0
         presentationController?.sourceRect = CGRect(x: width/2.0, y: 15, width: 1, height: 1)
+    }
+    
+    func cameraButtonTapped(){
+        
     }
     
     // MARK: - Child Views
