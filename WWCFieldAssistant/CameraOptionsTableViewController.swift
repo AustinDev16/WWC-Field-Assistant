@@ -10,6 +10,7 @@ import UIKit
 
 class CameraOptionsTableViewController: UITableViewController {
 
+    let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add a photo from:"
@@ -42,10 +43,47 @@ class CameraOptionsTableViewController: UITableViewController {
         // Configure the cell...
         if indexPath.row == 0 {
             cell?.textLabel?.text = "Camera"
+            cell?.tag = 0
         } else {
             cell?.textLabel?.text = "Media Library"
+            cell?.tag = 1
         }
         return cell ?? UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
+        switch selectedCell.tag {
+        case 0:
+            let vc = AddNewFieldPhotoViewController()
+            vc.modalPresentationStyle = .pageSheet
+            present(vc, animated: true, completion: nil)
+            vc.launchImagePickerWith(type: .camera)
+        case 1:
+            
+            let vc = AddNewFieldPhotoViewController()
+            let nc = UINavigationController(rootViewController: vc)
+            nc.modalPresentationStyle = .pageSheet
+            present(nc, animated: true, completion: nil)
+            vc.launchImagePickerWith(type: .photoLibrary)
+        default:
+            return
+        }
+    }
+    
+}
+
+extension CameraOptionsTableViewController {
+    // Photo selection
+    func launchImagePickerWith(type: UIImagePickerControllerSourceType){
+        imagePicker.sourceType = type
+        imagePicker.allowsEditing = false
+        imagePicker.modalPresentationStyle = .popover
+        present(imagePicker, animated: true, completion: nil)
+        let popoverController = imagePicker.popoverPresentationController
+        
+        popoverController?.sourceView = self.view
+        
+        
+    }
 }
