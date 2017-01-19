@@ -28,6 +28,8 @@ class AddNewFieldPhotoViewController: UIViewController {
         
         setUpNavigationBar()
         setUpTableView()
+        showAlertToSelectMediaType()
+        
     }
     
     func setUpNavigationBar(){
@@ -54,6 +56,32 @@ class AddNewFieldPhotoViewController: UIViewController {
     }
     
     // Photo selection
+    func showAlertToSelectMediaType(){
+        let mediaAlert = UIAlertController(title: "New Photo", message: "Add photo from", preferredStyle: .alert)
+        let camera = UIAlertAction(title: "Camera", style: .default) { (_) in
+            self.launchImagePickerWith(type: .camera)
+        }
+        let mediaLibrary = UIAlertAction(title: "Photo Library", style: .default) { (_) in
+            self.launchImagePickerWith(type: .photoLibrary)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            mediaAlert.addAction(camera)
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            mediaAlert.addAction(mediaLibrary)
+        }
+        
+        mediaAlert.addAction(cancel)
+        
+        self.present(mediaAlert, animated: true, completion: nil)
+        
+    }
+    
     func launchImagePickerWith(type: UIImagePickerControllerSourceType){
         imagePicker.sourceType = type
         imagePicker.allowsEditing = false
@@ -61,7 +89,7 @@ class AddNewFieldPhotoViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
         let popoverController = imagePicker.popoverPresentationController
         popoverController?.sourceView = self.view
-        popoverController?.sourceRect = CGRect(x: Double(self.view.frame.width/2.0 - 130), y: 35, width: 1, height: 1)
+        popoverController?.sourceRect = CGRect(x: Double(self.view.frame.width/2.0), y: 35, width: 1, height: 1)
        
     }
     
@@ -81,6 +109,13 @@ extension AddNewFieldPhotoViewController: UIImagePickerControllerDelegate, UINav
         imageView.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true) { 
+            self.cancelButtonTapped()
+        }
+    }
+
 }
 
 extension AddNewFieldPhotoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -100,6 +135,7 @@ extension AddNewFieldPhotoViewController: UITableViewDelegate, UITableViewDataSo
         let cell = UITableViewCell()
         cell.contentView.addSubview(imageView)
         cell.contentView.addSubview(caption)
+
         
         caption.autocorrectionType = .default
         caption.autocapitalizationType = .sentences
@@ -125,5 +161,9 @@ extension AddNewFieldPhotoViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 400
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }

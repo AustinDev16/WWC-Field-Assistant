@@ -130,17 +130,10 @@ class DistrictMainViewController: UIViewController {
     }
     
     func cameraButtonTapped(){
-        let cameraOptions = CameraOptionsTableViewController()
-        let nc = UINavigationController(rootViewController: cameraOptions)
-        nc.modalPresentationStyle = .popover
-        nc.preferredContentSize = CGSize(width: 250, height: 87)
-        present(nc, animated: true, completion: nil)
-        let presentationController = nc.popoverPresentationController
-        presentationController?.permittedArrowDirections = [.up]
-        guard let barButtons = self.navigationItem.rightBarButtonItems else { return }
-        let camera = barButtons.filter{ $0.tag == 30 }.first
-        presentationController?.barButtonItem = camera
-        
+        let vc = AddNewFieldPhotoViewController()
+        let nc = UINavigationController(rootViewController: vc)
+        nc.modalPresentationStyle = .pageSheet
+        present(nc, animated: true, completion: nil)        
     }
     
     // MARK: - Child Views
