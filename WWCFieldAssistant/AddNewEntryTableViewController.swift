@@ -88,7 +88,7 @@ class AddNewEntryTableViewController: UITableViewController {
             return cell
         case 2: // Section 3
             let cell = FieldPhotoTableViewCell()
-            cell.configureCell()
+            cell.configureCell(parentView: self)
             return cell
         default: return UITableViewCell()
         }

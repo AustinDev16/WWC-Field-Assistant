@@ -48,7 +48,7 @@ class WellSummaryTableViewController: UITableViewController {
             return cell
         case 1:
             let cell = FieldPhotoTableViewCell()
-            cell.configureCell()
+            cell.configureCell(parentView: self)
             return cell
         case 2:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
@@ -67,7 +67,6 @@ class WellSummaryTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         if self.well == nil {
             tableView.separatorStyle = .none
             let noWellSelectedLabel = UILabel(frame: tableView.frame)

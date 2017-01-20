@@ -15,6 +15,7 @@ class DistrictMainViewController: UIViewController {
         didSet{
             let notification = Notification(name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: self.district, userInfo: nil)
             NotificationCenter.default.post(notification)
+            self.selectedWell = nil
         }
     }
     var selectedWell: Well? {
@@ -48,6 +49,7 @@ class DistrictMainViewController: UIViewController {
         let district = AppDataController.shared.districts[1]
         updateViewControllerWith(district: district)
     }
+    
     func setUpNavigationBar(){
         self.navigationItem.titleView = returnTitleView()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -59,9 +61,10 @@ class DistrictMainViewController: UIViewController {
         let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
         let sync = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(syncButtonTapped))
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
-        
+        let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
+        camera.tag = 30
         self.navigationItem.leftBarButtonItems = [logout, settings]
-        self.navigationItem.rightBarButtonItems = [sync, folders]
+        self.navigationItem.rightBarButtonItems = [sync, camera, folders]
         
     }
     
@@ -102,7 +105,7 @@ class DistrictMainViewController: UIViewController {
         guard let barButtons = self.navigationItem.leftBarButtonItems
              else { return }
         let logout = barButtons.filter{ $0.tag == 20 }.first
-        presentationController?.barButtonItem = logout!
+        presentationController?.barButtonItem = logout
     }
     
     func syncButtonTapped(){
@@ -125,6 +128,24 @@ class DistrictMainViewController: UIViewController {
         presentationController?.sourceView = self.navigationItem.titleView
         let width = self.navigationItem.titleView?.frame.width ?? 0
         presentationController?.sourceRect = CGRect(x: width/2.0, y: 15, width: 1, height: 1)
+    }
+    
+    func cameraButtonTapped(){
+        if self.selectedWell != nil {
+            let vc = AddNewFieldPhotoViewController()
+            vc.selectedWell = self.selectedWell
+            let nc = UINavigationController(rootViewController: vc)
+            nc.modalPresentationStyle = .pageSheet
+            present(nc, animated: true, completion: nil)
+        } else {
+            let vc = NoWellAvailableViewController()
+            vc.modalPresentationStyle = .popover
+            present(vc, animated: true, completion: nil)
+            let presentationController = vc.popoverPresentationController
+            presentationController?.permittedArrowDirections = [.up]
+            let barButton = self.navigationItem.rightBarButtonItems?.filter{$0.tag == 30}.first
+            presentationController?.barButtonItem = barButton
+        }
     }
     
     // MARK: - Child Views
@@ -322,14 +343,22 @@ class DistrictMainViewController: UIViewController {
     
     func newEntryButtonTapped(){
         print("New entry button tapped")
-        let addNewTVC = AddNewEntryTableViewController(style: .grouped)
-        let nc = UINavigationController(rootViewController: addNewTVC)
-        nc.modalTransitionStyle = .coverVertical
-        nc.modalPresentationStyle = .pageSheet
-        //nc.preferredContentSize = CGSize(width: 100, height: 200)
-        self.present(nc, animated: true, completion: nil)
+        if self.selectedWell != nil {
+            let addNewTVC = AddNewEntryTableViewController(style: .grouped)
+            let nc = UINavigationController(rootViewController: addNewTVC)
+            nc.modalTransitionStyle = .coverVertical
+            nc.modalPresentationStyle = .pageSheet
+            self.present(nc, animated: true, completion: nil)
+        } else {
+            let vc = NoWellAvailableViewController()
+            vc.modalPresentationStyle = .popover
+            present(vc, animated: true, completion: nil)
+            let presentationController = vc.popoverPresentationController
+            presentationController?.permittedArrowDirections = [.down]
+            presentationController?.sourceView = newEntryButtonView
+            presentationController?.sourceRect = CGRect(x: Double(newEntryButtonView.frame.width/2), y: 16, width: 1, height: 1)
+        }
     }
-
 }
 
 extension DistrictMainViewController: DistrictUpdateDelegate {
