@@ -120,6 +120,10 @@ class MapViewController: UIViewController {
             toggleButton.setTitle("Detail View", for: .normal)
         } else {
             toggleButton.setTitle("Full Screen", for: .normal)
+            let selectedAnnotation = mapView.selectedAnnotations.first
+            if let annotation = selectedAnnotation {
+                recenterMapOn(annotation: annotation)
+            }
         }
     }
     
@@ -129,8 +133,14 @@ class MapViewController: UIViewController {
         if delegate.isExpanded{
             delegate.adjustMapView()
             toggleButton.setTitle("Full Screen", for: .normal)
+            let selectedAnnotation = mapView.selectedAnnotations.first
+            if let annotation = selectedAnnotation {
+                recenterMapOn(annotation: annotation)
+            }
         }
     }
+    
+    
 
 }
 
@@ -174,5 +184,15 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Call out tapped")
         collapseFullScreenIfNeeded()
+    }
+    
+    func recenterMapOn(annotation: MKAnnotation){
+//        UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+//            self.mapView.centerCoordinate = annotation.coordinate
+//        }, completion: nil)
+        
+        let center = annotation.coordinate
+        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        mapView.region = MKCoordinateRegion(center: center, span: span)
     }
 }

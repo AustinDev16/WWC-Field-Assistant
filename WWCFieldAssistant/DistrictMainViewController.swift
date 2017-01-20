@@ -52,7 +52,7 @@ class DistrictMainViewController: UIViewController {
     
     func setUpNavigationBar(){
         self.navigationItem.titleView = returnTitleView()
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isTranslucent = false//true
 
         
         // Bar buttons
