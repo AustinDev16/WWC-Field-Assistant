@@ -12,6 +12,7 @@ class AddNewFieldPhotoViewController: UIViewController {
     // MARK: - Properties
     let imagePicker = UIImagePickerController()
     let imageView = UIImageView()
+    let captionLabel = UILabel()
     let caption = UITextView()
     var tableView: UITableView {
         if _tableView == nil {
@@ -22,9 +23,14 @@ class AddNewFieldPhotoViewController: UIViewController {
     
     private var _tableView: UITableView? = nil
     
+    // For saving
+    var selectedWell: Well?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        caption.delegate = self
+        captionLabel.text = "Caption:"
         
         setUpNavigationBar()
         setUpTableView()
@@ -38,6 +44,10 @@ class AddNewFieldPhotoViewController: UIViewController {
         let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         self.navigationItem.leftBarButtonItem = cancel
         self.navigationItem.rightBarButtonItem = save
+        
+        if caption.text.characters.count == 0 {
+            save.isEnabled = false
+        }
     }
     
     func setUpTableView(){
@@ -50,14 +60,11 @@ class AddNewFieldPhotoViewController: UIViewController {
         let leading = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0)
         self.view.addConstraints([top, bottom, leading, trailing])
-
-
-    
     }
     
     // Photo selection
     func showAlertToSelectMediaType(){
-        let mediaAlert = UIAlertController(title: "New Photo", message: "Add photo from", preferredStyle: .alert)
+        let mediaAlert = UIAlertController(title: nil, message: "Add photo from", preferredStyle: .alert)
         let camera = UIAlertAction(title: "Camera", style: .default) { (_) in
             self.launchImagePickerWith(type: .camera)
         }
@@ -94,11 +101,15 @@ class AddNewFieldPhotoViewController: UIViewController {
     }
     
     func cancelButtonTapped(){
+        self.caption.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
 
     func saveButtonTapped(){
-        self.setEditing(false, animated: true)
+        self.caption.resignFirstResponder()
+        if selectedWell != nil && imageView.image != nil {
+           //  let newPhoto = FieldPhoto(dateTaken: NSDate(), comment: caption.text, name: "", dataEntry: <#T##DataEntry#>, image: <#T##UIImage#>)
+        }
         dismiss(animated: true, completion: nil)
     }
 }
@@ -107,7 +118,9 @@ extension AddNewFieldPhotoViewController: UIImagePickerControllerDelegate, UINav
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         imageView.image = selectedImage
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.caption.becomeFirstResponder()
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -116,6 +129,12 @@ extension AddNewFieldPhotoViewController: UIImagePickerControllerDelegate, UINav
         }
     }
 
+}
+
+extension AddNewFieldPhotoViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.setUpNavigationBar()
+    }
 }
 
 extension AddNewFieldPhotoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -134,6 +153,7 @@ extension AddNewFieldPhotoViewController: UITableViewDelegate, UITableViewDataSo
     func buildPhotoCell() -> UITableViewCell {
         let cell = UITableViewCell()
         cell.contentView.addSubview(imageView)
+        cell.contentView.addSubview(captionLabel)
         cell.contentView.addSubview(caption)
 
         
@@ -148,14 +168,21 @@ extension AddNewFieldPhotoViewController: UITableViewDelegate, UITableViewDataSo
         let widthIV = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 0.5, constant: 0)
         cell.contentView.addConstraints([leadingIV, topIV, bottomIV, widthIV])
         
+        captionLabel.translatesAutoresizingMaskIntoConstraints = false
+        let topCL = NSLayoutConstraint(item: captionLabel, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .top, multiplier: 1.0, constant: 4)
+        let heightCL = NSLayoutConstraint(item: captionLabel, attribute: .height, relatedBy: .equal, toItem: cell.contentView, attribute: .height, multiplier: 0, constant: 30)
+        let widthCL = NSLayoutConstraint(item: captionLabel, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 0.5, constant: -16)
+        let trailingCL = NSLayoutConstraint(item: captionLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailing, multiplier: 1.0, constant: -8)
+        cell.contentView.addConstraints([topCL, heightCL, widthCL, trailingCL])
+        
         caption.translatesAutoresizingMaskIntoConstraints = false
         let width = NSLayoutConstraint(item: caption, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 0.5, constant: -16)
-        let top = NSLayoutConstraint(item: caption, attribute: .top, relatedBy: .equal, toItem: cell.contentView, attribute: .top, multiplier: 1.0, constant: 8)
+        let top = NSLayoutConstraint(item: caption, attribute: .top, relatedBy: .equal, toItem: captionLabel, attribute: .bottom, multiplier: 1.0, constant: 4)
         let bottom = NSLayoutConstraint(item: caption, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1.0, constant: -8)
         let trailing = NSLayoutConstraint(item: caption, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailing, multiplier: 1.0, constant: -8)
         cell.contentView.addConstraints([width, top, bottom, trailing])
         
-        cell.contentView.backgroundColor = UIColor.brown.withAlphaComponent(0.3)
+        cell.contentView.backgroundColor = UIColor.white//UIColor.brown.withAlphaComponent(0.3)
         return cell
     }
     

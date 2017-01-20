@@ -15,6 +15,7 @@ class DistrictMainViewController: UIViewController {
         didSet{
             let notification = Notification(name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: self.district, userInfo: nil)
             NotificationCenter.default.post(notification)
+            self.selectedWell = nil
         }
     }
     var selectedWell: Well? {
@@ -130,10 +131,21 @@ class DistrictMainViewController: UIViewController {
     }
     
     func cameraButtonTapped(){
-        let vc = AddNewFieldPhotoViewController()
-        let nc = UINavigationController(rootViewController: vc)
-        nc.modalPresentationStyle = .pageSheet
-        present(nc, animated: true, completion: nil)        
+        if self.selectedWell != nil {
+            let vc = AddNewFieldPhotoViewController()
+            vc.selectedWell = self.selectedWell
+            let nc = UINavigationController(rootViewController: vc)
+            nc.modalPresentationStyle = .pageSheet
+            present(nc, animated: true, completion: nil)
+        } else {
+            let vc = NoWellAvailableViewController()
+            vc.modalPresentationStyle = .popover
+            present(vc, animated: true, completion: nil)
+            let presentationController = vc.popoverPresentationController
+            presentationController?.permittedArrowDirections = [.up]
+            let barButton = self.navigationItem.rightBarButtonItems?.filter{$0.tag == 30}.first
+            presentationController?.barButtonItem = barButton
+        }
     }
     
     // MARK: - Child Views
@@ -330,14 +342,22 @@ class DistrictMainViewController: UIViewController {
     
     func newEntryButtonTapped(){
         print("New entry button tapped")
-        let addNewTVC = AddNewEntryTableViewController(style: .grouped)
-        let nc = UINavigationController(rootViewController: addNewTVC)
-        nc.modalTransitionStyle = .coverVertical
-        nc.modalPresentationStyle = .pageSheet
-        //nc.preferredContentSize = CGSize(width: 100, height: 200)
-        self.present(nc, animated: true, completion: nil)
+        if self.selectedWell != nil {
+            let addNewTVC = AddNewEntryTableViewController(style: .grouped)
+            let nc = UINavigationController(rootViewController: addNewTVC)
+            nc.modalTransitionStyle = .coverVertical
+            nc.modalPresentationStyle = .pageSheet
+            self.present(nc, animated: true, completion: nil)
+        } else {
+            let vc = NoWellAvailableViewController()
+            vc.modalPresentationStyle = .popover
+            present(vc, animated: true, completion: nil)
+            let presentationController = vc.popoverPresentationController
+            presentationController?.permittedArrowDirections = [.down]
+            presentationController?.sourceView = newEntryButtonView
+            presentationController?.sourceRect = CGRect(x: Double(newEntryButtonView.frame.width/2), y: 16, width: 1, height: 1)
+        }
     }
-
 }
 
 extension DistrictMainViewController: DistrictUpdateDelegate {
