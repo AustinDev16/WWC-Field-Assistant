@@ -15,7 +15,7 @@ class DistrictMainViewController: UIViewController {
         didSet{
             let notification = Notification(name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: self.district, userInfo: nil)
             NotificationCenter.default.post(notification)
-            self.selectedWell = nil
+            self.selectedWell = nil // reset for all child views
         }
     }
     var selectedWell: Well? {

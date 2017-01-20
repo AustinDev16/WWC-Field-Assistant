@@ -48,15 +48,14 @@ class MapViewController: UIViewController {
     func updateWell(notification: Notification){
         guard let newWell = notification.object as? Well else { return }
         self.notifiedFromExternal = true
-        guard let annotation = findAnnotationFor(selectedWell: newWell) else { return }
+        guard let annotation = findAnnotationFor(selectedWell: newWell) else { print("No annotation found"); self.notifiedFromExternal = false;  return }
         mapView.selectAnnotation(annotation, animated: true)
     }
 
     func findAnnotationFor(selectedWell: Well) -> MKAnnotation? {
-        let wells = self.selectedDistrict?.wells.flatMap{$0 as? Well }
-        let index = wells!.index(of: selectedWell)
-        
-        return mapView.annotations[index!]
+        let annotations = mapView.annotations.flatMap{$0 as? WellAnnotation}
+        let selectedAnnotation = annotations.filter{$0.well == selectedWell}.first
+        return selectedAnnotation
     }
     
     override func didReceiveMemoryWarning() {
