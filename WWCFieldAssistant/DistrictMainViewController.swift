@@ -381,7 +381,7 @@ extension DistrictMainViewController: ExpandableMapDelegate {
                 self.wellInfoView.isHidden = true
             }, completion: nil)
         } else {
-            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
                 self.wellInfoView.isHidden = false
                 self.rightPanelStackView.isHidden = false
             }, completion: nil)

@@ -168,9 +168,12 @@ extension MapViewController: MKMapViewDelegate {
         } else { // User selected well from other view; no further notification
             self.notifiedFromExternal = false
         }
+        
+        mapView.isZoomEnabled = false
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        mapView.isZoomEnabled = true
         UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {view.image = #imageLiteral(resourceName: "AnnotationSmall")}, completion: nil)
     }
     
@@ -203,8 +206,8 @@ extension MapViewController: MKMapViewDelegate {
         let center = annotation.coordinate
         let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
         UIView.animate(withDuration: 0.8) { 
-            self.mapView.region = MKCoordinateRegion(center: center, span: span)
+            //self.mapView.region = MKCoordinateRegion(center: center, span: span)
         }
         
-    }   
+    }
 }
