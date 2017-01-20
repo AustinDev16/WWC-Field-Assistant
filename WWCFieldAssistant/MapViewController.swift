@@ -28,6 +28,7 @@ class MapViewController: UIViewController {
     var notifiedFromExternal: Bool = false
     
     weak var expandableMapDelegate: ExpandableMapDelegate?
+    var selectedAnnotation: MKAnnotation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class MapViewController: UIViewController {
     func updateDistrict(notification: Notification) {
         guard let newDistrict = notification.object as? District else { return }
         self.selectedDistrict = newDistrict
+        self.selectedAnnotation = nil
     }
     
     func updateWell(notification: Notification){
@@ -50,6 +52,7 @@ class MapViewController: UIViewController {
         self.notifiedFromExternal = true
         guard let annotation = findAnnotationFor(selectedWell: newWell) else { print("No annotation found"); self.notifiedFromExternal = false;  return }
         mapView.selectAnnotation(annotation, animated: true)
+        self.selectedAnnotation = annotation
     }
 
     func findAnnotationFor(selectedWell: Well) -> MKAnnotation? {
@@ -70,6 +73,11 @@ class MapViewController: UIViewController {
         // Add new annotations
         let newAnnotations = MockDataController.mockMapAnnotations(district: selectedDistrict)
         mapView.addAnnotations(newAnnotations)
+        
+        if let annotation = self.selectedAnnotation {
+            self.notifiedFromExternal = true
+            mapView.selectAnnotation(annotation, animated: true)
+        }
         
     }
     // MARK: - Initial Configuration of map
@@ -156,6 +164,7 @@ extension MapViewController: MKMapViewDelegate {
             let notification = Notification(name: Notification.Name(rawValue: "MapViewUpdatedWell"), object: selectedWell, userInfo: nil)
             NotificationCenter.default.post(notification)
             self.notifiedFromExternal = false
+            self.selectedAnnotation = view.annotation
         } else { // User selected well from other view; no further notification
             self.notifiedFromExternal = false
         }
@@ -193,6 +202,9 @@ extension MapViewController: MKMapViewDelegate {
         
         let center = annotation.coordinate
         let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-        mapView.region = MKCoordinateRegion(center: center, span: span)
-    }
+        UIView.animate(withDuration: 0.8) { 
+            self.mapView.region = MKCoordinateRegion(center: center, span: span)
+        }
+        
+    }   
 }
