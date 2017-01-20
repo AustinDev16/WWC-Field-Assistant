@@ -76,6 +76,7 @@ class DistrictsTableViewController: UITableViewController {
         
         // Inform delegate that district has changed
         self.updateSelectedDistrictDelegate?.updateSelectedDistrict(district: districts[indexPath.row])
+        self.dismiss(animated: true, completion: nil)
     }
     
     func updateCheckMarksInAllCells(){

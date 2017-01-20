@@ -70,6 +70,7 @@ class UsersTableViewController: UITableViewController {
         
         // Inform delegate that the logged in user has changed
         self.updateLoggedInUserDelegate?.updateLoggedInUser(user: users[indexPath.row])
+        self.dismiss(animated: true, completion: nil)
     }
     
     func updateCheckMarksInAllCells(){
