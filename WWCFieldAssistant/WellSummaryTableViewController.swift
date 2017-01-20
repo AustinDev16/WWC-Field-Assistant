@@ -75,8 +75,6 @@ class WellSummaryTableViewController: UITableViewController {
             noWellSelectedLabel.textAlignment = .center
             tableView.backgroundView = noWellSelectedLabel
             self.title = "Well Summary"
-            
-            
             return 0
         } else {
             self.tableView.backgroundView = nil

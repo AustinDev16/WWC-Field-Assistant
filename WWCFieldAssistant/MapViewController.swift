@@ -73,11 +73,7 @@ class MapViewController: UIViewController {
         // Add new annotations
         let newAnnotations = MockDataController.mockMapAnnotations(district: selectedDistrict)
         mapView.addAnnotations(newAnnotations)
-        
-        if let annotation = self.selectedAnnotation {
-            self.notifiedFromExternal = true
-            mapView.selectAnnotation(annotation, animated: true)
-        }
+
         
     }
     // MARK: - Initial Configuration of map
