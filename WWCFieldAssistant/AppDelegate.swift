@@ -41,7 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         AppDataController.shared.loggedInUser = AppDataController.shared.users[1]
         
+        // Initial Views
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let launchVC = AppLaunchViewController()
         
+        self.window?.rootViewController = launchVC  
+        self.window?.makeKeyAndVisible()
         return true
     }
 
