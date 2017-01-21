@@ -46,9 +46,8 @@ class DistrictMainViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       // let district = AppDataController.shared.districts[1]
-        //updateViewControllerWith(district: district)
-
+        guard let district = self.district else {return}
+        updateViewControllerWith(district: district)
     }
     
     func setUpNavigationBar(){
