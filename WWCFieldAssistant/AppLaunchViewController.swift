@@ -167,13 +167,19 @@ class AppLaunchViewController: UIViewController {
     
     // MARK: - Button Actions
     func beginSessionTapped(){
+        let indexForUser = userPicker.selectedRow(inComponent: 0)
+        AppDataController.shared.loggedInUser = self.users[indexForUser]
         let vc = DistrictMainViewController()
-        let nc = UINavigationController(rootViewController: vc)
-        UIApplication.shared.keyWindow?.rootViewController = nc
+        let indexForDistrict = districtPicker.selectedRow(inComponent: 0)
+        vc.updateViewControllerWith(district: self.districts[indexForDistrict])
         
-        UIApplication.shared.keyWindow?.makeKeyAndVisible()
-    }
+        let nc = UINavigationController(rootViewController: vc)
 
+            UIApplication.shared.keyWindow?.rootViewController = nc
+            UIApplication.shared.keyWindow?.makeKeyAndVisible()
+
+    }
+    
     
 }
 
