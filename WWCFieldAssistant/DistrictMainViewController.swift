@@ -51,19 +51,22 @@ class DistrictMainViewController: UIViewController {
     }
     
     func setUpNavigationBar(){
-        self.navigationItem.titleView = returnTitleView()
+        //self.navigationItem.titleView = returnTitleView()
+        self.title = self.district?.name ?? "Please select a district"
         self.navigationController?.navigationBar.isTranslucent = false//true
 
         
         // Bar buttons
-        let logout = UIBarButtonItem(title: "Change User", style: .plain, target: self, action: #selector(logoutButtonTapped))
-        logout.tag = 20
-        let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
+        let district = UIBarButtonItem(title: "Districts", style: .plain, target: self, action: #selector(districtsButtonTapped))
+        district.tag = 10
+        let employees = UIBarButtonItem(title: "Employees", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        employees.tag = 20
+        //let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
         let sync = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(syncButtonTapped))
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
         let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
         camera.tag = 30
-        self.navigationItem.leftBarButtonItems = [logout, settings]
+        self.navigationItem.leftBarButtonItems = [district, employees]//, settings]
         self.navigationItem.rightBarButtonItems = [sync, camera, folders]
         
     }
@@ -91,6 +94,21 @@ class DistrictMainViewController: UIViewController {
     }
     
     // MARK: - Navigation bar actions
+    
+    func districtsButtonTapped(){
+        let districtsPopoverController = DistrictsTableViewController()
+        districtsPopoverController.selectedDistrict = self.district
+        districtsPopoverController.updateSelectedDistrictDelegate = self
+        districtsPopoverController.modalPresentationStyle = .popover
+        districtsPopoverController.preferredContentSize = CGSize(width: 350, height: 300)
+        present(districtsPopoverController, animated: true, completion: nil)
+        
+        let presentationController = districtsPopoverController.popoverPresentationController
+        //presentationController?.delegate = self
+        presentationController?.permittedArrowDirections = [.up]
+        let barButton = self.navigationItem.leftBarButtonItems?.filter{$0.tag == 10}.first
+        presentationController?.barButtonItem = barButton
+    }
     
     func logoutButtonTapped(){
         let usersPopoverController = UsersTableViewController()
@@ -123,7 +141,6 @@ class DistrictMainViewController: UIViewController {
         present(districtsPopoverController, animated: true, completion: nil)
         
         let presentationController = districtsPopoverController.popoverPresentationController
-        //presentationController?.delegate = self
         presentationController?.permittedArrowDirections = [.up]
         presentationController?.sourceView = self.navigationItem.titleView
         let width = self.navigationItem.titleView?.frame.width ?? 0
