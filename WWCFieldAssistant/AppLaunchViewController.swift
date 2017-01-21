@@ -19,6 +19,16 @@ class AppLaunchViewController: UIViewController {
     let licenseLabel = UILabel()
     let beginButton = UIButton(type: .roundedRect)
     
+    // MARK: - Data Properties
+    var users: [User] {
+        return AppDataController.shared.users
+    }
+    
+    var districts: [District] {
+        return AppDataController.shared.districts
+    }
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -157,7 +167,11 @@ class AppLaunchViewController: UIViewController {
     
     // MARK: - Button Actions
     func beginSessionTapped(){
+        let vc = DistrictMainViewController()
+        let nc = UINavigationController(rootViewController: vc)
+        UIApplication.shared.keyWindow?.rootViewController = nc
         
+        UIApplication.shared.keyWindow?.makeKeyAndVisible()
     }
 
     
@@ -169,10 +183,29 @@ extension AppLaunchViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
+        switch pickerView {
+        case userPicker: return self.users.count
+        case districtPicker: return self.districts.count
+        default: return 0
+        }
+
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: "Test", attributes: [NSForegroundColorAttributeName : UIColor.white])
+        
+        switch pickerView {
+        case userPicker:
+            let user = self.users[row]
+            return attributedStringFor(text: user.userName)
+        case districtPicker:
+            let district = self.districts[row]
+            return attributedStringFor(text: district.name)
+        default: return nil
+        }
+        
+    }
+
+    func attributedStringFor(text: String) -> NSAttributedString {
+     return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.white])
     }
 }
