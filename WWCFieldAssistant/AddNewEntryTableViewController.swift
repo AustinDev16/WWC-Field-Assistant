@@ -86,10 +86,10 @@ class AddNewEntryTableViewController: UITableViewController {
             let cell = FieldNotesTableViewCell()
             cell.configureCell()
             return cell
-        case 2: // Section 3
-            let cell = FieldPhotoTableViewCell()
-            cell.configureCell(parentView: self)
-            return cell
+//        case 2: // Section 3
+//            let cell = FieldPhotoTableViewCell()
+//            cell.configureCell(parentView: self)
+//            return cell
         default: return UITableViewCell()
         }
     }
@@ -98,7 +98,7 @@ class AddNewEntryTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +106,7 @@ class AddNewEntryTableViewController: UITableViewController {
         switch section {
         case 0: return 4 // Reading/well info
         case 1: return 1 // Field Notes
-        case 2: return 1 // Field photos
+//        case 2: return 1 // Field photos
         default: return 0
         }
 
@@ -140,8 +140,8 @@ class AddNewEntryTableViewController: UITableViewController {
             }
         } else if indexPath.section == 1 {
             return 120
-        } else if indexPath.section == 2 {
-            return 160
+//        } else if indexPath.section == 2 {
+//            return 160
         } else {
             return 40
         }
@@ -152,7 +152,7 @@ class AddNewEntryTableViewController: UITableViewController {
         switch section {
         case 0: return "Entry detail"
         case 1: return "Field notes"
-        case 2: return "Field photos"
+//        case 2: return "Field photos"
         default: return nil
         }
     }

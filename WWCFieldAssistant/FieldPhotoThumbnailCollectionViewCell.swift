@@ -27,15 +27,11 @@ class FieldPhotoThumbnailCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func updateWith(isFirst: Bool){
-        if isFirst {
-            self.image = #imageLiteral(resourceName: "PlusSign")
-            self.imageView.image = self.image
-        } else {
-            self.image = #imageLiteral(resourceName: "RavenclawCommonRoomWallpaper")
-            self.imageView.image = self.image
-        }
+    func updateWith(){
+        self.image = #imageLiteral(resourceName: "RavenclawCommonRoomWallpaper")
+        self.imageView.image = self.image
     }
+    
     
     
 }
