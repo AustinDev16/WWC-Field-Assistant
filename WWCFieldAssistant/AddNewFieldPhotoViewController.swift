@@ -64,7 +64,7 @@ class AddNewFieldPhotoViewController: UIViewController {
     
     // Photo selection
     func showAlertToSelectMediaType(){
-        let mediaAlert = UIAlertController(title: nil, message: "Add photo from", preferredStyle: .alert)
+        let mediaAlert = UIAlertController(title: nil, message: "Add photo from:", preferredStyle: .alert)
         let camera = UIAlertAction(title: "Camera", style: .default) { (_) in
             self.launchImagePickerWith(type: .camera)
         }
@@ -90,6 +90,12 @@ class AddNewFieldPhotoViewController: UIViewController {
     }
     
     func launchImagePickerWith(type: UIImagePickerControllerSourceType){
+        if type == .camera {
+            imagePicker.sourceType = type
+            imagePicker.allowsEditing = false
+            imagePicker.modalPresentationStyle = .fullScreen
+            present(imagePicker, animated: true, completion: nil)
+        } else {
         imagePicker.sourceType = type
         imagePicker.allowsEditing = false
         imagePicker.modalPresentationStyle = .popover
@@ -97,7 +103,7 @@ class AddNewFieldPhotoViewController: UIViewController {
         let popoverController = imagePicker.popoverPresentationController
         popoverController?.sourceView = self.view
         popoverController?.sourceRect = CGRect(x: Double(self.view.frame.width/2.0), y: 35, width: 1, height: 1)
-       
+        }
     }
     
     func cancelButtonTapped(){
@@ -124,9 +130,13 @@ extension AddNewFieldPhotoViewController: UIImagePickerControllerDelegate, UINav
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true) { 
-            self.cancelButtonTapped()
+        dismiss(animated: true) {
+            self.showAlertToSelectMediaType()
         }
+        // This will dismiss the whole add new photo form sheet.
+        //        dismiss(animated: true) {
+        //            self.cancelButtonTapped()
+        //        }
     }
 
 }
