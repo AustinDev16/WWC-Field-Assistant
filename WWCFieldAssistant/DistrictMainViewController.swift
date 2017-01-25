@@ -36,7 +36,7 @@ class DistrictMainViewController: UIViewController {
         // for testing
        // newEntryButtonTapped()
         NotificationCenter.default.addObserver(self, selector: #selector(mapViewUpdatedWellWith(notification:)), name: Notification.Name(rawValue:"MapViewUpdatedWell"), object: nil)
-        
+         expandMapViewNonAnimated()
 
     }
     
@@ -93,6 +93,10 @@ class DistrictMainViewController: UIViewController {
         self.selectedWell = selectedWell
     }
     
+    func expandMapViewNonAnimated(){
+        self.rightPanelStackView.isHidden = true
+        self.wellInfoView.isHidden = true
+    }
     // MARK: - Navigation bar actions
     
     func districtsButtonTapped(){

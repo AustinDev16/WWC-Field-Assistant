@@ -102,7 +102,7 @@ class MapViewController: UIViewController {
     func configureToggleButton(){
         self.view.addSubview(toggleButton)
         toggleButton.translatesAutoresizingMaskIntoConstraints = false
-        toggleButton.setTitle("Full Screen", for: .normal)
+        toggleButton.setTitle("Detail View", for: .normal)
         toggleButton.setTitleColor(UIColor.white, for: .normal)
         toggleButton.setTitleColor(UIColor.lightGray, for: .selected)
         toggleButton.addTarget(self, action: #selector(toggleExpandableMapButtonTapped), for: .touchUpInside)
