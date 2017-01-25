@@ -59,6 +59,8 @@ class DistrictMainViewController: UIViewController {
         // Bar buttons
         let district = UIBarButtonItem(title: "Districts", style: .plain, target: self, action: #selector(districtsButtonTapped))
         district.tag = 10
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = 24
         let employees = UIBarButtonItem(title: "Employees", style: .plain, target: self, action: #selector(logoutButtonTapped))
         employees.tag = 20
         //let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: nil)
@@ -66,7 +68,7 @@ class DistrictMainViewController: UIViewController {
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
         let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
         camera.tag = 30
-        self.navigationItem.leftBarButtonItems = [district, employees]//, settings]
+        self.navigationItem.leftBarButtonItems = [employees, spacer, district]//, settings]
         self.navigationItem.rightBarButtonItems = [sync, camera, folders]
         
     }
