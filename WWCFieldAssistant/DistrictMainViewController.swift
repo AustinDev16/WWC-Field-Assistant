@@ -36,7 +36,7 @@ class DistrictMainViewController: UIViewController {
         // for testing
        // newEntryButtonTapped()
         NotificationCenter.default.addObserver(self, selector: #selector(mapViewUpdatedWellWith(notification:)), name: Notification.Name(rawValue:"MapViewUpdatedWell"), object: nil)
-         //expandMapViewNonAnimated()
+         expandMapViewNonAnimated()
 
     }
     
@@ -311,7 +311,7 @@ class DistrictMainViewController: UIViewController {
         
         // Map view
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        
+        mapView.layer.cornerRadius = 10
         
         // Well info view
         wellInfoView.translatesAutoresizingMaskIntoConstraints = false

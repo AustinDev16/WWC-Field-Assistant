@@ -39,6 +39,8 @@ class MapViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateDistrict(notification:)), name: Notification.Name(rawValue: "SelectedDistrictUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         // Do any additional setup after loading the view.
+        self.view.layer.cornerRadius = 10
+        self.mapView.layer.cornerRadius = 10
     }
     
     func updateDistrict(notification: Notification) {
