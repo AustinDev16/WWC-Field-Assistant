@@ -13,6 +13,7 @@
 		FA0D9C851E2C48920097E378 /* RootPhotoPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9C841E2C48920097E378 /* RootPhotoPagesViewController.swift */; };
 		FA0D9C871E2C49890097E378 /* FieldPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9C861E2C49890097E378 /* FieldPhotoCollectionViewController.swift */; };
 		FA13B19B1E32E8DE0014F729 /* AppLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13B19A1E32E8DE0014F729 /* AppLaunchViewController.swift */; };
+		FA154E491E3ABEEB00E37B90 /* FieldNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA154E481E3ABEEB00E37B90 /* FieldNoteTableViewCell.swift */; };
 		FA2889E31E396B24000A24A8 /* WaterDistrictTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2889E21E396B24000A24A8 /* WaterDistrictTableViewCell.swift */; };
 		FA28EEB51DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB31DFF2D1D004A8167 /* CoreDataModel.xcdatamodeld */; };
 		FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */; };
@@ -63,6 +64,7 @@
 		FA0D9C841E2C48920097E378 /* RootPhotoPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootPhotoPagesViewController.swift; sourceTree = "<group>"; };
 		FA0D9C861E2C49890097E378 /* FieldPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		FA13B19A1E32E8DE0014F729 /* AppLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLaunchViewController.swift; sourceTree = "<group>"; };
+		FA154E481E3ABEEB00E37B90 /* FieldNoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldNoteTableViewCell.swift; sourceTree = "<group>"; };
 		FA2889E21E396B24000A24A8 /* WaterDistrictTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterDistrictTableViewCell.swift; sourceTree = "<group>"; };
 		FA28EEB41DFF2D1D004A8167 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		FA28EEB71DFF45D3004A8167 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				FA0D9C821E2C48530097E378 /* FieldPhotoThumbnailCollectionViewCell.swift */,
 				FA0D9C841E2C48920097E378 /* RootPhotoPagesViewController.swift */,
 				FAD681BE1E01C62B0079E9D9 /* DistrictMainViewController.swift */,
+				FA154E481E3ABEEB00E37B90 /* FieldNoteTableViewCell.swift */,
 				FADB6CD91E15C63F0033D974 /* MapViewController.swift */,
 				FAB14DB21E14B9F0002BEE21 /* DistrictsTableViewController.swift */,
 				FAB053531E0200CC007A7BFB /* WellInfoTableViewController.swift */,
@@ -328,6 +331,7 @@
 				FAB14DAF1E146F65002BEE21 /* MakeAndModelTableViewCell.swift in Sources */,
 				FAA7771C1E0B7D0900FD6FD1 /* AddNewReadingTableViewCell.swift in Sources */,
 				FA4801BA1E31830900F000B8 /* NoWellAvailableViewController.swift in Sources */,
+				FA154E491E3ABEEB00E37B90 /* FieldNoteTableViewCell.swift in Sources */,
 				FADB6CDC1E15FB770033D974 /* AppDataController.swift in Sources */,
 				FAA777191E0B579E00FD6FD1 /* AddNewEntryTableViewController.swift in Sources */,
 				FA28EEB81DFF45D3004A8167 /* CoreDataStack.swift in Sources */,
