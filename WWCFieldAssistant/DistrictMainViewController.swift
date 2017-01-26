@@ -36,7 +36,7 @@ class DistrictMainViewController: UIViewController {
         // for testing
        // newEntryButtonTapped()
         NotificationCenter.default.addObserver(self, selector: #selector(mapViewUpdatedWellWith(notification:)), name: Notification.Name(rawValue:"MapViewUpdatedWell"), object: nil)
-         expandMapViewNonAnimated()
+         //expandMapViewNonAnimated()
 
     }
     
@@ -68,8 +68,10 @@ class DistrictMainViewController: UIViewController {
         let folders = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
         let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
         camera.tag = 30
+        let fieldNote = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newFieldNoteTapped))
+        fieldNote.tag = 40
         self.navigationItem.leftBarButtonItems = [employees, spacer, district]//, settings]
-        self.navigationItem.rightBarButtonItems = [sync, camera, folders]
+        self.navigationItem.rightBarButtonItems = [sync, fieldNote, camera, folders]
         
     }
     
@@ -168,6 +170,21 @@ class DistrictMainViewController: UIViewController {
             presentationController?.permittedArrowDirections = [.up]
             let barButton = self.navigationItem.rightBarButtonItems?.filter{$0.tag == 30}.first
             presentationController?.barButtonItem = barButton
+        }
+    }
+    
+    func newFieldNoteTapped(){
+        if self.selectedWell != nil {
+            // present new field note view controller
+        } else {
+            let vc = NoWellAvailableViewController()
+            vc.modalPresentationStyle = .popover
+            present(vc, animated: true, completion: nil)
+            let presentationController = vc.popoverPresentationController
+            presentationController?.permittedArrowDirections = [.up]
+            let barButton = self.navigationItem.rightBarButtonItems?.filter{$0.tag == 40}.first
+            presentationController?.barButtonItem = barButton
+
         }
     }
     
