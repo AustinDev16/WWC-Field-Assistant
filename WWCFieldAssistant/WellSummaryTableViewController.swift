@@ -16,7 +16,7 @@ class WellSummaryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.isScrollEnabled = false
-
+        self.tableView.separatorStyle = .singleLine
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
 
@@ -42,15 +42,23 @@ class WellSummaryTableViewController: UITableViewController {
     func returnCellFor(indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
+            let cell = WaterDistrictTableViewCell()
+            if indexPath.row == 0 {
+                cell.configureCell(leftLabel: "Water District:", data: self.well?.district.name ?? "")
+            } else {
+                cell.configureCell(leftLabel: "PLS:", data: "test")
+            }
+            return cell
+        case 1:
             let cell = FieldNotesTableViewCell()
             cell.configureCell()
             cell.disableEditingOnTextView()
             return cell
-        case 1:
+        case 2:
             let cell = FieldPhotoTableViewCell()
             cell.configureCell(parentView: self)
             return cell
-        case 2:
+        case 3:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.text = "Data Entries"
@@ -78,14 +86,14 @@ class WellSummaryTableViewController: UITableViewController {
             return 0
         } else {
             self.tableView.backgroundView = nil
-            return 3
+            return 4
         }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return 1
+        return (section == 0) ? 2 : 1
     }
 
     
@@ -98,18 +106,19 @@ class WellSummaryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Notes"
-        case 1: return "Field Photos"
+        case 0: return nil
+        case 1: return "Notes"
+        case 2: return "Field Photos"
         default: return nil
         }
     }
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 2
+        return indexPath.section == 3
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             guard let selectedWell = self.well else { return }
             let backButton = UIBarButtonItem()
             backButton.title = "Summary"
@@ -122,15 +131,16 @@ class WellSummaryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0: return 160
+        case 0: return 32
         case 1: return 160
-        case 2: return 60
+        case 2: return 160
+        case 3: return 60
         default: return 20
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 { return 40} else { return 24}
+        if section == 0 { return 8} else { return 24}
     }
 
 }
