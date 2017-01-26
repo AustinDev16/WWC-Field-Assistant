@@ -46,7 +46,8 @@ class WellSummaryTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 cell.configureCell(leftLabel: "Water District:", data: self.well?.district.name ?? "")
             } else {
-                cell.configureCell(leftLabel: "PLS:", data: "test")
+                let pls = MockDataController.buildMockPLS()
+                cell.configureCell(leftLabel: "PLS:", data: pls.displayPLS())
             }
             return cell
         case 1:

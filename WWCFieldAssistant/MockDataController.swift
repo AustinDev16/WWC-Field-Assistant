@@ -114,6 +114,11 @@ class MockDataController {
         return annotations
     }
     
+    // PLS
+    
+    static func buildMockPLS() -> PLSLocation {
+        return PLSLocation(township: "01N", range: "37E", section: "9", QQQ: "00", QQ: "NE", quarter: "SW")
+    }
     
 }
 
@@ -129,4 +134,18 @@ class WellAnnotation: NSObject, MKAnnotation {
         self.subtitle = "Tag: \(well.metalTag)"
         self.well = well
     }
+}
+
+struct PLSLocation {
+    let township: String
+    let range: String
+    let section: String
+    let QQQ: String
+    let QQ: String
+    let quarter: String
+    
+    func displayPLS() -> String {
+        return "\(township) \(range) \(section) \(QQQ) \(QQ) \(quarter)"
+    }
+    
 }
