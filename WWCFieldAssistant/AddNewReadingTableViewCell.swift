@@ -36,14 +36,18 @@ class AddNewReadingTableViewCell: UITableViewCell {
         setUpReadingTextField()
         setUpMultiplierUnitPicker()
         setUpClearButton()
+        readingTextField.becomeFirstResponder()
     }
     
     func setUpReadingTextField(){
-        readingTextField.placeholder = "Tap to enter flow reading"
+        readingTextField.placeholder = "Meter reading"
         readingTextField.borderStyle = .none
         readingTextField.keyboardType = .numbersAndPunctuation
-        readingTextField.textAlignment = .right
+        readingTextField.textAlignment = .center
         readingTextField.minimumFontSize = 16
+        readingTextField.layer.borderWidth = 2
+        readingTextField.layer.borderColor = UIColor.red.withAlphaComponent(0.7).cgColor
+        readingTextField.layer.cornerRadius = 5
         
         // ReadingTextField
         readingTextField.translatesAutoresizingMaskIntoConstraints = false
