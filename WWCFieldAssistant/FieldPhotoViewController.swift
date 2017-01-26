@@ -27,7 +27,7 @@ class FieldPhotoViewController: UIViewController {
     func updateWith(photoData: String){
         self.caption.text = photoData
         self.date.text = "July 31, 2016"
-        self.imageView.image = #imageLiteral(resourceName: "RavenclawCommonRoomWallpaper")
+        self.imageView.image = #imageLiteral(resourceName: "MockWellPhoto")
     }
     
     func configureStackView(){
@@ -71,7 +71,7 @@ class FieldPhotoViewController: UIViewController {
         // Caption
         caption.textColor = UIColor.black
         caption.numberOfLines = 0
-        caption.text = "asldfjk asdjfas ajfjiej jakdje fjie ajithe hjijejaieh fjiej ajij the tiehs tiema i went ot he sot balwjsk ejs euqid quaiuititoi ajk wui s ituaid"
+        caption.text = "Well is leaking!"
         let captionHeight = NSLayoutConstraint(item: caption, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0, constant: 100)
         stackView.addConstraint(captionHeight)
     }

@@ -28,7 +28,7 @@ class FieldPhotoThumbnailCollectionViewCell: UICollectionViewCell {
     }
     
     func updateWith(){
-        self.image = #imageLiteral(resourceName: "RavenclawCommonRoomWallpaper")
+        self.image = #imageLiteral(resourceName: "MockWellPhoto")
         self.imageView.image = self.image
     }
     
