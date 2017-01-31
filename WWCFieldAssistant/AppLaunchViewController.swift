@@ -142,7 +142,7 @@ class AppLaunchViewController: UIViewController {
         licenseLabel.text = "\u{00A9} 2017 Aptian Software"
         licenseLabel.textAlignment = .center
         licenseLabel.textColor = AppLaunchViewController.blueHighlight //UIColor.white
-        licenseLabel.font = UIFont.systemFont(ofSize: 10)
+        licenseLabel.font = UIFont.systemFont(ofSize: 16)
         //licenseLabel.adjustsFontSizeToFitWidth = false
         
         let llBottom = NSLayoutConstraint(item: licenseLabel, attribute: .bottom, relatedBy: .equal, toItem: boundingView, attribute: .bottom, multiplier: 1.0, constant: -8)
@@ -218,8 +218,12 @@ extension AppLaunchViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         }
         
     }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 36
+    }
 
     func attributedStringFor(text: String) -> NSAttributedString {
-        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : AppLaunchViewController.blueHighlight])
+        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.black])// AppLaunchViewController.blueHighlight])
     }
 }
