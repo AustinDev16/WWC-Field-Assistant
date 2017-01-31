@@ -329,6 +329,7 @@ class DistrictMainViewController: UIViewController {
         dataEntryDetailView.translatesAutoresizingMaskIntoConstraints = false
         
         // NewEntry Button
+        newEntryButtonView.layer.cornerRadius = 10
         newEntryButtonView.translatesAutoresizingMaskIntoConstraints = false
         let buttonHeight = NSLayoutConstraint(item: newEntryButtonView,
                                               attribute: .height,
@@ -367,10 +368,15 @@ class DistrictMainViewController: UIViewController {
     // MARK: - New Entry button
     func setUpEntryButton(){
         let newEntryButton = UIButton(type: .roundedRect)
-        newEntryButton.setTitle("Tap to add a new entry", for: .normal)
+        newEntryButton.setTitle("Add Data Entry", for: .normal)
+        newEntryButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         newEntryButton.setTitleColor(UIColor.white, for: .normal)
         newEntryButton.setTitleColor(UIColor.lightGray, for: .selected)
         newEntryButton.addTarget(self, action: #selector(newEntryButtonTapped), for: .touchUpInside)
+        newEntryButton.layer.cornerRadius = 10
+        newEntryButton.layer.borderWidth = 1
+        newEntryButton.layer.borderColor = UIColor.lightGray.cgColor
+        
         newEntryButtonView.addSubview(newEntryButton)
         
         newEntryButton.translatesAutoresizingMaskIntoConstraints = false
