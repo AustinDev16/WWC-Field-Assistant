@@ -131,10 +131,10 @@ class WellSummaryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0: return 32
-        case 1: return 160
-        case 2: return 160
-        case 3: return 60
+        case 0: return 32 // Labels
+        case 1: return 180 // Notes
+        case 2: return 140 // Field photos
+        case 3: return 60 // Data Entries
         default: return 20
         }
     }

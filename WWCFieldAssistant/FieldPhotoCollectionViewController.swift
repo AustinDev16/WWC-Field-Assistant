@@ -26,7 +26,7 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     
     func configureCollectionView(){
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 90, height: 90)
         layout.scrollDirection = .horizontal
         
