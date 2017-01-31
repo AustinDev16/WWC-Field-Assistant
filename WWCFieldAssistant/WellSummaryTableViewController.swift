@@ -51,9 +51,8 @@ class WellSummaryTableViewController: UITableViewController {
             }
             return cell
         case 1:
-            let cell = FieldNotesTableViewCell()
-            cell.configureCell()
-            cell.disableEditingOnTextView()
+            let cell = FieldNotesSummaryTableViewCell()
+            cell.configureCell(parentView: self)
             return cell
         case 2:
             let cell = FieldPhotoTableViewCell()
