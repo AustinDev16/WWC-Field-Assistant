@@ -16,6 +16,12 @@ class FieldPhotoViewController: UIViewController {
     let date = UILabel()
     let caption = UILabel()
     
+    var formatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +30,10 @@ class FieldPhotoViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
     }
     
-    func updateWith(photoData: String){
-        self.caption.text = photoData
-        self.date.text = "July 31, 2016"
-        self.imageView.image = #imageLiteral(resourceName: "MockWellPhoto")
+    func updateWith(fieldPhoto: FieldPhoto){
+        self.caption.text = fieldPhoto.comment
+        self.date.text = formatter.string(from: fieldPhoto.dateTaken as Date)
+        self.imageView.image = fieldPhoto.photo
     }
     
     func configureStackView(){
@@ -71,7 +77,7 @@ class FieldPhotoViewController: UIViewController {
         // Caption
         caption.textColor = UIColor.black
         caption.numberOfLines = 0
-        caption.text = "Well is leaking!"
+        //caption.text = "Well is leaking!"
         let captionHeight = NSLayoutConstraint(item: caption, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0, constant: 100)
         stackView.addConstraint(captionHeight)
     }

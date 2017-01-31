@@ -13,9 +13,16 @@ private let reuseIdentifier = "PhotoThumbnailCell"
 class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var collectionView: UICollectionView!
+    var well: Well?
+    var fieldPhotos: [FieldPhoto] {
+        let fieldPhotos = self.well?.fieldPhotos.flatMap{$0 as? FieldPhoto}
+        return fieldPhotos ?? []
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePhotos), name: Notification.Name(rawValue: "FieldPhotoUpdated"), object: nil)
         
     }
     
@@ -41,11 +48,17 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
         self.collectionView!.register(FieldPhotoThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    // MARK: - Notification methods
+    
+    func updatePhotos(){
+        self.collectionView.reloadData()
+    }
+    
     // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        if true {
+        if self.well == nil || self.well?.fieldPhotos.count == 0 {
             let view = UIView(frame: self.collectionView.frame)
             view.backgroundColor = UIColor.white
             collectionView.backgroundView = view
@@ -60,6 +73,7 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
             return 0
         } else {
         collectionView.backgroundView = nil
+            
         return 1
         }
     }
@@ -67,13 +81,14 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        return self.well?.fieldPhotos.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FieldPhotoThumbnailCollectionViewCell
+        guard let fieldPhoto = self.well?.fieldPhotos[indexPath.row] as? FieldPhoto, let photo = fieldPhoto.photo else { return UICollectionViewCell() }
         cell?.configureCell()
-        cell?.updateWith()
+        cell?.updateWith(image: photo)
         
         // Configure the cell
         
@@ -83,6 +98,8 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     // MARK: - Collection View Delegate methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pageView = RootPhotoPagesViewController()
+        pageView.fieldPhotos = self.fieldPhotos
+        pageView.indexOfSelectedPhoto = indexPath.row
         self.navigationController?.pushViewController(pageView, animated: true)
     }
     

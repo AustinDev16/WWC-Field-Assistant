@@ -10,6 +10,16 @@ import UIKit
 
 class FieldPhotoTableViewCell: UITableViewCell {
     
+    var well: Well?
+    var collectionView: FieldPhotoCollectionViewController {
+        if _collectionView == nil {
+            _collectionView = FieldPhotoCollectionViewController()
+        }
+        return _collectionView!
+    }
+    
+    var _collectionView: FieldPhotoCollectionViewController? = nil
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -17,11 +27,16 @@ class FieldPhotoTableViewCell: UITableViewCell {
     }
     
     func configureCell<T: UIViewController>(parentView: T){
+        let castView = parentView as? WellSummaryTableViewController
+        self.well = castView?.well
+        
         configureCollectionView(parentView: parentView)
+        collectionView.well = self.well
     }
     
     func configureCollectionView<T: UIViewController>(parentView: T){
-        let collectionView = FieldPhotoCollectionViewController()
+        //let collectionView = FieldPhotoCollectionViewController()
+        
         contentView.addSubview(collectionView.view)
         
         // Layout Constraints

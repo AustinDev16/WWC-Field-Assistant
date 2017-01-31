@@ -78,6 +78,37 @@ class AppDataController {
         return DistrictController(district: district)
     }
     
+    /// count number of photos for testing
+    
+    func countFieldPhotos() -> Int {
+        let fetchRequest: NSFetchRequest<FieldPhoto> = FieldPhoto.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        if #available(iOS 10.0, *) {
+            let moc = CoreDataStack.context
+            do {
+                let results = try moc.fetch(fetchRequest)
+                return results.count
+            } catch {
+                print("Error fetching users, iOS10 \(error.localizedDescription)")
+                return 0
+            }
+            
+        } else {
+            // Fallback on earlier versions
+            let moc = Stack.sharedStack.managedObjectContext
+            do {
+                let results = try moc.fetch(fetchRequest)
+                return results.count
+            } catch {
+                print("Error fetching users, iOS9 \(error.localizedDescription)")
+                return 0
+            }
+        }
+        
+    }
+    
     
 }
 

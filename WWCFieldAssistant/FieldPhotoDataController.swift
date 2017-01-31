@@ -9,11 +9,10 @@
 import UIKit
 
 class FieldPhotoDataController: NSObject {
-    var fieldPhotos: [String] = []
+    var fieldPhotos: [FieldPhoto] = []
     
-    override init(){
-        super.init()
-        fieldPhotos = ["Photo 1", "Photo 2", "Photo 3"]
+    func updateWith(well: Well){
+        self.fieldPhotos = well.fieldPhotos.flatMap{$0 as? FieldPhoto}
     }
 }
 
@@ -25,13 +24,15 @@ extension FieldPhotoDataController: UIPageViewControllerDataSource {
         }
         
         let fieldPhotoViewController = FieldPhotoViewController()
-        fieldPhotoViewController.updateWith(photoData: self.fieldPhotos[index])
+        fieldPhotoViewController.updateWith(fieldPhoto: self.fieldPhotos[index])
         return fieldPhotoViewController
     }
     
     func indexOfViewController(viewController: FieldPhotoViewController) -> Int {
-        let name = viewController.caption.text ?? ""
-        return fieldPhotos.index(of: name) ?? NSNotFound
+        let fieldPhoto = viewController.imageView.image
+        let filteredArray = self.fieldPhotos.filter{$0.photo == fieldPhoto}
+        guard let result = filteredArray.first else {return NSNotFound }
+        return fieldPhotos.index(of: result) ?? NSNotFound
     }
     
     // MARK: - Datasource methods

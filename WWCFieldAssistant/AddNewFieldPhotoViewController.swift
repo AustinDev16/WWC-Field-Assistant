@@ -25,6 +25,7 @@ class AddNewFieldPhotoViewController: UIViewController {
     
     // For saving
     var selectedWell: Well?
+    var dataEntryController: DataEntryController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,9 +114,8 @@ class AddNewFieldPhotoViewController: UIViewController {
 
     func saveButtonTapped(){
         self.caption.resignFirstResponder()
-        if selectedWell != nil && imageView.image != nil {
-            guard let imageData = UIImageJPEGRepresentation(imageView.image!, 1.0) else {return}
-           //  let newPhoto = FieldPhoto(dateTaken: NSDate(), comment: caption.text, name: "", dataEntry: <#T##DataEntry#>, image: <#T##UIImage#>)
+        if dataEntryController != nil && imageView.image != nil {
+            dataEntryController?.addFieldPhotoToWell(dateTaken: NSDate(), comment: caption.text, name: AppDataController.shared.loggedInUser!.userName, image: imageView.image!)
         }
         dismiss(animated: true, completion: nil)
     }

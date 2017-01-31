@@ -41,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //AppDataController.shared.loggedInUser = AppDataController.shared.users[1]
         
+        print("Checking for saved photos")
+        let count = AppDataController.shared.countFieldPhotos()
+        print("\(count) photos found")
+        
         // Initial Views
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let launchVC = AppLaunchViewController()

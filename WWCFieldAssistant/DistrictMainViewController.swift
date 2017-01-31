@@ -164,6 +164,8 @@ class DistrictMainViewController: UIViewController {
         if self.selectedWell != nil {
             let vc = AddNewFieldPhotoViewController()
             vc.selectedWell = self.selectedWell
+            let dataEntryController = DataEntryController(well: self.selectedWell!)
+            vc.dataEntryController = dataEntryController
             let nc = UINavigationController(rootViewController: vc)
             nc.modalPresentationStyle = .pageSheet
             present(nc, animated: true, completion: nil)

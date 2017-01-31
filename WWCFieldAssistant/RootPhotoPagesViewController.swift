@@ -13,6 +13,8 @@ class RootPhotoPagesViewController: UIViewController {
 
     // MARK: - Properties
     var pageViewController: UIPageViewController?
+    var fieldPhotos: [FieldPhoto] = []
+    var indexOfSelectedPhoto: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,7 @@ class RootPhotoPagesViewController: UIViewController {
         
         // For testing
         let firstView = FieldPhotoViewController()
-        firstView.updateWith(photoData: fieldPhotoDataController.fieldPhotos[0])
+        firstView.updateWith(fieldPhoto: fieldPhotoDataController.fieldPhotos[indexOfSelectedPhoto])
         self.pageViewController?.setViewControllers([firstView], direction: .forward, animated: true, completion: nil)
         self.pageViewController?.dataSource = self.fieldPhotoDataController
         self.addChildViewController(self.pageViewController!)
@@ -56,6 +58,7 @@ class RootPhotoPagesViewController: UIViewController {
         if _fieldPhotoDataController == nil {
             _fieldPhotoDataController = FieldPhotoDataController()
         }
+        _fieldPhotoDataController?.fieldPhotos = self.fieldPhotos
         return _fieldPhotoDataController!
     }
     

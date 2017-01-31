@@ -51,6 +51,9 @@ class DataEntryController {
 
         self.well.addToFieldPhotos(newFieldPhoto!)
         PersistenceController.saveToPersistedStore()
+        
+        let notification = Notification(name: Notification.Name(rawValue: "FieldPhotoUpdated"))
+        NotificationCenter.default.post(notification)
     }
     
     /// Deletes a field photo from a data entry
@@ -60,6 +63,8 @@ class DataEntryController {
         well.removeFromFieldPhotos(fieldPhotoToDelete)
         moc.delete(fieldPhotoToDelete)
         PersistenceController.saveToPersistedStore()
+        let notification = Notification(name: Notification.Name(rawValue: "FieldPhotoUpdated"))
+        NotificationCenter.default.post(notification)
     }
     
     
