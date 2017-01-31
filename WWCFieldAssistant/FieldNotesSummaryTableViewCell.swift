@@ -18,6 +18,7 @@ class FieldNotesSummaryTableViewCell: UITableViewCell {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight =  UITableViewAutomaticDimension
         contentView.addSubview(tableView)
         
         // Layout
@@ -44,9 +45,13 @@ extension FieldNotesSummaryTableViewCell: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "Test entry"
+        let cell = FieldNoteTableViewCell()
+        cell.configureCellWith(date: Date(), note: "text alsdkjf ajsk djakjs djsk fjak fue feisj fjjsij tjhejsk tistu sjti af ajf s fjiej")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
     }
     
 }

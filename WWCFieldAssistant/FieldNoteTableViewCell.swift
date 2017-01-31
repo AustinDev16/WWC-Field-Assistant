@@ -23,7 +23,7 @@ class FieldNoteTableViewCell: UITableViewCell {
 
     var formatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .short
         return formatter
     }
     
