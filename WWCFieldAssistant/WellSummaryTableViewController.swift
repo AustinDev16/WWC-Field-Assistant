@@ -17,6 +17,12 @@ class WellSummaryTableViewController: UITableViewController {
         super.viewDidLoad()
         self.tableView.isScrollEnabled = false
         self.tableView.separatorStyle = .singleLine
+        
+        self.navigationController?.navigationBar.barTintColor = AppLaunchViewController.lightTanBackground
+        self.navigationController?.navigationBar.tintColor = AppLaunchViewController.blueHighlight.withAlphaComponent(1.0)
+
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
 

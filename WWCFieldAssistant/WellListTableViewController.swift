@@ -22,6 +22,7 @@ class WellListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(selectWellWith(notification:)), name: Notification.Name(rawValue: "MapViewUpdatedWell"), object: nil)
         
         //self.title = "Bonneville District"
@@ -33,6 +34,11 @@ class WellListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = AppLaunchViewController.lightTanBackground
+        self.navigationController?.navigationBar.tintColor = AppLaunchViewController.blueHighlight.withAlphaComponent(1.0)
+
+    }
     func selectWellWith(notification: Notification) {
         guard let selectedWell = notification.object as? Well else { return }
         _ = self.navigationController?.popToRootViewController(animated: false)

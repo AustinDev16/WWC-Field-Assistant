@@ -9,6 +9,12 @@
 import UIKit
 
 class AppLaunchViewController: UIViewController {
+     let blue = AppLaunchViewController.blueHighlight //UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.8)
+     let tan = AppLaunchViewController.tanBackground// UIColor(red: 248/255.0, green: 255/255.0, blue: 229/255.0, alpha: 1)
+    static let tanBackground = UIColor(red: 249/255.0, green: 244/255.0, blue: 219/255.0, alpha: 1)
+    static let blueHighlight = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.8)
+    static let lightTanBackground = UIColor(red: 253/255.0, green: 252/255.0, blue: 245/255.0, alpha: 1.0)
+    
     // MARK: - View Elements
     let titleLabel = UILabel()
     let boundingView = UIView()
@@ -33,7 +39,7 @@ class AppLaunchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.8)
+        self.view.backgroundColor = self.tan //UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.8)
         drawContainingView()
         configureViewElements()
         configureTitle()
@@ -44,7 +50,7 @@ class AppLaunchViewController: UIViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 48)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text =  "Water Meter Field Assistant"
-        titleLabel.textColor = UIColor.white
+        titleLabel.textColor = self.blue//UIColor.white
         titleLabel.textAlignment = .center
         
         
@@ -56,8 +62,8 @@ class AppLaunchViewController: UIViewController {
     
     func drawContainingView(){
         self.view.addSubview(boundingView)
-        boundingView.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.3)
-        boundingView.layer.borderColor = UIColor.white.cgColor
+        boundingView.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.2)
+        boundingView.layer.borderColor = self.blue.cgColor//UIColor.white.cgColor
         boundingView.layer.borderWidth = 2
         boundingView.layer.cornerRadius = 20
         boundingView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +81,8 @@ class AppLaunchViewController: UIViewController {
         userLabel.translatesAutoresizingMaskIntoConstraints = false
         
         userLabel.text = "Select your name:"
-        userLabel.textColor = UIColor.white
+        userLabel.textColor = self.blue//UIColor.white
+        userLabel.font = UIFont.systemFont(ofSize: 28)
         userLabel.textAlignment = .center
         
         let ulTop = NSLayoutConstraint(item: userLabel, attribute: .top, relatedBy: .equal, toItem: boundingView, attribute: .top, multiplier: 1.0, constant: 8)
@@ -91,7 +98,7 @@ class AppLaunchViewController: UIViewController {
         userPicker.translatesAutoresizingMaskIntoConstraints = false
         userPicker.backgroundColor = UIColor.clear
         userPicker.layer.borderWidth = 0.5
-        userPicker.layer.borderColor = UIColor.white.cgColor
+        userPicker.layer.borderColor = self.blue.cgColor//UIColor.white.cgColor
         
         let upTop = NSLayoutConstraint(item: userPicker, attribute: .top, relatedBy: .equal, toItem: userLabel, attribute: .bottom, multiplier: 1.0, constant: 8)
         let upLeading = NSLayoutConstraint(item: userPicker, attribute: .leading, relatedBy: .equal, toItem: boundingView, attribute: .leading, multiplier: 1.0, constant: 0)
@@ -104,7 +111,8 @@ class AppLaunchViewController: UIViewController {
         districtLabel.translatesAutoresizingMaskIntoConstraints = false
         
         districtLabel.text = "Select a district:"
-        districtLabel.textColor = UIColor.white
+        districtLabel.textColor = AppLaunchViewController.blueHighlight
+        districtLabel.font = UIFont.systemFont(ofSize: 28)
         districtLabel.textAlignment = .center
         
         let dlTop = NSLayoutConstraint(item: districtLabel, attribute: .top, relatedBy: .equal, toItem: userPicker, attribute: .bottom, multiplier: 1.0, constant: 8)
@@ -120,7 +128,7 @@ class AppLaunchViewController: UIViewController {
         districtPicker.delegate = self
         districtPicker.dataSource = self
         districtPicker.layer.borderWidth = 0.5
-        districtPicker.layer.borderColor = UIColor.white.cgColor
+        districtPicker.layer.borderColor = AppLaunchViewController.blueHighlight.cgColor //UIColor.white.cgColor
         
         let dpTop = NSLayoutConstraint(item: districtPicker, attribute: .top, relatedBy: .equal, toItem: districtLabel, attribute: .bottom, multiplier: 1.0, constant: 8)
         let dpLeading = NSLayoutConstraint(item: districtPicker, attribute: .leading, relatedBy: .equal, toItem: boundingView, attribute: .leading, multiplier: 1.0, constant: 0)
@@ -133,7 +141,7 @@ class AppLaunchViewController: UIViewController {
         licenseLabel.translatesAutoresizingMaskIntoConstraints = false
         licenseLabel.text = "\u{00A9} 2017 Aptian Software"
         licenseLabel.textAlignment = .center
-        licenseLabel.textColor = UIColor.white
+        licenseLabel.textColor = AppLaunchViewController.blueHighlight //UIColor.white
         licenseLabel.font = UIFont.systemFont(ofSize: 10)
         //licenseLabel.adjustsFontSizeToFitWidth = false
         
@@ -212,6 +220,6 @@ extension AppLaunchViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
 
     func attributedStringFor(text: String) -> NSAttributedString {
-     return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.white])
+        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName: UIFont.systemFont(ofSize: 48)])
     }
 }

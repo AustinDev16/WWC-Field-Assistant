@@ -60,7 +60,9 @@ class WellInfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        self.navigationController?.navigationBar.barTintColor = AppLaunchViewController.lightTanBackground
+        self.navigationController?.navigationBar.tintColor = AppLaunchViewController.blueHighlight.withAlphaComponent(1.0)
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

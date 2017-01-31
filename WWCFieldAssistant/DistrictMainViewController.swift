@@ -28,7 +28,7 @@ class DistrictMainViewController: UIViewController {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.5)// UIColor.darkGray
+        self.view.backgroundColor = AppLaunchViewController.blueHighlight// UIColor(red: 37/255.0, green: 137/255.0, blue: 189/255.0, alpha: 0.5)// UIColor.darkGray
         setUpChildViews()
         loadViewControllers()
         setUpNavigationBar()
@@ -48,12 +48,17 @@ class DistrictMainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         guard let district = self.district else {return}
         updateViewControllerWith(district: district)
+        
+        UINavigationBar.appearance().backgroundColor = AppLaunchViewController.tanBackground
+        UINavigationBar.appearance().tintColor = AppLaunchViewController.blueHighlight
     }
     
     func setUpNavigationBar(){
         //self.navigationItem.titleView = returnTitleView()
         self.title = self.district?.name ?? "Please select a district"
         self.navigationController?.navigationBar.isTranslucent = false//true
+        self.navigationController?.navigationBar.barTintColor = AppLaunchViewController.tanBackground
+        self.navigationController?.navigationBar.tintColor = AppLaunchViewController.blueHighlight.withAlphaComponent(1.0)
 
         
         // Bar buttons
