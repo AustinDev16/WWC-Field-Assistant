@@ -48,14 +48,14 @@ class DataEntryDetailTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0: return 4 // Meter info
-        case 1: return 2 // Reading
+        case 0: return 2 // Meter info
+        case 1: return 4 // Reading
         case 2: return 1 // Field Notes
         case 3: return 1 // Photos
         default: return 0
@@ -73,8 +73,8 @@ class DataEntryDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Meter info"
-        case 1: return "Reading"
+        case 0: return "Reading"
+        case 1: return "Meter info"
         case 2: return "Field notes"
         case 3: return "Photos"
         default: return nil
@@ -108,17 +108,18 @@ class DataEntryDetailTableViewController: UITableViewController {
         switch indexPath.section {
         case 0://Meter Info
             switch indexPath.row {
+            //case 0: return dateCell
+            case 0: return readingCell
+            case 1: return technichianCell
+            default: return UITableViewCell()
+            }
+
+        case 1:// Reading
+            switch indexPath.row {
             case 0: return serialNumberCell
             case 1: return metalNameTagCell
             case 2: return makeCell
             case 3: return modelCell
-            default: return UITableViewCell()
-            }
-        case 1:// Reading
-            switch indexPath.row {
-            //case 0: return dateCell
-            case 0: return readingCell
-            case 1: return technichianCell
             default: return UITableViewCell()
             }
         case 2:// Field Notes
@@ -181,58 +182,11 @@ class DataEntryDetailTableViewController: UITableViewController {
 //        dateCell.textLabel?.text = "Date:"
 //        dateCell.detailTextLabel?.text = "Sept 23, 2016"
         
-        readingCell.textLabel?.text = "Measurement"
+        readingCell.textLabel?.text = "Measurement:"
         readingCell.detailTextLabel?.text = "\(dataEntry.meterReading) \(dataEntry.multiplier) \(dataEntry.unitTypeString)"
         readingCell.detailTextLabel?.textColor = UIColor.black
         
         technichianCell.textLabel?.text = "Collected by:"
         technichianCell.detailTextLabel?.text = "Jason D."
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
