@@ -2,8 +2,8 @@
 //  FieldPhoto+CoreDataProperties.swift
 //  WWCFieldAssistant
 //
-//  Created by Austin Blaser on 12/12/16.
-//  Copyright © 2016 Austin Blaser. All rights reserved.
+//  Created by Austin Blaser on 1/31/17.
+//  Copyright © 2017 Austin Blaser. All rights reserved.
 //
 
 import Foundation
@@ -17,8 +17,9 @@ extension FieldPhoto {
     }
 
     @NSManaged public var comment: String
+    @NSManaged public var dateTaken: NSDate
     @NSManaged public var imageData: NSData
     @NSManaged public var name: String
-    @NSManaged public var dataEntry: DataEntry
-    @NSManaged public var dateTaken: NSDate
+    @NSManaged public var well: Well
+
 }

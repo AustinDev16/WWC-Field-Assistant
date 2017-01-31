@@ -114,6 +114,7 @@ class AddNewFieldPhotoViewController: UIViewController {
     func saveButtonTapped(){
         self.caption.resignFirstResponder()
         if selectedWell != nil && imageView.image != nil {
+            guard let imageData = UIImageJPEGRepresentation(imageView.image!, 1.0) else {return}
            //  let newPhoto = FieldPhoto(dateTaken: NSDate(), comment: caption.text, name: "", dataEntry: <#T##DataEntry#>, image: <#T##UIImage#>)
         }
         dismiss(animated: true, completion: nil)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DataEntry" representedClassName="DataEntry" syncable="YES">
         <attribute name="dateCollected" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fieldNotes" attributeType="String" syncable="YES"/>
@@ -9,19 +9,23 @@
         <attribute name="multiplier" attributeType="String" syncable="YES"/>
         <attribute name="serialNumber" attributeType="String" syncable="YES"/>
         <attribute name="unitTypeString" attributeType="String" syncable="YES"/>
-        <relationship name="fieldPhotos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FieldPhoto" inverseName="dataEntry" inverseEntity="FieldPhoto" syncable="YES"/>
         <relationship name="well" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Well" inverseName="dataEntries" inverseEntity="Well" syncable="YES"/>
     </entity>
     <entity name="District" representedClassName="District" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="wells" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="Well" inverseName="district" inverseEntity="Well" syncable="YES"/>
+        <relationship name="wells" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Well" inverseName="district" inverseEntity="Well" syncable="YES"/>
+    </entity>
+    <entity name="FieldNote" representedClassName="FieldNote" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="note" attributeType="String" syncable="YES"/>
+        <relationship name="well" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Well" inverseName="fieldNotes" inverseEntity="Well" syncable="YES"/>
     </entity>
     <entity name="FieldPhoto" representedClassName="FieldPhoto" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateTaken" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dataEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DataEntry" inverseName="fieldPhotos" inverseEntity="DataEntry" syncable="YES"/>
+        <relationship name="well" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Well" inverseName="fieldPhotos" inverseEntity="Well" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,14 +49,17 @@
         <attribute name="wmisComments" attributeType="String" syncable="YES"/>
         <attribute name="wmisContact" attributeType="String" syncable="YES"/>
         <attribute name="wmisNumber" attributeType="String" syncable="YES"/>
-        <relationship name="dataEntries" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="DataEntry" inverseName="well" inverseEntity="DataEntry" syncable="YES"/>
+        <relationship name="dataEntries" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="DataEntry" inverseName="well" inverseEntity="DataEntry" syncable="YES"/>
         <relationship name="district" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="District" inverseName="wells" inverseEntity="District" syncable="YES"/>
+        <relationship name="fieldNotes" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FieldNote" inverseName="well" inverseEntity="FieldNote" syncable="YES"/>
+        <relationship name="fieldPhotos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FieldPhoto" inverseName="well" inverseEntity="FieldPhoto" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DataEntry" positionX="675" positionY="90" width="128" height="195"/>
+        <element name="DataEntry" positionX="675" positionY="90" width="128" height="180"/>
         <element name="District" positionX="234" positionY="36" width="128" height="75"/>
         <element name="FieldPhoto" positionX="682" positionY="360" width="128" height="120"/>
         <element name="User" positionX="225" positionY="144" width="128" height="120"/>
-        <element name="Well" positionX="441" positionY="63" width="128" height="285"/>
+        <element name="Well" positionX="441" positionY="63" width="128" height="315"/>
+        <element name="FieldNote" positionX="432" positionY="189" width="128" height="90"/>
     </elements>
 </model>

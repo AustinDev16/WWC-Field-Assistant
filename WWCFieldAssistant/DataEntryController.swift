@@ -42,21 +42,22 @@ class DataEntryController {
     }
     
     /// Adds a field photo, name, and comments to a data entry
-    func addFieldPhotoToDataEntry(dateTaken: NSDate,
+    func addFieldPhotoToWell(dateTaken: NSDate,
                                   comment: String,
                                   name: String,
-                                  dataEntry: DataEntry,
                                   image: UIImage){
-        guard let newFieldPhoto = FieldPhoto(dateTaken: dateTaken, comment: comment, name: name, dataEntry: dataEntry, image: image) else { return }
-        dataEntry.addToFieldPhotos(newFieldPhoto)
+        guard let imageData = UIImageJPEGRepresentation(image, 1.0) else {return}
+        let newFieldPhoto = FieldPhoto(dateTaken: dateTaken, comment: comment, name: name, well: self.well, imageData: imageData)
+
+        self.well.addToFieldPhotos(newFieldPhoto!)
         PersistenceController.saveToPersistedStore()
     }
     
     /// Deletes a field photo from a data entry
     func deleteFieldPhotoFromEntry(fieldPhotoToDelete: FieldPhoto){
         guard let moc = fieldPhotoToDelete.managedObjectContext else { return }
-        let dataEntry = fieldPhotoToDelete.dataEntry
-        dataEntry.removeFromFieldPhotos(fieldPhotoToDelete)
+        let well = fieldPhotoToDelete.well
+        well.removeFromFieldPhotos(fieldPhotoToDelete)
         moc.delete(fieldPhotoToDelete)
         PersistenceController.saveToPersistedStore()
     }
