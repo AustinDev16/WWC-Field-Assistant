@@ -220,6 +220,6 @@ extension AppLaunchViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
 
     func attributedStringFor(text: String) -> NSAttributedString {
-        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName: UIFont.systemFont(ofSize: 48)])
+        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : AppLaunchViewController.blueHighlight])
     }
 }
