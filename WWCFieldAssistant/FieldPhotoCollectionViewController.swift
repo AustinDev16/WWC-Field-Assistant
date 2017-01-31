@@ -45,7 +45,23 @@ class FieldPhotoCollectionViewController: UIViewController, UICollectionViewDele
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+        if true {
+            let view = UIView(frame: self.collectionView.frame)
+            view.backgroundColor = UIColor.white
+            collectionView.backgroundView = view
+            let label = UILabel()
+            label.text = "No photos available"
+            label.textColor = UIColor.lightGray
+            label.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(label)
+            let centerY = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
+            let centerX = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
+            view.addConstraints([centerY, centerX])
+            return 0
+        } else {
+        collectionView.backgroundView = nil
         return 1
+        }
     }
     
     

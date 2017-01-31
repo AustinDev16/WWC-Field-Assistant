@@ -37,7 +37,23 @@ class FieldNotesSummaryTableViewCell: UITableViewCell {
 extension FieldNotesSummaryTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if true {
+            let view = UIView(frame: self.contentView.frame)
+            view.backgroundColor = UIColor.white
+            tableView.backgroundView = view
+            let label = UILabel()
+            label.text = "No notes available"
+            label.textColor = UIColor.lightGray
+            label.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(label)
+            let centerY = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
+            let centerX = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
+            view.addConstraints([centerY, centerX])
+            return 0
+        } else {
+        tableView.backgroundView = nil
         return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
