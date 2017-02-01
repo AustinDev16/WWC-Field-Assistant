@@ -32,6 +32,8 @@ class AddNewFieldPhotoViewController: UIViewController {
         imagePicker.delegate = self
         caption.delegate = self
         captionLabel.text = "Caption:"
+        captionLabel.font = UIFont.systemFont(ofSize: 18)
+        caption.font = UIFont.systemFont(ofSize: 18)
         
         setUpNavigationBar()
         setUpTableView()
