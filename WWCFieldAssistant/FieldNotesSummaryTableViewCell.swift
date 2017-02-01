@@ -12,7 +12,8 @@ class FieldNotesSummaryTableViewCell: UITableViewCell {
     // MARK: - Properties
     var well: Well?
     var fieldNotes: [FieldNote] {
-        return self.well?.fieldNotes.flatMap{$0 as? FieldNote} ?? []
+        let notes = self.well?.fieldNotes.flatMap{$0 as? FieldNote} ?? []
+        return notes.sorted { $0.0.date.timeIntervalSince1970 > $0.1.date.timeIntervalSince1970}
     }
     
     var tableView: UITableView {
