@@ -34,6 +34,15 @@ class DataEntryListTableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateSelectedWell(notification:)), name: Notification.Name(rawValue: "SelectedWellUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetDataEntryView(notification:)), name: Notification.Name(rawValue:"SelectedDistrictUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateEntries), name: Notification.Name(rawValue: "DataEntryUpdated"), object: nil)
+    }
+    
+    func updateEntries(){
+        self.tableView.reloadData()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     /// Updates the selected well so that table view will show data entries from it

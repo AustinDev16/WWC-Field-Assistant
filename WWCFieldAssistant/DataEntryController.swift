@@ -31,6 +31,8 @@ class DataEntryController {
         
         self.well.addToDataEntries(newEntry)
         PersistenceController.saveToPersistedStore()
+        let notification = Notification(name: Notification.Name(rawValue: "DataEntryUpdated"))
+        NotificationCenter.default.post(notification)
     }
     
     /// Deletes a data entry from a well
