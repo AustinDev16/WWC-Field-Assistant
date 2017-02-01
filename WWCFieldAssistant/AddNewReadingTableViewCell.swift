@@ -15,11 +15,15 @@ class AddNewReadingTableViewCell: UITableViewCell {
     let readingTextField = UITextField()
     let clearButton = UIButton()//(type: .roundedRect)
     
+    weak var savableDelegate: NewDataEntrySavable?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
     }
+    
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -37,6 +41,14 @@ class AddNewReadingTableViewCell: UITableViewCell {
         setUpMultiplierUnitPicker()
         setUpClearButton()
         readingTextField.becomeFirstResponder()
+        
+        readingTextField.addTarget(self, action: #selector(updateReadingTextOnDelegate), for: .editingChanged)
+    }
+    
+    /// Updates the skeleton with the reading 
+    func updateReadingTextOnDelegate(){
+        guard let text = readingTextField.text else { self.savableDelegate?.workingSkeleton?.reading = ""; return}
+        self.savableDelegate?.workingSkeleton?.reading = text
     }
     
     func setUpReadingTextField(){
@@ -92,6 +104,8 @@ class AddNewReadingTableViewCell: UITableViewCell {
 
 }
 
+
+
 extension AddNewReadingTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
@@ -133,6 +147,20 @@ extension AddNewReadingTableViewCell: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Update selection with delegate
+        let multiplierIndex = multiplierUnitPicker.selectedRow(inComponent: 0)
+        var multiplierString = self.pickerView(multiplierUnitPicker, titleForRow: multiplierIndex, forComponent: 0)
+        
+        // TODO: - FIX THIS FORCE UNWRAPPING/ ENUMS
+        if multiplierString == "1 million" {
+            multiplierString = "1000000"
+        }
+        self.savableDelegate?.workingSkeleton?.multiplier = Multiplier(rawValue: Double(multiplierString!)!)!
+        let unitIndex = multiplierUnitPicker.selectedRow(inComponent: 1)
+        let unitString = self.pickerView(multiplierUnitPicker, titleForRow: unitIndex, forComponent: 1)
+        self.savableDelegate?.workingSkeleton?.unit = MeterUnitType(rawValue: unitString!)!
+        
+        
         if component == 0 {
             // pick a multiplier
             let unitIndex = self.multiplierUnitPicker.selectedRow(inComponent: 1)

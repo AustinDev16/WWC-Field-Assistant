@@ -45,6 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let count = AppDataController.shared.countFieldPhotos()
         print("\(count) photos found")
         
+        print("Checking for data entries")
+        let dataCount = AppDataController.shared.countDataEntries()
+        print("\(dataCount) data entries found.")
+        
         // Initial Views
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let launchVC = AppLaunchViewController()

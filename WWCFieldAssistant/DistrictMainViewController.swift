@@ -398,6 +398,11 @@ class DistrictMainViewController: UIViewController {
         print("New entry button tapped")
         if self.selectedWell != nil {
             let addNewTVC = AddNewEntryTableViewController(style: .grouped)
+            addNewTVC.well = self.selectedWell
+            let dataEntryController = DataEntryController(well: self.selectedWell!)
+            addNewTVC.dataEntryController = dataEntryController
+            addNewTVC.configureSkeletons()
+
             let nc = UINavigationController(rootViewController: addNewTVC)
             nc.modalTransitionStyle = .coverVertical
             nc.modalPresentationStyle = .pageSheet

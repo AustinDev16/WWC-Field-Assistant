@@ -8,15 +8,66 @@
 
 import UIKit
 
-class AddNewEntryTableViewController: UITableViewController {
+struct DataEntrySkeleton {
+    var serialNumber: String
+    var metalTag: String
+    var make: String
+    var model: String
+    var reading: String
+    
+    var multiplier: Multiplier
+    var unit: MeterUnitType
+    
+    func buildEmptySkeletonFromDefaults() -> DataEntrySkeleton {
+        return DataEntrySkeleton(serialNumber: self.serialNumber, metalTag: self.metalTag, make: self.make, model: self.model, reading: "", multiplier: self.multiplier, unit: self.unit)
+    }
+    /// Evaluates whether all text fields are populated correctly prior to saving
+    func canSaveNewEntry() -> Bool{
+        
+        let textFields = [serialNumber, metalTag, make, model]
+        for field in textFields {
+            if field.characters.count == 0 {
+                return false
+            }
+        }
+        
+        if Double(reading) != nil || reading.characters.count == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+protocol NewDataEntrySavable: class {
+    var well: Well? {get set}
+    var defaultSkeleton: DataEntrySkeleton? {get set}
+    var workingSkeleton: DataEntrySkeleton? {get set}
+}
+
+class AddNewEntryTableViewController: UITableViewController, NewDataEntrySavable {
 
     var well: Well?
+    var dataEntryController: DataEntryController?
+    var defaultSkeleton: DataEntrySkeleton?
+    var workingSkeleton: DataEntrySkeleton?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpNavigationBar()
         tableView.allowsSelection = false
+        
+        //configureSkeletons()
+    }
+    
+    func configureSkeletons(){
+        guard let well = self.well else {return}
+        // Setup Default skeleton
+        self.defaultSkeleton = well.returnDefaults()
+        // Setup To be Saved skeleton
+        self.workingSkeleton = self.defaultSkeleton?.buildEmptySkeletonFromDefaults()
     }
 
     func setUpNavigationBar(){
@@ -47,8 +98,25 @@ class AddNewEntryTableViewController: UITableViewController {
     func saveButtonTapped(){
         print("Save button tapped")
         self.isEditing = false
-        self.dismiss(animated: true, completion: nil)
-    }
+        if (self.workingSkeleton?.canSaveNewEntry())! {
+            guard let make = workingSkeleton?.make,
+                let readingString = workingSkeleton?.reading,
+                let readingDouble = Double(readingString),
+                let model = workingSkeleton?.model,
+                let multiplier = workingSkeleton?.multiplier,
+                let serialNumber = workingSkeleton?.serialNumber,
+                let unitType = workingSkeleton?.unit else { return }
+            
+            self.dataEntryController?.addDataEntry(dateCollected: NSDate(), fieldNotes: "", make: make, meterReading: readingDouble, model: model, multiplier: multiplier, serialNumber: serialNumber, unitType: unitType)
+            self.dismiss(animated: true, completion: nil)
+
+        } else {
+            let alert = UIAlertController(title: "One or more fields invalid", message: "Check all fields and submit again.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Continue", style: .default, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+            }
     // MARK: - Static Cells
     
     let dateFormatter: DateFormatter = {
@@ -71,6 +139,7 @@ class AddNewEntryTableViewController: UITableViewController {
             case 3:
                 let cell = AddNewReadingTableViewCell()//(style: .value1, reuseIdentifier: nil)
                 cell.configureCell()
+                cell.savableDelegate = self
                 return cell
             case 1:
                 let cell = WellSerialAndMetalTagTableViewCell()
