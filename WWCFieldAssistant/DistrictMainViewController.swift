@@ -164,8 +164,7 @@ class DistrictMainViewController: UIViewController {
         if self.selectedWell != nil {
             let vc = AddNewFieldPhotoViewController()
             vc.selectedWell = self.selectedWell
-            let dataEntryController = DataEntryController(well: self.selectedWell!)
-            vc.dataEntryController = dataEntryController
+            vc.dataEntryController = DataEntryController(well: self.selectedWell!)
             let nc = UINavigationController(rootViewController: vc)
             nc.modalPresentationStyle = .pageSheet
             present(nc, animated: true, completion: nil)
@@ -183,6 +182,12 @@ class DistrictMainViewController: UIViewController {
     func newFieldNoteTapped(){
         if self.selectedWell != nil {
             // present new field note view controller
+            let vc = AddNewFieldNoteViewController()
+            vc.selectedWell = self.selectedWell
+            vc.dataEntryController = DataEntryController(well: self.selectedWell!)
+            let nc = UINavigationController(rootViewController: vc)
+            nc.modalPresentationStyle = .pageSheet
+            present(nc, animated: true, completion: nil)
         } else {
             let vc = NoWellAvailableViewController()
             vc.modalPresentationStyle = .popover

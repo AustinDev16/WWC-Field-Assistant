@@ -67,6 +67,29 @@ extension DataEntry {
     }
 }
 
+// MARK: - Field Note
+extension FieldNote {
+//    @NSManaged public var date: NSDate
+//    @NSManaged public var note: String
+//    @NSManaged public var well: Well
+    convenience init?(dateWritten: NSDate,
+                      note: String,
+                      well: Well) {
+        if #available(iOS 10.0, *) {
+            let context = CoreDataStack.context
+            self.init(context: context)
+        } else {
+            let context = Stack.sharedStack.managedObjectContext
+            guard let entity = NSEntityDescription.entity(forEntityName: "FieldNote", in: context) else {return nil}
+            self.init(entity: entity, insertInto: context)
+        }
+        
+        self.date = dateWritten
+        self.note = note
+        self.well = well
+    }
+}
+
 // MARK: - FieldPhoto
 extension FieldPhoto {
     convenience init?(dateTaken: NSDate,

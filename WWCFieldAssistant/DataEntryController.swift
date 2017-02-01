@@ -50,7 +50,7 @@ class DataEntryController {
                                   image: UIImage){
         guard let imageData = UIImageJPEGRepresentation(image, 1.0) else {return}
         let newFieldPhoto = FieldPhoto(dateTaken: dateTaken, comment: comment, name: name, well: self.well, imageData: imageData)
-
+// TODO: - Handle errors here in case these objects come back as nil.
         self.well.addToFieldPhotos(newFieldPhoto!)
         PersistenceController.saveToPersistedStore()
         
@@ -66,6 +66,28 @@ class DataEntryController {
         moc.delete(fieldPhotoToDelete)
         PersistenceController.saveToPersistedStore()
         let notification = Notification(name: Notification.Name(rawValue: "FieldPhotoUpdated"))
+        NotificationCenter.default.post(notification)
+    }
+    
+    /// Adds a field note to a well
+    func addFieldNoteToWell(dateWritten: NSDate,
+                            note: String){
+        let newFieldNote = FieldNote(dateWritten: dateWritten, note: note, well: self.well)
+        // TODO: - Handle errors here in case these objects come back as nil.
+        self.well.addToFieldNotes(newFieldNote!)
+        PersistenceController.saveToPersistedStore()
+        let notification = Notification(name: Notification.Name(rawValue: "FieldNoteUpdated"))
+        NotificationCenter.default.post(notification)
+    }
+    
+    /// Deletes a field note from a well
+    func deleteFieldNoteFromWell(fieldNoteToDelete: FieldNote){
+        guard let moc = fieldNoteToDelete.managedObjectContext else { return }
+        let well = fieldNoteToDelete.well
+        well.removeFromFieldNotes(fieldNoteToDelete)
+        moc.delete(fieldNoteToDelete)
+        PersistenceController.saveToPersistedStore()
+        let notification = Notification(name: Notification.Name(rawValue: "FieldNoteUpdated"))
         NotificationCenter.default.post(notification)
     }
     
