@@ -183,7 +183,11 @@ extension Well {
                 $0.0.dateCollected.timeIntervalSince1970 > $0.1.dateCollected.timeIntervalSince1970
             }
             let mostRecentEntry = sortedEntries[0]
-            return DataEntrySkeleton(serialNumber: mostRecentEntry.serialNumber, metalTag: self.metalTag, make: mostRecentEntry.make, model: mostRecentEntry.model, reading: mostRecentEntry.meterReading.stringRepresentation(), multiplier: Multiplier(rawValue: Double(mostRecentEntry.multiplier)!)!, unit: MeterUnitType(rawValue: mostRecentEntry.unitTypeString)!)
+            var multiplierString = mostRecentEntry.multiplier
+            if multiplierString == "1 million" {
+                multiplierString = "1000000"
+            }
+            return DataEntrySkeleton(serialNumber: mostRecentEntry.serialNumber, metalTag: self.metalTag, make: mostRecentEntry.make, model: mostRecentEntry.model, reading: mostRecentEntry.meterReading.stringRepresentation(), multiplier: Multiplier(rawValue: Double(multiplierString)!)!, unit: MeterUnitType(rawValue: mostRecentEntry.unitTypeString)!)
         }
     }
     
