@@ -43,8 +43,40 @@ class AddNewReadingTableViewCell: UITableViewCell {
         readingTextField.becomeFirstResponder()
         
         readingTextField.addTarget(self, action: #selector(updateReadingTextOnDelegate), for: .editingChanged)
+        setDefaultPickerValues()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(resignResponder), name: Notification.Name(rawValue: "ResignResponderNewEntry"), object: nil)
     }
     
+    func resignResponder(){
+        readingTextField.resignFirstResponder()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setDefaultPickerValues(){
+        guard let defaultSktn = self.savableDelegate?.defaultSkeleton else {return}
+        let multiplierString = defaultSktn.multiplier.rawValue.stringRepresentation()
+        var numberOfRows = multiplierUnitPicker.numberOfRows(inComponent: 0)
+        for i in 0...(numberOfRows - 1) {
+            let title = self.pickerView(multiplierUnitPicker, titleForRow: i, forComponent: 0)
+            if title != nil && title! == multiplierString {
+                    multiplierUnitPicker.selectRow(i, inComponent: 0, animated: false)
+            }
+        }
+        
+        let unitString = defaultSktn.unit.rawValue
+        numberOfRows = multiplierUnitPicker.numberOfRows(inComponent: 1)
+        for i in 0...(numberOfRows - 1) {
+            let unitTitle = self.pickerView(multiplierUnitPicker, titleForRow: i, forComponent: 1)
+            if unitTitle != nil && unitTitle! == unitString {
+                multiplierUnitPicker.selectRow(i, inComponent: 1, animated: false)
+            }
+        }
+        
+    }
     /// Updates the skeleton with the reading 
     func updateReadingTextOnDelegate(){
         guard let text = readingTextField.text else { self.savableDelegate?.workingSkeleton?.reading = ""; return}

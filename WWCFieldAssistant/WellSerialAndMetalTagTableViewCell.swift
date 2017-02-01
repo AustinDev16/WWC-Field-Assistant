@@ -13,6 +13,7 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     // MARK: - Properties
     var resetSerial: String? = nil
     var resetMetalTag: String? = nil
+    weak var savableDelegate: NewDataEntrySavable?
     
     // MARK: - Cell Elements
     let serialNumberLabel = UILabel()
@@ -50,7 +51,33 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
         setUpMetalTagTextField()
         
         setUpResetButton()
+        
+        linkTextFieldsToDelegate()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(resignResponder), name: Notification.Name(rawValue: "ResignResponderNewEntry"), object: nil)
+    }
+    
+    func resignResponder(){
+        serialNumberTextField.resignFirstResponder()
+        metalTagTextField.resignFirstResponder()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    /// Connects the text fields to the working skeleton on parent view
+    func linkTextFieldsToDelegate(){
+        serialNumberTextField.addTarget(self, action: #selector(updateSerialNumber), for: .editingChanged)
+        metalTagTextField.addTarget(self, action: #selector(updateMetalTag), for: .editingChanged)
+    }
+    
+    func updateSerialNumber(){
+        self.savableDelegate?.workingSkeleton?.serialNumber = serialNumberTextField.text ?? ""
+    }
+    
+    func updateMetalTag(){
+        self.savableDelegate?.workingSkeleton?.metalTag = metalTagTextField.text ?? ""
     }
     
     func setUpSerialNumberLabel(){
@@ -69,7 +96,7 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     }
     
     func setUpSerialNumberTextField(){
-        serialNumberTextField.text = "M1896425"
+        serialNumberTextField.text = self.savableDelegate?.defaultSkeleton?.serialNumber ?? "Error with defaults"
         serialNumberTextField.textAlignment = .left
         serialNumberTextField.clearButtonMode = .always
         
@@ -98,7 +125,7 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     }
     
     func setUpMetalTagTextField(){
-        metalTagTextField.text = "D45t67280"
+        metalTagTextField.text = self.savableDelegate?.defaultSkeleton?.metalTag ?? "Error with defaults."
         metalTagTextField.textAlignment = .left
         metalTagTextField.clearButtonMode = .always
         
@@ -128,8 +155,8 @@ class WellSerialAndMetalTagTableViewCell: UITableViewCell {
     }
     
     @objc func resetButtonTapped(){
-        serialNumberTextField.text = self.resetSerial ?? "Error"
-        metalTagTextField.text = self.resetMetalTag ?? "Error"
+        serialNumberTextField.text = self.savableDelegate?.defaultSkeleton?.serialNumber ?? "Error"
+        metalTagTextField.text = self.savableDelegate?.defaultSkeleton?.metalTag ?? "Error"
     }
     
 

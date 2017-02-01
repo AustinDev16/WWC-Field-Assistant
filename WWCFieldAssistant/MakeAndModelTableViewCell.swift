@@ -14,6 +14,8 @@ class MakeAndModelTableViewCell: UITableViewCell {
     let resetMake: String? = nil
     let resetModel: String? = nil
     
+    weak var savableDelegate: NewDataEntrySavable?
+    
     // MARK: - Cell Elements
     let makeLabel = UILabel()
     let makeTextField = UITextField()
@@ -49,7 +51,33 @@ class MakeAndModelTableViewCell: UITableViewCell {
         setUpModelTextField()
         
         setUpResetButton()
+        linkTextFieldsToDelegate()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(resignResponder), name: Notification.Name(rawValue: "ResignResponderNewEntry"), object: nil)
+    }
+    
+    func resignResponder(){
+        makeTextField.resignFirstResponder()
+        modelTextField.resignFirstResponder()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    /// connects text fields to the working skeleton
+    func linkTextFieldsToDelegate(){
+        makeTextField.addTarget(self, action: #selector(updateMake), for: .editingChanged)
+        modelTextField.addTarget(self, action: #selector(updateModel), for: .editingChanged)
+    }
+    
+    func updateMake(){
+        self.savableDelegate?.workingSkeleton?.make = makeTextField.text ?? ""
+    }
+    
+    func updateModel(){
+        self.savableDelegate?.workingSkeleton?.model = modelTextField.text ?? ""
     }
     
     func setUpMakeLabel(){
@@ -68,7 +96,7 @@ class MakeAndModelTableViewCell: UITableViewCell {
     }
     
     func setUpMakeTextField(){
-        makeTextField.text = "M1896425"
+        makeTextField.text = self.savableDelegate?.defaultSkeleton?.make ?? "Error with Defaults"
         makeTextField.textAlignment = .left
         makeTextField.clearButtonMode = .always
         
@@ -97,7 +125,7 @@ class MakeAndModelTableViewCell: UITableViewCell {
     }
     
     func setUpModelTextField(){
-        modelTextField.text = "D45t67280"
+        modelTextField.text = self.savableDelegate?.defaultSkeleton?.model ?? "Error with defaults"
         modelTextField.textAlignment = .left
         modelTextField.clearButtonMode = .always
         
@@ -127,8 +155,8 @@ class MakeAndModelTableViewCell: UITableViewCell {
     }
     
     @objc func resetButtonTapped(){
-        makeTextField.text = self.resetMake ?? "Error"
-        modelTextField.text = self.resetModel ?? "Error"
+        makeTextField.text = self.savableDelegate?.defaultSkeleton?.make ?? "Error"
+        modelTextField.text = self.savableDelegate?.defaultSkeleton?.model ?? "Error"
     }
     
 

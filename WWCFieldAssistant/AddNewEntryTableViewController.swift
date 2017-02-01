@@ -80,8 +80,10 @@ class AddNewEntryTableViewController: UITableViewController, NewDataEntrySavable
     
     func cancelButtonTapped(){
         self.isEditing = false
+        let notification = Notification(name: Notification.Name(rawValue: "ResignResponderNewEntry"))
+        NotificationCenter.default.post(notification)
         
-        let cancelAlertController = UIAlertController(title: "Are you sure?", message: "Canceling will lead to any unsaved data to be lost permanently.", preferredStyle: .alert)
+        let cancelAlertController = UIAlertController(title: "Are you sure?", message: "Canceling will discard this entry permanently.", preferredStyle: .alert)
         let discardChanges = UIAlertAction(title: "Discard changes", style: .destructive) { (_) in
             self.setEditing(false, animated: false)
             self.dismiss(animated: true, completion: nil)
@@ -105,7 +107,15 @@ class AddNewEntryTableViewController: UITableViewController, NewDataEntrySavable
                 let model = workingSkeleton?.model,
                 let multiplier = workingSkeleton?.multiplier,
                 let serialNumber = workingSkeleton?.serialNumber,
-                let unitType = workingSkeleton?.unit else { return }
+                let unitType = workingSkeleton?.unit else {
+                    let alert = UIAlertController(title: "One or more fields are empty", message: "Fill in the empty fields.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "Continue", style: .default, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                    return }
+            
+            let notification = Notification(name: Notification.Name(rawValue: "ResignResponderNewEntry"))
+            NotificationCenter.default.post(notification)
             
             self.dataEntryController?.addDataEntry(dateCollected: NSDate(), fieldNotes: "", make: make, meterReading: readingDouble, model: model, multiplier: multiplier, serialNumber: serialNumber, unitType: unitType)
             self.dismiss(animated: true, completion: nil)
@@ -138,15 +148,17 @@ class AddNewEntryTableViewController: UITableViewController, NewDataEntrySavable
                 return cell
             case 3:
                 let cell = AddNewReadingTableViewCell()//(style: .value1, reuseIdentifier: nil)
-                cell.configureCell()
                 cell.savableDelegate = self
+                cell.configureCell()
                 return cell
             case 1:
                 let cell = WellSerialAndMetalTagTableViewCell()
+                cell.savableDelegate = self
                 cell.configureCell()
                 return cell
             case 2:
                 let cell = MakeAndModelTableViewCell()
+                cell.savableDelegate = self
                 cell.configureCell()
                 return cell
             default: return UITableViewCell()

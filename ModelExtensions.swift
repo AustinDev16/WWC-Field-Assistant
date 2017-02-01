@@ -157,7 +157,7 @@ extension Well {
         } else { // Use most recent data entry
             let entries = self.dataEntries.flatMap{$0 as? DataEntry}
             let sortedEntries = entries.sorted {
-                $0.0.dateCollected.timeIntervalSince1970 < $0.1.dateCollected.timeIntervalSince1970
+                $0.0.dateCollected.timeIntervalSince1970 > $0.1.dateCollected.timeIntervalSince1970
             }
             let mostRecentEntry = sortedEntries[0]
             return DataEntrySkeleton(serialNumber: mostRecentEntry.serialNumber, metalTag: self.metalTag, make: mostRecentEntry.make, model: mostRecentEntry.model, reading: mostRecentEntry.meterReading.stringRepresentation(), multiplier: Multiplier(rawValue: Double(mostRecentEntry.multiplier)!)!, unit: MeterUnitType(rawValue: mostRecentEntry.unitTypeString)!)
