@@ -201,8 +201,8 @@ extension MapViewController: MKMapViewDelegate {
 //            self.mapView.centerCoordinate = annotation.coordinate
 //        }, completion: nil)
         
-        let center = annotation.coordinate
-        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+//        let center = annotation.coordinate
+//        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
         UIView.animate(withDuration: 0.8) { 
             //self.mapView.region = MKCoordinateRegion(center: center, span: span)
         }

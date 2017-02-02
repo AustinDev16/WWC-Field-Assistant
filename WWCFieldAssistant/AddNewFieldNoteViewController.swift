@@ -35,6 +35,7 @@ class AddNewFieldNoteViewController: UIViewController {
     // MARK: - Set Up View
 
     func setUpNavigationBar(){
+        self.title = "New Field Note"
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
         let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         self.navigationItem.leftBarButtonItem = cancel
