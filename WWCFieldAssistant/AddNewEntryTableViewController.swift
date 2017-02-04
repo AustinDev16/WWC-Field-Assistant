@@ -71,7 +71,7 @@ class AddNewEntryTableViewController: UITableViewController, NewDataEntrySavable
     }
 
     func setUpNavigationBar(){
-        self.title = "Add new Entry"
+        self.title = "Add New Entry"
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         self.navigationItem.leftBarButtonItem = cancelButton
