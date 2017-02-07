@@ -42,8 +42,8 @@ extension District {
     @objc(replaceWellsAtIndexes:withWells:)
     @NSManaged public func replaceWells(at indexes: NSIndexSet, with values: [Well])
 
-    @objc(addWellsObject:)
-    @NSManaged public func addToWells(_ value: Well)
+//    @objc(addWellsObject:)
+//    @NSManaged public func addToWells(_ value: Well)
 
     @objc(removeWellsObject:)
     @NSManaged public func removeFromWells(_ value: Well)

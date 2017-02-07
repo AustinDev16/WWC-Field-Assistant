@@ -21,6 +21,7 @@
 		FA28EEBA1DFF4B1F004A8167 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */; };
 		FA28EEBD1DFF4CA6004A8167 /* DataEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */; };
 		FA2AB1401E1F128600FC72A8 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2AB13F1E1F128600FC72A8 /* UsersTableViewController.swift */; };
+		FA362CBA1E49556E00D20B30 /* ModelExtension_iOS9.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA362CB91E49556E00D20B30 /* ModelExtension_iOS9.swift */; };
 		FA426B881DFF51CD0036B28E /* MeasurementEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */; };
 		FA426B8A1DFF7FAD0036B28E /* DistrictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B891DFF7FAD0036B28E /* DistrictController.swift */; };
 		FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA426B8B1DFF820D0036B28E /* MockDataController.swift */; };
@@ -78,6 +79,7 @@
 		FA28EEB91DFF4B1F004A8167 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		FA28EEBC1DFF4CA6004A8167 /* DataEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntryController.swift; sourceTree = "<group>"; };
 		FA2AB13F1E1F128600FC72A8 /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		FA362CB91E49556E00D20B30 /* ModelExtension_iOS9.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtension_iOS9.swift; sourceTree = "<group>"; };
 		FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementEnums.swift; sourceTree = "<group>"; };
 		FA426B891DFF7FAD0036B28E /* DistrictController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictController.swift; sourceTree = "<group>"; };
 		FA426B8B1DFF820D0036B28E /* MockDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				FA8B5F361E41371A0068E99A /* FieldPhoto+CoreDataClass.swift */,
 				FA8B5F371E41371A0068E99A /* FieldPhoto+CoreDataProperties.swift */,
 				FA8B5F2A1E41351F0068E99A /* ModelExtensions.swift */,
+				FA362CB91E49556E00D20B30 /* ModelExtension_iOS9.swift */,
 				FA426B871DFF51CD0036B28E /* MeasurementEnums.swift */,
 			);
 			name = Model;
@@ -385,6 +388,7 @@
 				FA426B8C1DFF820D0036B28E /* MockDataController.swift in Sources */,
 				FAB053541E0200CC007A7BFB /* WellInfoTableViewController.swift in Sources */,
 				FA2889E31E396B24000A24A8 /* WaterDistrictTableViewCell.swift in Sources */,
+				FA362CBA1E49556E00D20B30 /* ModelExtension_iOS9.swift in Sources */,
 				FA0D9C871E2C49890097E378 /* FieldPhotoCollectionViewController.swift in Sources */,
 				FA8A93B51E42964700CB3644 /* FieldNoteTextView.swift in Sources */,
 				FA8B5F421E41371A0068E99A /* FieldPhoto+CoreDataClass.swift in Sources */,
@@ -518,7 +522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QYV5ZZB7LD;
 				INFOPLIST_FILE = WWCFieldAssistant/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AustinBlaser.WMFieldAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -532,7 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QYV5ZZB7LD;
 				INFOPLIST_FILE = WWCFieldAssistant/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AustinBlaser.WMFieldAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";

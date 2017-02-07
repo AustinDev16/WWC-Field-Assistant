@@ -58,8 +58,8 @@ extension Well {
     @objc(replaceDataEntriesAtIndexes:withDataEntries:)
     @NSManaged public func replaceDataEntries(at indexes: NSIndexSet, with values: [DataEntry])
 
-    @objc(addDataEntriesObject:)
-    @NSManaged public func addToDataEntries(_ value: DataEntry)
+//    @objc(addDataEntriesObject:)
+//    @NSManaged public func addToDataEntries(_ value: DataEntry)
 
     @objc(removeDataEntriesObject:)
     @NSManaged public func removeFromDataEntries(_ value: DataEntry)
@@ -93,8 +93,8 @@ extension Well {
     @objc(replaceFieldPhotosAtIndexes:withFieldPhotos:)
     @NSManaged public func replaceFieldPhotos(at indexes: NSIndexSet, with values: [FieldPhoto])
 
-    @objc(addFieldPhotosObject:)
-    @NSManaged public func addToFieldPhotos(_ value: FieldPhoto)
+//    @objc(addFieldPhotosObject:)
+//    @NSManaged public func addToFieldPhotos(_ value: FieldPhoto)
 
     @objc(removeFieldPhotosObject:)
     @NSManaged public func removeFromFieldPhotos(_ value: FieldPhoto)
@@ -128,8 +128,8 @@ extension Well {
     @objc(replaceFieldNotesAtIndexes:withFieldNotes:)
     @NSManaged public func replaceFieldNotes(at indexes: NSIndexSet, with values: [FieldNote])
 
-    @objc(addFieldNotesObject:)
-    @NSManaged public func addToFieldNotes(_ value: FieldNote)
+//    @objc(addFieldNotesObject:)
+//    @NSManaged public func addToFieldNotes(_ value: FieldNote)
 
     @objc(removeFieldNotesObject:)
     @NSManaged public func removeFromFieldNotes(_ value: FieldNote)
